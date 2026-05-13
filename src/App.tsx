@@ -6,6 +6,7 @@ type Project = {
   stage: string;
   summary: string;
   outcome: string;
+  href?: string;
 };
 
 type Principle = {
@@ -27,6 +28,16 @@ const signals = [
 ];
 
 const projects: Project[] = [
+  {
+    title: "Amex Platinum Benefit Tracker",
+    tone: "shipping",
+    stage: "Live household tool",
+    summary:
+      "A shared Andrew + Stella command center for tracking Amex Platinum credits by cadence, owner, completion date, notes, and realized value before benefits expire.",
+    outcome:
+      "A practical checklist that turns card benefits into an accountable household workflow.",
+    href: "/amex-platinum-tracker/",
+  },
   {
     title: "Personal Superhuman",
     tone: "shipping",
@@ -117,29 +128,17 @@ function getToneLabel(tone: ProjectTone): string {
 
 export function App() {
   return (
-    <main
-      className="showcase-page"
-      id="top"
-    >
+    <main className="showcase-page" id="top">
       <section className="showcase-hero">
-        <div
-          aria-hidden="true"
-          className="showcase-noise"
-        />
+        <div aria-hidden="true" className="showcase-noise" />
 
         <header className="showcase-nav">
-          <a
-            className="showcase-wordmark"
-            href="#top"
-          >
+          <a className="showcase-wordmark" href="#top">
             <span className="showcase-wordmark-dot" />
             canyoubuildit.com
           </a>
 
-          <nav
-            aria-label="Primary"
-            className="showcase-nav-links"
-          >
+          <nav aria-label="Primary" className="showcase-nav-links">
             <a href="#projects">Projects</a>
             <a href="#process">Process</a>
             <a href="#notes">Notes</a>
@@ -164,32 +163,23 @@ export function App() {
             </p>
 
             <div className="showcase-actions showcase-reveal showcase-reveal-4">
-              <a
-                className="showcase-button showcase-button-primary"
-                href="#projects"
-              >
+              <a className="showcase-button showcase-button-primary" href="#projects">
                 Browse the projects
               </a>
-              <a
-                className="showcase-button showcase-button-secondary"
-                href="#process"
-              >
-                See how I work
+              <a className="showcase-button showcase-button-secondary" href="/amex-platinum-tracker/">
+                Open Amex tracker
               </a>
             </div>
           </div>
 
-          <div
-            aria-hidden="true"
-            className="showcase-visual"
-          >
+          <div aria-hidden="true" className="showcase-visual">
             <div className="showcase-visual-rim" />
 
             <article className="showcase-artifact showcase-artifact-primary">
               <p className="showcase-artifact-label">Featured now</p>
-              <strong>Personal Superhuman</strong>
+              <strong>Amex Platinum Tracker</strong>
               <span>
-                private inbox intelligence with human approval built in
+                household benefit tracking before credits quietly expire
               </span>
             </article>
 
@@ -220,10 +210,7 @@ export function App() {
         </div>
       </section>
 
-      <section
-        className="showcase-section"
-        id="projects"
-      >
+      <section className="showcase-section" id="projects">
         <div className="showcase-section-head">
           <p className="showcase-section-label">Selected builds</p>
           <h2>
@@ -251,6 +238,12 @@ export function App() {
                 </div>
 
                 <p className="showcase-project-summary">{project.summary}</p>
+
+                {project.href ? (
+                  <a className="showcase-button showcase-button-secondary" href={project.href}>
+                    Open build
+                  </a>
+                ) : null}
               </div>
 
               <p className="showcase-project-outcome">{project.outcome}</p>
@@ -259,10 +252,7 @@ export function App() {
         </div>
       </section>
 
-      <section
-        className="showcase-section showcase-process"
-        id="process"
-      >
+      <section className="showcase-section showcase-process" id="process">
         <div className="showcase-process-grid">
           <div className="showcase-process-intro">
             <p className="showcase-section-label">Process</p>
@@ -278,25 +268,16 @@ export function App() {
           <div className="showcase-process-columns">
             <div className="showcase-principles">
               {principles.map((principle) => (
-                <article
-                  className="showcase-principle"
-                  key={principle.title}
-                >
+                <article className="showcase-principle" key={principle.title}>
                   <h3>{principle.title}</h3>
                   <p>{principle.copy}</p>
                 </article>
               ))}
             </div>
 
-            <div
-              className="showcase-notes"
-              id="notes"
-            >
+            <div className="showcase-notes" id="notes">
               {notes.map((note) => (
-                <article
-                  className="showcase-note"
-                  key={note.title}
-                >
+                <article className="showcase-note" key={note.title}>
                   <p className="showcase-note-label">{note.label}</p>
                   <h3>{note.title}</h3>
                   <p>{note.copy}</p>
@@ -315,22 +296,16 @@ export function App() {
         </h2>
         <p>
           More builds will get added over time. For now, this gives Personal
-          Superhuman the right home: one project on the wall, not the wall
-          itself.
+          Superhuman and the Amex Platinum tracker the right home: projects on
+          the wall, not the wall itself.
         </p>
 
         <div className="showcase-actions">
-          <a
-            className="showcase-button showcase-button-primary"
-            href="#top"
-          >
+          <a className="showcase-button showcase-button-primary" href="#top">
             Back to the top
           </a>
-          <a
-            className="showcase-button showcase-button-secondary"
-            href="#notes"
-          >
-            Read the notes
+          <a className="showcase-button showcase-button-secondary" href="/amex-platinum-tracker/">
+            Open Amex tracker
           </a>
         </div>
       </section>
