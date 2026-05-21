@@ -93,6 +93,24 @@
     }
   },
   {
+    "id": "signiel-seoul-hold-2026-05-21",
+    "source": "manual_hold",
+    "date": "2026-05-21",
+    "merchant": "Signiel Seoul",
+    "title": "Hotel hold",
+    "amount": null,
+    "currency": "USD",
+    "category": "Hotels",
+    "confidence": "pending",
+    "status": "pending",
+    "notes": "Pending hotel hold mentioned by Andrew on 2026-05-21. Waiting for live card feed or posted transaction details to fill the amount.",
+    "rawSource": {
+      "type": "manual_pending_hold",
+      "account": "Awaiting finance connector",
+      "matchedReceiptId": null
+    }
+  },
+  {
     "id": "clear-2026-05-15",
     "source": "seed",
     "date": "2026-05-15",

@@ -93,12 +93,14 @@ function FlightHero({ transactions }: { transactions: NormalizedExpense[] }) {
         <div className="cloud cloudA" />
         <div className="cloud cloudB" />
         <div className="miniTower" />
-        <div className="paperPlane">
-          <span className="wing" />
-          <span className="tail" />
-          <span className="window w1" />
-          <span className="window w2" />
-          <span className="window w3" />
+        <div className="paperPlaneRig">
+          <div className="paperPlane">
+            <span className="wing" />
+            <span className="tail" />
+            <span className="window w1" />
+            <span className="window w2" />
+            <span className="window w3" />
+          </div>
         </div>
         <svg className="flightPath" viewBox="0 0 700 220" preserveAspectRatio="none">
           <path d="M28 150 C 190 50, 300 210, 495 92 S 645 85, 690 54" />
@@ -125,7 +127,7 @@ function VisualCard({ merchant, title, amount, category, status }: NormalizedExp
         {category === "Hotels" && <><div className="roomWindow"><PaperSkyline /></div><div className="bed" /><div className="lamp" /></>}
         {category === "Travel Services" && <><div className="clearKiosk">CLEAR</div><div className="scanner" /><div className="plant" /></>}
         {category === "Airport" && <><div className="paperBag">뻥튀기</div><div className="cup">한국김</div><div className="snack" /></>}
-        {category === "Flights" && <><div className="paperPlane small"><span className="wing"/><span className="tail"/></div><div className="cloud cloudA" /></>}
+        {category === "Flights" && <><div className="paperPlaneRig smallRig"><div className="paperPlane small"><span className="wing"/><span className="tail"/></div></div><div className="cloud cloudA" /></>}
       </div>
       <div className="visualText">
         <h3>{merchant}</h3>
