@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { Plane, Hotel, ShieldCheck, Lock, Grid2X2, ReceiptText, ChartPie, Target, MapPin, Settings, Bell, Car, Utensils, Briefcase, ArrowRight, CalendarDays, RefreshCw } from "lucide-react";
+import { ArrowRight, Bell, Briefcase, CalendarDays, Car, CreditCard, ExternalLink, Grid2X2, Hotel, Lock, Plane, RefreshCw, ShieldCheck, Utensils, X } from "lucide-react";
 import { categories, summarizeTransactions, transactions as seedTransactions, type NormalizedExpense, type TripSummary } from "../../lib/trip-data";
 
 const formatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
@@ -29,6 +29,71 @@ const iconByCategory: Record<string, ReactNode> = {
 function Currency({ value }: { value: number | null }) {
   if (value == null) return <span className="muted">Pending</span>;
   return <>{formatter.format(value)}</>;
+}
+
+function rawText(raw: Record<string, unknown>, key: string) {
+  const value = raw[key];
+  return typeof value === "string" || typeof value === "number" ? String(value) : null;
+}
+
+function rawList(raw: Record<string, unknown>, key: string) {
+  const value = raw[key];
+  return Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
+}
+
+function cardInfo(expense: NormalizedExpense) {
+  const card = expense.rawSource.card;
+  if (card && typeof card === "object" && !Array.isArray(card)) {
+    const source = card as Record<string, unknown>;
+    return {
+      brand: rawText(source, "brand") || "Card",
+      product: rawText(source, "product") || rawText(expense.rawSource, "account") || "Card",
+      last4: rawText(source, "last4"),
+      role: rawText(source, "role") || "Payment"
+    };
+  }
+
+  const account = rawText(expense.rawSource, "account") || rawText(expense.rawSource, "paymentMethod");
+  if (account) return { brand: account.includes("Visa") ? "Visa" : "Card", product: account, last4: null, role: "Payment" };
+  return null;
+}
+
+function PaymentCardMark({ expense }: { expense: NormalizedExpense }) {
+  const card = cardInfo(expense);
+  if (!card) return null;
+  const isAmex = /american express|amex|platinum/i.test(`${card.brand} ${card.product}`);
+  return (
+    <div className={`paymentCardMark ${isAmex ? "amex" : "visa"}`} aria-label={`${card.product}${card.last4 ? ` ending ${card.last4}` : ""}`}>
+      <span>{isAmex ? "AMEX" : card.brand}</span>
+      <b>{isAmex ? "PLATINUM" : card.product}</b>
+      {card.last4 && <small>••{card.last4}</small>}
+    </div>
+  );
+}
+
+function detailAmount(expense: NormalizedExpense) {
+  if (expense.amount != null) return formatter.format(expense.amount);
+  const totalCharges = expense.rawSource.totalCharges;
+  const totalCurrency = rawText(expense.rawSource, "totalChargesCurrency") || expense.currency;
+  if (typeof totalCharges === "number") return `${new Intl.NumberFormat("en-US").format(totalCharges)} ${totalCurrency}`;
+  const receiptTotal = expense.rawSource.receiptTotal;
+  if (typeof receiptTotal === "number") return formatter.format(receiptTotal);
+  return "Pending";
+}
+
+function PaperPlaneSvg({ small = false }: { small?: boolean }) {
+  return (
+    <svg className={small ? "paperJetSvg small" : "paperJetSvg"} viewBox="0 0 190 88" aria-hidden="true">
+      <path className="jetShadow" d="M22 55 C74 76 124 78 167 56" />
+      <path className="jetBody" d="M8 47 L170 10 C177 8 182 15 177 21 L58 72 C51 75 43 70 45 63 L50 48 Z" />
+      <path className="jetWing" d="M72 43 L121 75 L94 32 Z" />
+      <path className="jetTail" d="M42 40 L19 19 L69 34 Z" />
+      <path className="jetFold" d="M50 48 L170 10 L76 55" />
+      <circle className="jetWindow" cx="111" cy="30" r="4" />
+      <circle className="jetWindow" cx="128" cy="26" r="3.7" />
+      <circle className="jetWindow" cx="145" cy="22" r="3.4" />
+    </svg>
+  );
 }
 
 function CategoryDonut({ summary }: { summary: TripSummary }) {
@@ -75,14 +140,16 @@ function PaperSkyline() {
   );
 }
 
-function FlightHero({ transactions }: { transactions: NormalizedExpense[] }) {
+function FlightHero({ transactions, onSelect }: { transactions: NormalizedExpense[]; onSelect: (expense: NormalizedExpense) => void }) {
   const flight = transactions.find((row) => row.category === "Flights");
   const receiptTotal =
     typeof flight?.rawSource.receiptTotal === "number" ? flight.rawSource.receiptTotal : null;
   const confirmationCode =
     typeof flight?.rawSource.confirmationCode === "string" ? flight.rawSource.confirmationCode : null;
   return (
-    <section className="heroCard flightHero">
+    <section className="heroCard flightHero" role="button" tabIndex={0} onClick={() => flight && onSelect(flight)} onKeyDown={(event) => {
+      if ((event.key === "Enter" || event.key === " ") && flight) onSelect(flight);
+    }}>
       <div className="cardBadge blue"><Plane size={16} /> Flights</div>
       <div className="flightCopy">
         <h2>Flight to Seoul</h2>
@@ -93,14 +160,8 @@ function FlightHero({ transactions }: { transactions: NormalizedExpense[] }) {
         <div className="cloud cloudA" />
         <div className="cloud cloudB" />
         <div className="miniTower" />
-        <div className="paperPlaneRig">
-          <div className="paperPlane">
-            <span className="wing" />
-            <span className="tail" />
-            <span className="window w1" />
-            <span className="window w2" />
-            <span className="window w3" />
-          </div>
+        <div className="paperJetRig">
+          <PaperPlaneSvg />
         </div>
         <svg className="flightPath" viewBox="0 0 700 220" preserveAspectRatio="none">
           <path d="M28 150 C 190 50, 300 210, 495 92 S 645 85, 690 54" />
@@ -108,7 +169,7 @@ function FlightHero({ transactions }: { transactions: NormalizedExpense[] }) {
       </div>
       <div className="revealPanel">
         <span>Receipt total</span>
-        <button aria-label="Reveal amount"><ArrowRight size={22} /></button>
+        <span className="revealIcon" aria-hidden="true"><ArrowRight size={22} /></span>
         <small>Amount</small>
         <div className="dots"><i/><i/><i/><i/><i/></div>
         <b>{flight?.amount == null ? formatter.format(receiptTotal ?? 0) : formatter.format(flight.amount)}</b>
@@ -118,16 +179,20 @@ function FlightHero({ transactions }: { transactions: NormalizedExpense[] }) {
   );
 }
 
-function VisualCard({ merchant, title, amount, category, status }: NormalizedExpense) {
+function VisualCard({ expense, onSelect }: { expense: NormalizedExpense; onSelect: (expense: NormalizedExpense) => void }) {
+  const { merchant, title, amount, category, status } = expense;
   const cls = category.toLowerCase().replace(/\s+/g, "-");
   return (
-    <article className={`visualCard ${cls}`}>
+    <article className={`visualCard ${cls}`} role="button" tabIndex={0} onClick={() => onSelect(expense)} onKeyDown={(event) => {
+      if (event.key === "Enter" || event.key === " ") onSelect(expense);
+    }}>
       <div className="cardBadge" style={{ background: colorByCategory[category] }}>{iconByCategory[category]} {category}</div>
+      <PaymentCardMark expense={expense} />
       <div className="illustration" aria-hidden="true">
         {category === "Hotels" && <><div className="roomWindow"><PaperSkyline /></div><div className="bed" /><div className="lamp" /></>}
         {category === "Travel Services" && <><div className="clearKiosk">CLEAR</div><div className="scanner" /><div className="plant" /></>}
         {category === "Airport" && <><div className="paperBag">뻥튀기</div><div className="cup">한국김</div><div className="snack" /></>}
-        {category === "Flights" && <><div className="paperPlaneRig smallRig"><div className="paperPlane small"><span className="wing"/><span className="tail"/></div></div><div className="cloud cloudA" /></>}
+        {category === "Flights" && <><div className="paperJetRig smallRig"><PaperPlaneSvg small /></div><div className="cloud cloudA" /></>}
       </div>
       <div className="visualText">
         <h3>{merchant}</h3>
@@ -135,14 +200,96 @@ function VisualCard({ merchant, title, amount, category, status }: NormalizedExp
         <strong><Currency value={amount} /></strong>
         <span className={`status ${status}`}>{status === "posted" ? "Posted" : status.replace("_", " ")}</span>
       </div>
-      <button className="cardArrow" aria-label={`Open ${merchant}`}><ArrowRight size={18}/></button>
+      <span className="cardArrow" aria-hidden="true"><ArrowRight size={18}/></span>
     </article>
+  );
+}
+
+function DetailPanel({ expense, onClose }: { expense: NormalizedExpense; onClose: () => void }) {
+  const card = cardInfo(expense);
+  const rows = [
+    ["Date", expense.date],
+    ["Status", expense.status.replace("_", " ")],
+    ["Source", expense.source],
+    ["Payment", rawText(expense.rawSource, "paymentMethod") || rawText(expense.rawSource, "account")],
+    ["Booking #", rawText(expense.rawSource, "bookingNumber")],
+    ["Confirmation #", rawText(expense.rawSource, "hotelConfirmationNumber") || rawText(expense.rawSource, "reservationNumber") || rawText(expense.rawSource, "confirmationCode")],
+    ["Check-in", rawText(expense.rawSource, "checkIn")],
+    ["Check-out", rawText(expense.rawSource, "checkOut")],
+    ["Room", rawText(expense.rawSource, "roomType")],
+    ["Guests", rawText(expense.rawSource, "guests") || (rawText(expense.rawSource, "adults") ? `${rawText(expense.rawSource, "adults")} adults` : null)],
+    ["Address", rawText(expense.rawSource, "address")],
+    ["Phone", rawText(expense.rawSource, "phone")],
+    ["Email", rawText(expense.rawSource, "email")]
+  ].filter((row): row is [string, string] => Boolean(row[1]));
+  const benefits = rawList(expense.rawSource, "benefits");
+  const links = Array.isArray(expense.rawSource.webLinks) ? expense.rawSource.webLinks.filter((link): link is { label: string; url: string } => {
+    return Boolean(link) && typeof link === "object" && typeof (link as Record<string, unknown>).label === "string" && typeof (link as Record<string, unknown>).url === "string";
+  }) : [];
+  const cancellationPolicy = rawText(expense.rawSource, "cancellationPolicy");
+
+  return (
+    <div className="detailOverlay" role="dialog" aria-modal="true" aria-label={`${expense.merchant} details`} onClick={onClose}>
+      <section className="detailPanel" onClick={(event) => event.stopPropagation()}>
+        <button className="detailClose" onClick={onClose} aria-label="Close transaction details"><X size={19} /></button>
+        <div className="detailHead">
+          <div>
+            <span className="detailKicker">{expense.category}</span>
+            <h2>{expense.merchant}</h2>
+            <p>{expense.title}</p>
+          </div>
+          <PaymentCardMark expense={expense} />
+        </div>
+
+        <div className="detailAmount">
+          <span>Tracked amount</span>
+          <strong>{detailAmount(expense)}</strong>
+          {card && <small><CreditCard size={14} /> {card.role}: {card.product}{card.last4 ? ` ending ${card.last4}` : ""}</small>}
+        </div>
+
+        <div className="detailRows">
+          {rows.map(([label, value]) => (
+            <p key={label}><span>{label}</span><b>{value}</b></p>
+          ))}
+        </div>
+
+        {benefits.length > 0 && (
+          <div className="detailBlock">
+            <h3>Included Benefits</h3>
+            {benefits.map((benefit) => <p key={benefit}>{benefit}</p>)}
+          </div>
+        )}
+
+        {cancellationPolicy && (
+          <div className="detailBlock">
+            <h3>Policy</h3>
+            <p>{cancellationPolicy}</p>
+          </div>
+        )}
+
+        <div className="detailBlock">
+          <h3>Notes</h3>
+          <p>{expense.notes}</p>
+        </div>
+
+        {links.length > 0 && (
+          <div className="detailLinks">
+            {links.map((link) => (
+              <a href={link.url} key={link.url} target="_blank" rel="noreferrer">
+                {link.label} <ExternalLink size={14} />
+              </a>
+            ))}
+          </div>
+        )}
+      </section>
+    </div>
   );
 }
 
 export default function DashboardPage() {
   const [transactions, setTransactions] = useState<NormalizedExpense[]>(seedTransactions);
   const [generatedAt, setGeneratedAt] = useState<string | null>(null);
+  const [selected, setSelected] = useState<NormalizedExpense | null>(null);
   const summary = useMemo(() => summarizeTransactions(transactions), [transactions]);
   const total = summary.postedTotal + summary.pendingTotal;
   const latest = [...transactions].slice(0, 4);
@@ -172,20 +319,6 @@ export default function DashboardPage() {
 
   return (
     <main className="appShell">
-      <aside className="sidebar">
-        <div className="paperLogo"><Plane size={30} /></div>
-        <nav>
-          <a className="active"><Grid2X2 size={18}/> Dashboard</a>
-          <a><ReceiptText size={18}/> Transactions</a>
-          <a><ChartPie size={18}/> Categories</a>
-          <a><Target size={18}/> Budgets</a>
-          <a><MapPin size={18}/> Map</a>
-          <a><Settings size={18}/> Settings</a>
-        </nav>
-        <div className="tripMini"><PaperSkyline /><b>Seoul Trip</b><span>May 29 – Jun 5, 2026</span></div>
-        <div className="weather">Sky <b>ICN</b><span>Seoul, KR</span></div>
-      </aside>
-
       <section className="mainPanel">
         <header className="topbar">
           <div className="brand">canyoubuildit.com <span><Lock size={14}/> Protected</span></div>
@@ -207,9 +340,9 @@ export default function DashboardPage() {
 
         <div className="contentGrid">
           <div className="leftContent">
-            <FlightHero transactions={transactions} />
+            <FlightHero transactions={transactions} onSelect={setSelected} />
             <div className="cardsGrid">
-              {transactions.filter(t => t.category !== "Flights").map((t) => <VisualCard key={t.id} {...t} />)}
+              {transactions.filter(t => t.category !== "Flights").map((t) => <VisualCard key={t.id} expense={t} onSelect={setSelected} />)}
             </div>
             <div className="summaryStrip">
               <div><span>Total Trip Spend</span><b>{formatter.format(total)}</b><em className="spark green" /></div>
@@ -240,6 +373,7 @@ export default function DashboardPage() {
           </aside>
         </div>
       </section>
+      {selected && <DetailPanel expense={selected} onClose={() => setSelected(null)} />}
     </main>
   );
 }
