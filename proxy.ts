@@ -25,7 +25,7 @@ async function isValid(token: string | undefined) {
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const publicPaths = ["/login", "/api/login", "/favicon.ico"];
+  const publicPaths = ["/login", "/api/login", "/api/import/transactions", "/favicon.ico"];
   const isPublic = publicPaths.some((path) => pathname === path || pathname.startsWith("/_next"));
   if (isPublic) return NextResponse.next();
 

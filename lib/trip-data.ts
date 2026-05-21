@@ -81,6 +81,47 @@ export function normalizeExpense(row: Partial<NormalizedExpense>): NormalizedExp
 
 export const transactions = (seed as Array<Partial<NormalizedExpense>>).map(normalizeExpense);
 
+export function mergeTransactions(
+  baseRows: NormalizedExpense[],
+  importedRows: NormalizedExpense[]
+): NormalizedExpense[] {
+  const merged = new Map(baseRows.map((row) => [row.id, row]));
+
+  for (const imported of importedRows) {
+    const explicitTarget = typeof imported.rawSource?.matchedReceiptId === "string" ? imported.rawSource.matchedReceiptId : null;
+    const reservationNumber = typeof imported.rawSource?.reservationNumber === "string" ? imported.rawSource.reservationNumber : null;
+    const targetId =
+      merged.has(imported.id)
+        ? imported.id
+        : [...merged.values()].find((row) => {
+            return (
+              row.id === explicitTarget ||
+              row.rawSource?.messageId === explicitTarget ||
+              (reservationNumber && row.rawSource?.reservationNumber === reservationNumber)
+            );
+          })?.id;
+
+    if (targetId) {
+      const existing = merged.get(targetId);
+      if (!existing) continue;
+      merged.set(targetId, {
+        ...existing,
+        ...imported,
+        id: targetId,
+        rawSource: {
+          ...existing.rawSource,
+          ...imported.rawSource,
+          importedExpenseId: imported.id
+        }
+      });
+    } else {
+      merged.set(imported.id, imported);
+    }
+  }
+
+  return [...merged.values()];
+}
+
 export function summarizeTransactions(rows: NormalizedExpense[] = transactions): TripSummary {
   const postedTotal = rows.reduce(
     (sum, row) => sum + (row.status === "posted" || row.status === "matched" ? row.amount || 0 : 0),
@@ -109,17 +150,5 @@ export function summarizeTransactions(rows: NormalizedExpense[] = transactions):
     detectedReceiptTotal,
     count: rows.length,
     byCategory
-  };
-}
-
-export async function refreshTripExpenses() {
-  return {
-    generatedAt: new Date().toISOString(),
-    transactions,
-    summary: summarizeTransactions(transactions),
-    connectors: {
-      gmail: "seeded_from_latest_receipt",
-      finance: "not_connected"
-    }
   };
 }

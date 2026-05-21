@@ -13,6 +13,7 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@vercel/blob": "^2.4.0",
     "framer-motion": "latest",
     "lucide-react": "latest",
     "next": "latest",
