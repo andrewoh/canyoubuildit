@@ -1,0 +1,131 @@
+[
+  {
+    "id": "united-j1wh7v-receipt-2026-05-21",
+    "source": "gmail",
+    "date": "2026-05-21",
+    "merchant": "United Airlines",
+    "title": "United flight to Seoul",
+    "amount": null,
+    "currency": "USD",
+    "category": "Flights",
+    "confidence": "review",
+    "status": "receipt_detected",
+    "notes": "Receipt detected in Gmail for confirmation J1WH7V. Base itinerary total is 4762.06 USD paid with previous ticket balance; upgrade charges were paid with Amex ending 1005. Waiting for card transaction match before counting toward posted spend.",
+    "rawSource": {
+      "type": "gmail_receipt",
+      "messageId": "19e4b8ae3253d7a1",
+      "emailDate": "2026-05-21T17:17:32Z",
+      "subject": "eTicket Itinerary and Receipt for Confirmation J1WH7V",
+      "passengers": ["OH/ANDREW", "OH/STELLA"],
+      "confirmationCode": "J1WH7V",
+      "route": "SFO-ICN, ICN-SFO",
+      "flights": [
+        {
+          "flightNumber": "UA805",
+          "departDate": "2026-05-29",
+          "arriveDate": "2026-05-31",
+          "from": "SFO",
+          "to": "ICN",
+          "cabin": "United Premium Plus"
+        },
+        {
+          "flightNumber": "UA892",
+          "departDate": "2026-06-05",
+          "arriveDate": "2026-06-05",
+          "from": "ICN",
+          "to": "SFO",
+          "cabin": "United Economy"
+        }
+      ],
+      "fare": 2290,
+      "taxesAndFees": 91.03,
+      "totalPerPassenger": 2381.03,
+      "receiptTotal": 4762.06,
+      "paymentMethod": "Previous Ticket Balance",
+      "additionalPurchases": [
+        {
+          "description": "MileagePlus Business First Upgrade Fee",
+          "amount": 600,
+          "paymentMethod": "American Express ending in 1005",
+          "date": "2026-05-21",
+          "referenceNumber": "0164398243590"
+        },
+        {
+          "description": "MileagePlus Business First Upgrade Fee",
+          "amount": 600,
+          "paymentMethod": "American Express ending in 1005",
+          "date": "2026-05-21",
+          "referenceNumber": "0164398243589"
+        },
+        {
+          "description": "MileagePlus Business First Upgrade Fee",
+          "amount": 450,
+          "paymentMethod": "American Express ending in 1005",
+          "date": "2026-05-21",
+          "referenceNumber": "0164398243233"
+        },
+        {
+          "description": "MileagePlus Business First Upgrade Fee",
+          "amount": 450,
+          "paymentMethod": "American Express ending in 1005",
+          "date": "2026-05-21",
+          "referenceNumber": "0164398243232"
+        }
+      ]
+    }
+  },
+  {
+    "id": "amex-fhr-2026-05-14",
+    "source": "seed",
+    "date": "2026-05-14",
+    "merchant": "Amex Fine Hotels & Resorts",
+    "title": "Josun Palace, Seoul lodging",
+    "amount": 4347.4,
+    "currency": "USD",
+    "category": "Hotels",
+    "confidence": "high",
+    "status": "posted",
+    "notes": "Known card transaction.",
+    "rawSource": {
+      "type": "card_transaction",
+      "account": "Platinum Card",
+      "matchedReceiptId": null
+    }
+  },
+  {
+    "id": "clear-2026-05-15",
+    "source": "seed",
+    "date": "2026-05-15",
+    "merchant": "CLEAR",
+    "title": "CLEAR Plus airport access",
+    "amount": 209,
+    "currency": "USD",
+    "category": "Travel Services",
+    "confidence": "review",
+    "status": "pending",
+    "notes": "Known transaction, pending until card feed confirms posted status.",
+    "rawSource": {
+      "type": "card_transaction",
+      "account": "Platinum Card",
+      "matchedReceiptId": null
+    }
+  },
+  {
+    "id": "incheon-cu-2024-10-03",
+    "source": "seed",
+    "date": "2024-10-03",
+    "merchant": "CU at Incheon Airport",
+    "title": "Airport convenience stop",
+    "amount": 3.95,
+    "currency": "USD",
+    "category": "Airport",
+    "confidence": "review",
+    "status": "posted",
+    "notes": "Known airport convenience transaction.",
+    "rawSource": {
+      "type": "card_transaction",
+      "account": "Prime Visa",
+      "matchedReceiptId": null
+    }
+  }
+]
