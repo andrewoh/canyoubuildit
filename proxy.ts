@@ -9,6 +9,15 @@ async function hmac(message: string, secret: string) {
   return Array.from(new Uint8Array(sig)).map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
+function getSessionSecret() {
+  const secret = process.env.SESSION_SECRET;
+  if (secret) return secret;
+  if (process.env.NODE_ENV === "production") {
+    throw new Error("SESSION_SECRET must be configured in production.");
+  }
+  return "local-development-secret-change-me";
+}
+
 async function isValid(token: string | undefined) {
   if (!token) return false;
   const lastDot = token.lastIndexOf(".");
@@ -19,7 +28,7 @@ async function isValid(token: string | undefined) {
   const issuedAt = Number(payload.split(":")[1]);
   if (!Number.isFinite(issuedAt)) return false;
   if (Date.now() - issuedAt > 30 * 24 * 60 * 60 * 1000) return false;
-  const expected = await hmac(payload, process.env.SESSION_SECRET || "local-development-secret-change-me");
+  const expected = await hmac(payload, getSessionSecret());
   return signature === expected;
 }
 

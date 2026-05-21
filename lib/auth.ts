@@ -3,16 +3,25 @@ import crypto from "crypto";
 const COOKIE_NAME = "seoul_trip_session";
 const DEFAULT_SECRET = "local-development-secret-change-me";
 
+function requireProductionEnv(name: string, fallback: string) {
+  const value = process.env[name];
+  if (value) return value;
+  if (process.env.NODE_ENV === "production") {
+    throw new Error(`${name} must be configured in production.`);
+  }
+  return fallback;
+}
+
 export function getCookieName() {
   return COOKIE_NAME;
 }
 
 export function getPassword() {
-  return process.env.DASHBOARD_PASSWORD || "babymoon";
+  return requireProductionEnv("DASHBOARD_PASSWORD", "babymoon");
 }
 
 export function getSecret() {
-  return process.env.SESSION_SECRET || DEFAULT_SECRET;
+  return requireProductionEnv("SESSION_SECRET", DEFAULT_SECRET);
 }
 
 export function createSessionToken() {
