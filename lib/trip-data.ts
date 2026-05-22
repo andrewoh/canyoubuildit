@@ -81,6 +81,37 @@ export function normalizeExpense(row: Partial<NormalizedExpense>): NormalizedExp
 
 export const transactions = (seed as Array<Partial<NormalizedExpense>>).map(normalizeExpense);
 
+function merchantTokens(value: string) {
+  const stopWords = new Set(["and", "at", "the", "com", "www"]);
+  return new Set(
+    value
+      .toLowerCase()
+      .replace(/&/g, " and ")
+      .replace(/[^a-z0-9]+/g, " ")
+      .split(/\s+/)
+      .filter((token) => token.length > 1 && !stopWords.has(token))
+  );
+}
+
+function hasMerchantOverlap(a: NormalizedExpense, b: NormalizedExpense) {
+  const aTokens = merchantTokens(`${a.merchant} ${a.title}`);
+  const bTokens = merchantTokens(`${b.merchant} ${b.title}`);
+  let overlap = 0;
+  for (const token of aTokens) {
+    if (bTokens.has(token)) overlap += 1;
+  }
+  return overlap >= 2;
+}
+
+function looksLikeSameExpense(a: NormalizedExpense, b: NormalizedExpense) {
+  if (a.date !== b.date) return false;
+  if (a.currency !== b.currency) return false;
+  if (a.category !== b.category) return false;
+  if (typeof a.amount !== "number" || typeof b.amount !== "number") return false;
+  if (Math.abs(a.amount - b.amount) > 0.01) return false;
+  return hasMerchantOverlap(a, b);
+}
+
 export function mergeTransactions(
   baseRows: NormalizedExpense[],
   importedRows: NormalizedExpense[]
@@ -97,7 +128,8 @@ export function mergeTransactions(
             return (
               row.id === explicitTarget ||
               row.rawSource?.messageId === explicitTarget ||
-              (reservationNumber && row.rawSource?.reservationNumber === reservationNumber)
+              (reservationNumber && row.rawSource?.reservationNumber === reservationNumber) ||
+              looksLikeSameExpense(row, imported)
             );
           })?.id;
 
