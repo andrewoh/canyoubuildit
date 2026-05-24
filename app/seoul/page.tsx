@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState, type ReactNode } from "react";
-import { ArrowRight, Bell, Briefcase, CalendarDays, Car, CreditCard, ExternalLink, Grid2X2, Hotel, Lock, Plane, RefreshCw, ShieldCheck, Utensils, X } from "lucide-react";
+import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
+import { ArrowRight, Bell, Briefcase, CalendarDays, Car, Clock, Coffee, CreditCard, ExternalLink, Grid2X2, Hotel, Landmark, Lock, Luggage, MapPin, Plane, RefreshCw, ShieldCheck, ShoppingBag, Sparkles, Trees, Utensils, X } from "lucide-react";
 import { categories, summarizeTransactions, transactions as seedTransactions, type NormalizedExpense, type TripSummary } from "../../lib/trip-data";
 
 const formatter = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
@@ -25,6 +25,160 @@ const iconByCategory: Record<string, ReactNode> = {
   "Ground Transport": <Car size={22} />,
   Other: <Grid2X2 size={22} />
 };
+
+type ScheduleItem = {
+  time: string;
+  plan: string;
+  notes: string;
+  anchor?: boolean;
+};
+
+type ItineraryDay = {
+  date: string;
+  weekday: string;
+  hotel: string;
+  theme: string;
+  area: string;
+  accent: string;
+  icon: ReactNode;
+  items: ScheduleItem[];
+};
+
+const itineraryDays: ItineraryDay[] = [
+  {
+    date: "6/1",
+    weekday: "Sunday",
+    hotel: "Four Seasons Seoul",
+    theme: "Seocho church, Shinsegae Gangnam, Gangnam Station, Banpo Hangang",
+    area: "Seocho → Gangnam → Banpo",
+    accent: "#70aeee",
+    icon: <Landmark size={19} />,
+    items: [
+      { time: "Early morning", plan: "Arrive Seoul → Four Seasons Seoul", notes: "Drop bags / check in if possible" },
+      { time: "9:30–9:45am", plan: "Leave for Seocho Station area", notes: "Taxi likely easiest" },
+      { time: "10:20am", plan: "Church near Seocho Station", notes: "Hard anchor", anchor: true },
+      { time: "11:45am–12:20pm", plan: "Head to Shinsegae Gangnam / House of Shinsegae", notes: "Short ride from Seocho" },
+      { time: "12:30pm", plan: "Yoon Haeundae Seoul reservation", notes: "Hard anchor", anchor: true },
+      { time: "1:45–2:45pm", plan: "Shinsegae Gangnam / Central City shopping", notes: "Mall + department store block" },
+      { time: "3:00–4:30pm", plan: "Gangnam Station / Gangnam-daero", notes: "Mainstream shopping block" },
+      { time: "5:00pm onward", plan: "Banpo Hangang Park / Sebitseom", notes: "Best Han River fit for this day" },
+      { time: "Night", plan: "Return to Four Seasons", notes: "Keep flexible depending on jet lag" }
+    ]
+  },
+  {
+    date: "6/2",
+    weekday: "Monday",
+    hotel: "Four Seasons Seoul",
+    theme: "Gwanghwamun, Anguk, Bukchon, Jongno, Cheonggyecheon",
+    area: "Anguk → Jongno → Cheonggyecheon",
+    accent: "#c3a7ed",
+    icon: <Coffee size={19} />,
+    items: [
+      { time: "Morning", plan: "Artist Bakery Anguk", notes: "Bakery anchor" },
+      { time: "Morning", plan: "Bukchon / Samcheong / Anguk walk", notes: "Palace-adjacent neighborhoods" },
+      { time: "Late morning", plan: "Fritz Wonseo", notes: "Fritz #1" },
+      { time: "1:00pm", plan: "Niuroumianguan Gwanghwamun reservation", notes: "Hard lunch anchor", anchor: true },
+      { time: "Backup", plan: "Doughroom Gwanghwamun", notes: "Keep if pivoting to Italian" },
+      { time: "2:15–3:15pm", plan: "Insadong / Ikseon-dong", notes: "Light browsing" },
+      { time: "3:15–4:30pm", plan: "Jongno Jewelry District / Piccadilly-Jongno 3-ga", notes: "Jewelry district browse" },
+      { time: "4:30–5:30pm", plan: "Jayeondo Salt Bread Ikseon-dong", notes: "Salt bread / cafe break" },
+      { time: "Evening", plan: "Dinner flexible around Jongno / Euljiro", notes: "Keep easy" },
+      { time: "Night", plan: "Cheonggyecheon lit-up walk", notes: "Best night attraction this day" },
+      { time: "Optional late", plan: "Dongdaemun / DDP exterior only", notes: "Skip if tired" }
+    ]
+  },
+  {
+    date: "6/3",
+    weekday: "Tuesday",
+    hotel: "Four Seasons Seoul",
+    theme: "Namdaemun, Myeongdong duty-free, Yongsan I'Park Mall + CGV",
+    area: "Namdaemun → Myeongdong → Yongsan",
+    accent: "#ffc6a6",
+    icon: <ShoppingBag size={19} />,
+    items: [
+      { time: "9:00–9:25am", plan: "Gamegol handmade jumbo dumplings", notes: "Dine in if possible", anchor: true },
+      { time: "9:30am–12:30pm", plan: "Namdaemun Market + Burdeng children's clothing", notes: "Protected 3-hour shopping block" },
+      { time: "12:30–1:15pm", plan: "Snack / quick lunch / reset", notes: "Use as buffer" },
+      { time: "1:30–3:30pm", plan: "Myeongdong duty-free loop", notes: "Lotte and Shinsegae duty-free / department stores" },
+      { time: "3:30–4:30pm", plan: "Drop bags / reset at Four Seasons", notes: "Important after shopping" },
+      { time: "4:30–6:30pm", plan: "Optional Hannam-dong / Hanbang Chicken", notes: "Cut if day is too full" },
+      { time: "7:00–9:00pm", plan: "Yongsan I'Park Mall shopping + Pokémon store", notes: "Bake in shopping before movie" },
+      { time: "9:00pm+", plan: "CGV Yongsan I'Park Mall movie", notes: "Prioritize IMAX / 4DX / ScreenX" }
+    ]
+  },
+  {
+    date: "6/4",
+    weekday: "Wednesday",
+    hotel: "Signiel Jamsil",
+    theme: "Bag drop, Seongsu, Seoul Forest Pokémon, family dinner near Jamsil",
+    area: "Jamsil → Seongsu → Seoul Forest",
+    accent: "#a7c98f",
+    icon: <Trees size={19} />,
+    items: [
+      { time: "9:30–10:00am", plan: "Check out Four Seasons", notes: "Take luggage with you" },
+      { time: "10:00–10:45am", plan: "Taxi to Signiel Jamsil", notes: "Luggage-first redesign" },
+      { time: "10:45–11:15am", plan: "Drop bags at Signiel / check in if possible", notes: "Avoid carrying bags all day" },
+      { time: "11:15am–12:00pm", plan: "Head to Seongsu", notes: "East Seoul day" },
+      { time: "12:00–1:30pm", plan: "Lunch in Seongsu", notes: "Ggupdang Seongsu is a potential pork lunch spot" },
+      { time: "1:30–2:30pm", plan: "Obok Rice Cake + Seongsu browsing", notes: "Food + neighborhood anchor" },
+      { time: "2:30–3:45pm", plan: "Seoul Forest + Pokémon Secret Forest exhibit", notes: "Key attraction" },
+      { time: "3:45–4:30pm", plan: "Standard Bread Seongsu / cafe", notes: "Bakery anchor" },
+      { time: "4:30–5:30pm", plan: "Return to Signiel / reset", notes: "Buffer before dinner" },
+      { time: "6:00pm", plan: "Family dinner near Jamsil", notes: "Bookmark / soft-hard anchor", anchor: true },
+      { time: "After dinner", plan: "Optional Lotte World Mall / Seokchon Lake", notes: "Keep relaxed" }
+    ]
+  },
+  {
+    date: "6/5",
+    weekday: "Thursday",
+    hotel: "Signiel Jamsil",
+    theme: "Myeon Seoul, Spa Gogyeol, Hyundai Apgujeong, Wooga",
+    area: "Jamsil → Cheongdam → Apgujeong",
+    accent: "#f49d96",
+    icon: <Sparkles size={19} />,
+    items: [
+      { time: "9:45–10:00am", plan: "Leave Signiel", notes: "Taxi to Apgujeong/Cheongdam" },
+      { time: "10:45am", plan: "Arrive at Myeon Seoul", notes: "Hard arrival target", anchor: true },
+      { time: "11:00am–12:15pm", plan: "Myeon Seoul lunch", notes: "Keep pace comfortable" },
+      { time: "12:15–1:10pm", plan: "Buffer / coffee / short walk toward spa", notes: "Do not overpack" },
+      { time: "1:15pm", plan: "Arrive at Spa Gogyeol Cheongdam", notes: "Check-in buffer" },
+      { time: "1:30–3:00pm", plan: "Spa Gogyeol massage", notes: "Hard anchor", anchor: true },
+      { time: "3:00–3:30pm", plan: "Change / tea / checkout", notes: "Realistic spa buffer" },
+      { time: "3:45–5:15pm", plan: "Hyundai Department Store Apgujeong Main", notes: "Main shopping block" },
+      { time: "5:15–5:40pm", plan: "Head toward Wooga / buffer", notes: "Avoid rushing" },
+      { time: "6:00pm", plan: "Wooga reservation", notes: "Hard dinner anchor", anchor: true },
+      { time: "After dinner", plan: "Optional Cheongdam / Apgujeong Rodeo walk", notes: "Energy-dependent" }
+    ]
+  },
+  {
+    date: "6/6",
+    weekday: "Friday",
+    hotel: "Signiel Jamsil",
+    theme: "Jamsil, Lotte World Mall, duty-free, flight",
+    area: "Jamsil → ICN",
+    accent: "#7dc6be",
+    icon: <Plane size={19} />,
+    items: [
+      { time: "Morning", plan: "Seokchon Lake walk / easy breakfast", notes: "Departure-safe" },
+      { time: "9:30–10:30am", plan: "Pack / check out / leave bags if needed", notes: "Keep logistics clean" },
+      { time: "10:30am–12:15pm", plan: "Lotte World Mall / Avenuel / Lotte Duty Free World Tower", notes: "Main Jamsil shopping block" },
+      { time: "12:15–12:45pm", plan: "Food hall / snacks / final bags", notes: "Last-minute gifts" },
+      { time: "12:30–1:00pm", plan: "Leave Signiel for airport", notes: "For 4:50pm flight" },
+      { time: "4:50pm", plan: "Flight", notes: "Hard anchor", anchor: true }
+    ]
+  }
+];
+
+const flexibleItems = [
+  ["Spa Gogyeol", "Locked Thursday 1:30pm"],
+  ["Doughroom Gwanghwamun", "Monday backup if you pivot from Niuroumianguan"],
+  ["Ggupdang Seongsu", "Potential Wednesday lunch"],
+  ["Hanbang Chicken", "Optional Tuesday before Yongsan movie"],
+  ["COEX / Starfield Library", "Only if you cut something else"],
+  ["Dongdaemun", "Optional Monday night exterior/DDP only"],
+  ["Garosu-gil", "Optional/cut unless Thursday opens up"],
+  ["Lotte Cinema World Tower", "Backup movie option; primary movie is CGV Yongsan"]
+];
 
 function Currency({ value }: { value: number | null }) {
   if (value == null) return <span className="muted">Pending</span>;
@@ -286,10 +440,212 @@ function DetailPanel({ expense, onClose }: { expense: NormalizedExpense; onClose
   );
 }
 
+function ScheduleIllustration() {
+  return (
+    <div className="scheduleIllustration" aria-hidden="true">
+      <div className="paperSun" />
+      <div className="routeLine" />
+      <div className="paperRiver" />
+      <div className="paperTower tall" />
+      <div className="paperTower short" />
+      <div className="paperShop" />
+      <div className="paperTree left" />
+      <div className="paperTree right" />
+      <div className="paperSuitcase"><Luggage size={28} /></div>
+      <div className="paperPlaneMini"><PaperPlaneSvg small /></div>
+    </div>
+  );
+}
+
+function DayScene({ day }: { day: ItineraryDay }) {
+  return (
+    <div className="dayScene" style={{ "--day-accent": day.accent } as CSSProperties} aria-hidden="true">
+      <span className="sceneSun" />
+      <span className="scenePath" />
+      <span className="sceneHotel" />
+      <span className="sceneShop" />
+      <span className="sceneTree" />
+      <span className="scenePin"><MapPin size={13} /></span>
+    </div>
+  );
+}
+
+function ScheduleCard({ day, index }: { day: ItineraryDay; index: number }) {
+  const anchors = day.items.filter((item) => item.anchor);
+  return (
+    <article className="scheduleDayCard" style={{ "--day-accent": day.accent, "--delay": `${index * 60}ms` } as CSSProperties}>
+      <div className="scheduleDayTop">
+        <div className="dateLeaf">
+          <span>{day.weekday}</span>
+          <b>{day.date}</b>
+        </div>
+        <DayScene day={day} />
+      </div>
+      <div className="scheduleDayTitle">
+        <span>{day.icon} {day.hotel}</span>
+        <h2>{day.theme}</h2>
+        <p><MapPin size={15} /> {day.area}</p>
+      </div>
+      <div className="scheduleTimeline">
+        {day.items.map((item) => (
+          <div className={`scheduleRow ${item.anchor ? "anchor" : ""}`} key={`${day.date}-${item.time}-${item.plan}`}>
+            <time>{item.time}</time>
+            <div>
+              <b>{item.plan}</b>
+              <span>{item.notes}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      {anchors.length > 0 && (
+        <div className="anchorRibbon">
+          <Clock size={15} />
+          <span>{anchors.length} fixed {anchors.length === 1 ? "anchor" : "anchors"}</span>
+        </div>
+      )}
+    </article>
+  );
+}
+
+function ScheduleHome() {
+  const hardAnchors = itineraryDays.flatMap((day) => day.items.filter((item) => item.anchor).map((item) => ({
+    day: `${day.weekday} ${day.date}`,
+    accent: day.accent,
+    ...item
+  })));
+
+  return (
+    <div className="scheduleHome">
+      <section className="scheduleHero">
+        <div className="scheduleHeroCopy">
+          <span className="scheduleKicker"><CalendarDays size={15} /> Sunday–Friday Seoul itinerary</span>
+          <h1>Seoul Trip Schedule</h1>
+          <p>Four Seasons first, Signiel second, with the shopping, food, luggage, and family anchors laid out by day.</p>
+          <div className="scheduleStats">
+            <span><b>6</b> days</span>
+            <span><b>2</b> hotels</span>
+            <span><b>{hardAnchors.length}</b> anchors</span>
+          </div>
+        </div>
+        <ScheduleIllustration />
+      </section>
+
+      <section className="scheduleOverview" aria-label="High-level trip structure">
+        {itineraryDays.map((day) => (
+          <a className="overviewChip" href={`#day-${day.date.replace("/", "-")}`} key={day.date} style={{ "--day-accent": day.accent } as CSSProperties}>
+            <span>{day.weekday.slice(0, 3)} {day.date}</span>
+            <b>{day.hotel}</b>
+            <small>{day.area}</small>
+          </a>
+        ))}
+      </section>
+
+      <section className="scheduleGrid">
+        {itineraryDays.map((day, index) => (
+          <div id={`day-${day.date.replace("/", "-")}`} key={day.date}>
+            <ScheduleCard day={day} index={index} />
+          </div>
+        ))}
+      </section>
+
+      <section className="scheduleSupport">
+        <div className="hardAnchorsPanel">
+          <h2>Hard Anchors</h2>
+          <div className="hardAnchorList">
+            {hardAnchors.map((anchor) => (
+              <div className="hardAnchor" key={`${anchor.day}-${anchor.time}-${anchor.plan}`}>
+                <i style={{ background: anchor.accent }} />
+                <span>{anchor.day}</span>
+                <time>{anchor.time}</time>
+                <b>{anchor.plan}</b>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flexPanel">
+          <h2>Flexible Items</h2>
+          {flexibleItems.map(([item, placement]) => (
+            <p key={item}><b>{item}</b><span>{placement}</span></p>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function BudgetDashboard({
+  transactions,
+  generatedAt,
+  summary,
+  total,
+  latest,
+  onSelect
+}: {
+  transactions: NormalizedExpense[];
+  generatedAt: string | null;
+  summary: TripSummary;
+  total: number;
+  latest: NormalizedExpense[];
+  onSelect: (expense: NormalizedExpense) => void;
+}) {
+  return (
+    <div className="budgetDashboard">
+      <div className="dashboardHeader">
+        <div>
+          <h1>Budget Check</h1>
+          <p>Live Seoul trip finance tracker <span><RefreshCw size={15}/> {generatedAt ? `Last refresh ${new Date(generatedAt).toLocaleTimeString()}` : "Refreshing every 60 seconds"}</span></p>
+        </div>
+        <PaperSkyline />
+      </div>
+
+      <div className="chips">
+        {categories.map((c) => <button key={c} className={c === "Flights" ? "selected" : ""}>{iconByCategory[c]} {c}</button>)}
+      </div>
+
+      <div className="contentGrid">
+        <div className="leftContent">
+          <FlightHero transactions={transactions} onSelect={onSelect} />
+          <div className="cardsGrid">
+            {transactions.filter(t => t.category !== "Flights").map((t) => <VisualCard key={t.id} expense={t} onSelect={onSelect} />)}
+          </div>
+          <div className="summaryStrip">
+            <div><span>Total Trip Spend</span><b>{formatter.format(total)}</b><em className="spark green" /></div>
+            <div><span>Receipt Detected</span><b>{formatter.format(summary.detectedReceiptTotal)}</b><em className="spark purple" /></div>
+            <div><span>Budget</span><b>{formatter.format(6000)}</b><div className="budget"><i style={{ width: `${Math.min(100, total / 6000 * 100)}%` }} /></div></div>
+            <div><span>Transactions</span><b>{transactions.length} <small>Live</small></b><em className="bars" /></div>
+          </div>
+        </div>
+
+        <aside className="rightContent">
+          <section className="panel livePanel">
+            <h3>Live Sync <span>• Auto-updating</span></h3>
+            {latest.map((t, idx) => <div className="activity" key={t.id}><i style={{ background: colorByCategory[t.category] }}>{iconByCategory[t.category]}</i><div><b>{t.merchant}</b><span>{t.amount ? formatter.format(t.amount) : "Detected"} · {t.category}</span></div><small>{idx === 0 ? "Just now" : `${idx}m ago`}</small></div>)}
+          </section>
+
+          <section className="panel categoryPanel">
+            <h3>Spending by Category</h3>
+            <CategoryDonut summary={summary} />
+            <div className="legend">
+              {summary.byCategory.map((row) => <p key={row.category}><i style={{ background: colorByCategory[row.category] }} /> {row.category}<b>{formatter.format(row.total)}</b></p>)}
+            </div>
+          </section>
+
+          <section className="panel timelinePanel">
+            <h3>Transaction Timeline</h3>
+            {transactions.map((t, idx) => <div className="timelineItem" key={t.id}><i style={{ background: colorByCategory[t.category] }}>{iconByCategory[t.category]}</i><span>{idx === 0 ? "Just now" : `${idx}m ago`}</span><div><b>{t.merchant}</b><small>{t.amount ? formatter.format(t.amount) : "Detecting merchant…"}</small></div><em className={t.status}>{t.status}</em></div>)}
+          </section>
+        </aside>
+      </div>
+    </div>
+  );
+}
+
 export default function DashboardPage() {
   const [transactions, setTransactions] = useState<NormalizedExpense[]>(seedTransactions);
   const [generatedAt, setGeneratedAt] = useState<string | null>(null);
   const [selected, setSelected] = useState<NormalizedExpense | null>(null);
+  const [activeTab, setActiveTab] = useState<"schedule" | "budget">("schedule");
   const summary = useMemo(() => summarizeTransactions(transactions), [transactions]);
   const total = summary.postedTotal + summary.pendingTotal;
   const latest = [...transactions].slice(0, 4);
@@ -321,57 +677,26 @@ export default function DashboardPage() {
     <main className="appShell">
       <section className="mainPanel">
         <header className="topbar">
-          <div className="brand">canyoubuildit.com <span><Lock size={14}/> Protected</span></div>
-          <p><i /> {generatedAt ? `Last refresh ${new Date(generatedAt).toLocaleTimeString()}` : "Refreshing every 60 seconds"}</p>
+          <div className="brand">Seoul Trip <span><Lock size={14}/> Protected</span></div>
+          <div className="siteTabs" role="tablist" aria-label="Seoul dashboard sections">
+            <button type="button" role="tab" aria-selected={activeTab === "schedule"} className={activeTab === "schedule" ? "active" : ""} onClick={() => setActiveTab("schedule")}><CalendarDays size={16} /> Schedule</button>
+            <button type="button" role="tab" aria-selected={activeTab === "budget"} className={activeTab === "budget" ? "active" : ""} onClick={() => setActiveTab("budget")}><CreditCard size={16} /> Budget check</button>
+          </div>
           <div className="user"><Bell size={19}/><span><RefreshCw size={17} /></span> Live</div>
         </header>
 
-        <div className="dashboardHeader">
-          <div>
-            <h1>Seoul Trip Live Dashboard</h1>
-            <p>May 29 – Jun 5, 2026 <span><CalendarDays size={15}/> Private trip finance</span></p>
-          </div>
-          <PaperSkyline />
-        </div>
-
-        <div className="chips">
-          {categories.map((c) => <button key={c} className={c === "Flights" ? "selected" : ""}>{iconByCategory[c]} {c}</button>)}
-        </div>
-
-        <div className="contentGrid">
-          <div className="leftContent">
-            <FlightHero transactions={transactions} onSelect={setSelected} />
-            <div className="cardsGrid">
-              {transactions.filter(t => t.category !== "Flights").map((t) => <VisualCard key={t.id} expense={t} onSelect={setSelected} />)}
-            </div>
-            <div className="summaryStrip">
-              <div><span>Total Trip Spend</span><b>{formatter.format(total)}</b><em className="spark green" /></div>
-              <div><span>Receipt Detected</span><b>{formatter.format(summary.detectedReceiptTotal)}</b><em className="spark purple" /></div>
-              <div><span>Budget</span><b>{formatter.format(6000)}</b><div className="budget"><i style={{ width: `${Math.min(100, total / 6000 * 100)}%` }} /></div></div>
-              <div><span>Transactions</span><b>{transactions.length} <small>Live</small></b><em className="bars" /></div>
-            </div>
-          </div>
-
-          <aside className="rightContent">
-            <section className="panel livePanel">
-              <h3>Live Sync <span>• Auto-updating</span></h3>
-              {latest.map((t, idx) => <div className="activity" key={t.id}><i style={{ background: colorByCategory[t.category] }}>{iconByCategory[t.category]}</i><div><b>{t.merchant}</b><span>{t.amount ? formatter.format(t.amount) : "Detected"} · {t.category}</span></div><small>{idx === 0 ? "Just now" : `${idx}m ago`}</small></div>)}
-            </section>
-
-            <section className="panel categoryPanel">
-              <h3>Spending by Category</h3>
-              <CategoryDonut summary={summary} />
-              <div className="legend">
-                {summary.byCategory.map((row) => <p key={row.category}><i style={{ background: colorByCategory[row.category] }} /> {row.category}<b>{formatter.format(row.total)}</b></p>)}
-              </div>
-            </section>
-
-            <section className="panel timelinePanel">
-              <h3>Transaction Timeline</h3>
-              {transactions.map((t, idx) => <div className="timelineItem" key={t.id}><i style={{ background: colorByCategory[t.category] }}>{iconByCategory[t.category]}</i><span>{idx === 0 ? "Just now" : `${idx}m ago`}</span><div><b>{t.merchant}</b><small>{t.amount ? formatter.format(t.amount) : "Detecting merchant…"}</small></div><em className={t.status}>{t.status}</em></div>)}
-            </section>
-          </aside>
-        </div>
+        {activeTab === "schedule" ? (
+          <ScheduleHome />
+        ) : (
+          <BudgetDashboard
+            transactions={transactions}
+            generatedAt={generatedAt}
+            summary={summary}
+            total={total}
+            latest={latest}
+            onSelect={setSelected}
+          />
+        )}
       </section>
       {selected && <DetailPanel expense={selected} onClose={() => setSelected(null)} />}
     </main>
