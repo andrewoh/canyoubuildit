@@ -470,6 +470,50 @@ function DayScene({ day }: { day: ItineraryDay }) {
   );
 }
 
+function getEventVariant(item: ScheduleItem) {
+  const text = `${item.plan} ${item.notes}`.toLowerCase();
+  if (/flight|airport|icn/.test(text)) return "flight";
+  if (/taxi|head to|leave for|leave signiel|toward/.test(text)) return "transit";
+  if (/church/.test(text)) return "church";
+  if (/spa|massage/.test(text)) return "spa";
+  if (/movie|cgv|cinema|imax|4dx|screenx/.test(text)) return "movie";
+  if (/forest|pokémon|pokemon|seokchon|tree/.test(text)) return "forest";
+  if (/river|hangang|cheonggyecheon|lake/.test(text)) return "river";
+  if (/jewelry|piccadilly/.test(text)) return "jewelry";
+  if (/duty-free|shopping|shinsegae|gangnam|namdaemun|burdeng|myeongdong|lotte|hyundai|avenuel|mall|store/.test(text)) return "shopping";
+  if (/dumpling|lunch|dinner|wooga|myeon|niuroumianguan|chicken|food|snack|ggupdang/.test(text)) return "dining";
+  if (/bakery|fritz|cafe|coffee|salt bread|standard bread|artist bakery|obok/.test(text)) return "cafe";
+  if (/bag|luggage|check out|check in|pack|reset|return/.test(text)) return "luggage";
+  if (/walk|bukchon|samcheong|anguk|insadong|ikseon|dongdaemun|ddp|garosu|rodeo/.test(text)) return "walk";
+  return "place";
+}
+
+function EventPaperArt({ item, accent }: { item: ScheduleItem; accent: string }) {
+  const variant = getEventVariant(item);
+  return (
+    <div className={`eventPaperArt ${variant}`} style={{ "--event-accent": accent } as CSSProperties} aria-hidden="true">
+      <span className="eventGround" />
+      <span className="eventSun" />
+      <span className="eventCloud one" />
+      <span className="eventCloud two" />
+      {variant === "flight" && <span className="eventPlane"><PaperPlaneSvg small /></span>}
+      {variant === "transit" && <><span className="eventCar" /><span className="eventRoad" /></>}
+      {variant === "church" && <><span className="eventBuilding churchShape" /><span className="eventCross" /></>}
+      {variant === "spa" && <><span className="eventBath" /><span className="eventSteam one" /><span className="eventSteam two" /></>}
+      {variant === "movie" && <><span className="eventScreen" /><span className="eventSeats" /></>}
+      {variant === "forest" && <><span className="eventTree big" /><span className="eventTree small" /><span className="eventBall" /></>}
+      {variant === "river" && <><span className="eventRiver" /><span className="eventBridge" /></>}
+      {variant === "jewelry" && <><span className="eventGem" /><span className="eventGem small" /><span className="eventCounter" /></>}
+      {variant === "shopping" && <><span className="eventShop" /><span className="eventBag one" /><span className="eventBag two" /></>}
+      {variant === "dining" && <><span className="eventBowl" /><span className="eventChopsticks" /><span className="eventPlate" /></>}
+      {variant === "cafe" && <><span className="eventCup" /><span className="eventPastry" /></>}
+      {variant === "luggage" && <><span className="eventSuitcase" /><span className="eventTag" /></>}
+      {variant === "walk" && <><span className="eventPath" /><span className="eventPin" /><span className="eventTree small" /></>}
+      {variant === "place" && <><span className="eventBuilding" /><span className="eventPin" /></>}
+    </div>
+  );
+}
+
 function ScheduleCard({ day, index }: { day: ItineraryDay; index: number }) {
   const anchors = day.items.filter((item) => item.anchor);
   return (
@@ -490,6 +534,7 @@ function ScheduleCard({ day, index }: { day: ItineraryDay; index: number }) {
         {day.items.map((item) => (
           <div className={`scheduleRow ${item.anchor ? "anchor" : ""}`} key={`${day.date}-${item.time}-${item.plan}`}>
             <time>{item.time}</time>
+            <EventPaperArt item={item} accent={day.accent} />
             <div>
               <b>{item.plan}</b>
               <span>{item.notes}</span>
