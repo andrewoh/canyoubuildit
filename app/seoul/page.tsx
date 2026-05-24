@@ -476,7 +476,77 @@ function DayScene({ day }: { day: ItineraryDay }) {
   );
 }
 
+const eventArtImages: Partial<Record<string, string>> = {
+  "four-seasons-arrival": "/seoul-art/four-seasons-seoul-arrival.jpg",
+  "four-seasons-night": "/seoul-art/four-seasons-seoul-arrival.jpg",
+  "four-seasons-reset": "/seoul-art/four-seasons-seoul-arrival.jpg",
+  "four-seasons-checkout": "/seoul-art/four-seasons-seoul-arrival.jpg",
+  "seocho-taxi": "/seoul-art/seocho-church.jpg",
+  "seocho-church": "/seoul-art/seocho-church.jpg",
+  "shinsegae-approach": "/seoul-art/shinsegae-gangnam.jpg",
+  "central-city": "/seoul-art/shinsegae-gangnam.jpg",
+  "gangnam-daero": "/seoul-art/shinsegae-gangnam.jpg",
+  "banpo-hangang": "/seoul-art/banpo-hangang-sebitseom.jpg",
+  "yoon-haeundae": "/seoul-art/yoon-haeundae.jpg",
+  "artist-bakery": "/seoul-art/artist-bakery-anguk.jpg",
+  "bukchon-hanok": "/seoul-art/bukchon-anguk-hanok.jpg",
+  "fritz-wonseo": "/seoul-art/fritz-wonseo-cafe.jpg",
+  "niuroumianguan": "/seoul-art/niuroumianguan-gwanghwamun.jpg",
+  "doughroom": "/seoul-art/myeon-seoul-cheongdam.jpg",
+  "insadong-ikseon": "/seoul-art/bukchon-anguk-hanok.jpg",
+  "jongno-jewelry": "/seoul-art/jongno-jewelry-district.jpg",
+  "jayeondo-salt": "/seoul-art/artist-bakery-anguk.jpg",
+  "euljiro-dinner": "/seoul-art/yoon-haeundae.jpg",
+  "cheonggyecheon": "/seoul-art/cheonggyecheon-night.jpg",
+  "ddp-exterior": "/seoul-art/bukchon-anguk-hanok.jpg",
+  "gamegol-dumplings": "/seoul-art/gamegol-dumplings.jpg",
+  "namdaemun-burdeng": "/seoul-art/namdaemun-burdeng.jpg",
+  "namdaemun-snack": "/seoul-art/gamegol-dumplings.jpg",
+  "myeongdong-dutyfree": "/seoul-art/myeongdong-duty-free.jpg",
+  "hanbang-chicken": "/seoul-art/yoon-haeundae.jpg",
+  "yongsan-pokemon": "/seoul-art/yongsan-mall-cinema.jpg",
+  "cgv-yongsan": "/seoul-art/yongsan-mall-cinema.jpg",
+  "taxi-signiel": "/seoul-art/signiel-jamsil-lotte-tower.jpg",
+  "signiel-bagdrop": "/seoul-art/signiel-jamsil-lotte-tower.jpg",
+  "seongsu-arrival": "/seoul-art/seongsu-cafes-ricecake.jpg",
+  "ggupdang-seongsu": "/seoul-art/yoon-haeundae.jpg",
+  "obok-ricecake": "/seoul-art/seongsu-cafes-ricecake.jpg",
+  "seoul-forest-pokemon": "/seoul-art/seoul-forest-collectible-exhibit.jpg",
+  "standard-bread": "/seoul-art/seongsu-cafes-ricecake.jpg",
+  "signiel-reset": "/seoul-art/signiel-jamsil-lotte-tower.jpg",
+  "jamsil-family-dinner": "/seoul-art/wooga-kbbq.jpg",
+  "seokchon-lotte": "/seoul-art/lotte-world-mall-seokchon.jpg",
+  "signiel-depart": "/seoul-art/signiel-jamsil-lotte-tower.jpg",
+  "myeon-seoul": "/seoul-art/myeon-seoul-cheongdam.jpg",
+  "myeon-lunch": "/seoul-art/myeon-seoul-cheongdam.jpg",
+  "cheongdam-buffer": "/seoul-art/myeon-seoul-cheongdam.jpg",
+  "spa-gogyeol-arrival": "/seoul-art/spa-gogyeol-cheongdam.jpg",
+  "spa-gogyeol": "/seoul-art/spa-gogyeol-cheongdam.jpg",
+  "spa-tea": "/seoul-art/spa-gogyeol-cheongdam.jpg",
+  "hyundai-apgujeong": "/seoul-art/hyundai-apgujeong.jpg",
+  "wooga-approach": "/seoul-art/wooga-kbbq.jpg",
+  "wooga": "/seoul-art/wooga-kbbq.jpg",
+  "apgujeong-rodeo": "/seoul-art/hyundai-apgujeong.jpg",
+  "seokchon-morning": "/seoul-art/lotte-world-mall-seokchon.jpg",
+  "signiel-checkout": "/seoul-art/signiel-jamsil-lotte-tower.jpg",
+  "lotte-world-mall": "/seoul-art/lotte-world-mall-seokchon.jpg",
+  "lotte-foodhall": "/seoul-art/lotte-world-mall-seokchon.jpg",
+  "airport-taxi": "/seoul-art/icn-flight-departure.jpg",
+  "icn-flight": "/seoul-art/icn-flight-departure.jpg"
+};
+
 function EventPaperArt({ item, accent, large = false }: { item: ScheduleItem; accent: string; large?: boolean }) {
+  const image = eventArtImages[item.art];
+
+  if (large && image) {
+    return (
+      <div className="eventPhotoArt" style={{ "--event-accent": accent } as CSSProperties} aria-hidden="true">
+        <img src={image} alt="" loading="lazy" />
+        <span>{item.artLabel}</span>
+      </div>
+    );
+  }
+
   return (
     <div className={`eventPaperArt ${large ? "large" : ""} art-${item.art}`} style={{ "--event-accent": accent } as CSSProperties} aria-hidden="true">
       <span className="paperBackdrop" />

@@ -45,8 +45,12 @@
 .eventCard{position:relative;display:grid;grid-template-rows:240px auto;border:1px solid var(--line);border-radius:26px;background:#fffdf8;box-shadow:0 16px 32px rgba(80,61,35,.11);overflow:hidden;animation:cardIn 420ms ease both;animation-delay:var(--delay);transition:transform 180ms ease,box-shadow 180ms ease}
 .eventCard:hover{transform:translateY(-4px);box-shadow:0 24px 44px rgba(80,61,35,.16)}
 .eventCard.anchor{border-color:color-mix(in srgb,var(--day-accent) 50%,#ffffff)}
-.eventCard.anchor::after{content:"Fixed";position:absolute;right:16px;top:16px;z-index:3;border-radius:999px;background:var(--day-accent);color:#fff;padding:7px 10px;font-size:11px;font-weight:950;text-transform:uppercase;box-shadow:0 10px 16px rgba(80,61,35,.14)}
+.eventCard.anchor::after{display:none}
 .eventCardBody{padding:18px 18px 20px}.eventMeta{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.eventMeta time{color:#4779bf;font-size:13px;font-weight:950}.eventMeta span{border-radius:999px;background:#f4ead8;color:#786247;padding:5px 8px;font-size:11px;font-weight:900;text-transform:uppercase}.eventCard h3{font-size:22px;line-height:1.08;letter-spacing:-.035em;margin:0}.eventCard p{margin:9px 0 0;color:#697486;font-size:14px;line-height:1.45}
+.eventPhotoArt{position:relative;width:100%;height:100%;overflow:hidden;background:#f8efdc;box-shadow:inset 0 -1px rgba(87,83,70,.1)}
+.eventPhotoArt img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;filter:saturate(1.04) contrast(1.02)}
+.eventPhotoArt::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0) 55%,rgba(42,31,18,.18));pointer-events:none}
+.eventPhotoArt span{position:absolute;right:18px;top:18px;z-index:2;max-width:168px;padding:8px 12px;border-radius:999px;background:rgba(255,253,248,.92);color:#213552;font-size:12px;font-weight:950;line-height:1.05;box-shadow:0 10px 18px rgba(42,31,18,.16);text-align:center}
 .scheduleDayCard{position:relative;min-height:620px;border:1px solid var(--line);border-radius:26px;background:rgba(255,250,241,.9);box-shadow:var(--shadow);overflow:hidden;padding:18px;animation:cardIn 420ms ease both;animation-delay:var(--delay);transition:transform 180ms ease,box-shadow 180ms ease}
 .scheduleDayCard:hover{transform:translateY(-3px);box-shadow:0 24px 52px rgba(87,72,45,.18),0 4px 12px rgba(90,70,40,.1)}
 .scheduleDayCard::before{content:"";position:absolute;inset:0 0 auto;height:8px;background:var(--day-accent)}
