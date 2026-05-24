@@ -476,9 +476,9 @@ function DayScene({ day }: { day: ItineraryDay }) {
   );
 }
 
-function EventPaperArt({ item, accent }: { item: ScheduleItem; accent: string }) {
+function EventPaperArt({ item, accent, large = false }: { item: ScheduleItem; accent: string; large?: boolean }) {
   return (
-    <div className={`eventPaperArt art-${item.art}`} style={{ "--event-accent": accent } as CSSProperties} aria-hidden="true">
+    <div className={`eventPaperArt ${large ? "large" : ""} art-${item.art}`} style={{ "--event-accent": accent } as CSSProperties} aria-hidden="true">
       <span className="paperBackdrop" />
       <span className="paperWater" />
       <span className="paperRoute" />
@@ -488,6 +488,22 @@ function EventPaperArt({ item, accent }: { item: ScheduleItem; accent: string })
       <span className="paperDetail three" />
       <span className="paperLabel">{item.artLabel}</span>
     </div>
+  );
+}
+
+function EventCard({ item, day, index }: { item: ScheduleItem; day: ItineraryDay; index: number }) {
+  return (
+    <article className={`eventCard ${item.anchor ? "anchor" : ""}`} style={{ "--day-accent": day.accent, "--delay": `${index * 45}ms` } as CSSProperties}>
+      <EventPaperArt item={item} accent={day.accent} large />
+      <div className="eventCardBody">
+        <div className="eventMeta">
+          <time>{item.time}</time>
+          {item.anchor && <span>Fixed anchor</span>}
+        </div>
+        <h3>{item.plan}</h3>
+        <p>{item.notes}</p>
+      </div>
+    </article>
   );
 }
 
@@ -530,6 +546,9 @@ function ScheduleCard({ day, index }: { day: ItineraryDay; index: number }) {
 }
 
 function ScheduleHome() {
+  const [selectedDayIndex, setSelectedDayIndex] = useState(0);
+  const selectedDay = itineraryDays[selectedDayIndex];
+  const selectedAnchors = selectedDay.items.filter((item) => item.anchor);
   const hardAnchors = itineraryDays.flatMap((day) => day.items.filter((item) => item.anchor).map((item) => ({
     day: `${day.weekday} ${day.date}`,
     accent: day.accent,
@@ -552,22 +571,46 @@ function ScheduleHome() {
         <ScheduleIllustration />
       </section>
 
-      <section className="scheduleOverview" aria-label="High-level trip structure">
-        {itineraryDays.map((day) => (
-          <a className="overviewChip" href={`#day-${day.date.replace("/", "-")}`} key={day.date} style={{ "--day-accent": day.accent } as CSSProperties}>
+      <section className="daySelector" aria-label="Select itinerary day">
+        {itineraryDays.map((day, index) => (
+          <button
+            className={index === selectedDayIndex ? "active" : ""}
+            key={day.date}
+            onClick={() => setSelectedDayIndex(index)}
+            style={{ "--day-accent": day.accent } as CSSProperties}
+            type="button"
+          >
             <span>{day.weekday.slice(0, 3)} {day.date}</span>
             <b>{day.hotel}</b>
             <small>{day.area}</small>
-          </a>
+          </button>
         ))}
       </section>
 
-      <section className="scheduleGrid">
-        {itineraryDays.map((day, index) => (
-          <div id={`day-${day.date.replace("/", "-")}`} key={day.date}>
-            <ScheduleCard day={day} index={index} />
+      <section className="selectedDayPanel" style={{ "--day-accent": selectedDay.accent } as CSSProperties}>
+        <div className="selectedDayHeader">
+          <div className="dateLeaf">
+            <span>{selectedDay.weekday}</span>
+            <b>{selectedDay.date}</b>
           </div>
-        ))}
+          <div className="selectedDayCopy">
+            <span>{selectedDay.icon} {selectedDay.hotel}</span>
+            <h2>{selectedDay.theme}</h2>
+            <p><MapPin size={15} /> {selectedDay.area}</p>
+          </div>
+          <DayScene day={selectedDay} />
+          {selectedAnchors.length > 0 && (
+            <div className="selectedAnchorRibbon">
+              <Clock size={15} />
+              <span>{selectedAnchors.length} fixed {selectedAnchors.length === 1 ? "anchor" : "anchors"}</span>
+            </div>
+          )}
+        </div>
+        <div className="eventCardsGrid">
+          {selectedDay.items.map((item, index) => (
+            <EventCard day={selectedDay} index={index} item={item} key={`${selectedDay.date}-${item.time}-${item.plan}`} />
+          ))}
+        </div>
       </section>
 
       <section className="scheduleSupport">
