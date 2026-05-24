@@ -30,6 +30,8 @@ type ScheduleItem = {
   time: string;
   plan: string;
   notes: string;
+  art: string;
+  artLabel: string;
   anchor?: boolean;
 };
 
@@ -44,6 +46,10 @@ type ItineraryDay = {
   items: ScheduleItem[];
 };
 
+function scheduleItem(time: string, plan: string, notes: string, art: string, artLabel: string, anchor = false): ScheduleItem {
+  return { time, plan, notes, art, artLabel, ...(anchor ? { anchor: true } : {}) };
+}
+
 const itineraryDays: ItineraryDay[] = [
   {
     date: "6/1",
@@ -54,15 +60,15 @@ const itineraryDays: ItineraryDay[] = [
     accent: "#70aeee",
     icon: <Landmark size={19} />,
     items: [
-      { time: "Early morning", plan: "Arrive Seoul → Four Seasons Seoul", notes: "Drop bags / check in if possible" },
-      { time: "9:30–9:45am", plan: "Leave for Seocho Station area", notes: "Taxi likely easiest" },
-      { time: "10:20am", plan: "Church near Seocho Station", notes: "Hard anchor", anchor: true },
-      { time: "11:45am–12:20pm", plan: "Head to Shinsegae Gangnam / House of Shinsegae", notes: "Short ride from Seocho" },
-      { time: "12:30pm", plan: "Yoon Haeundae Seoul reservation", notes: "Hard anchor", anchor: true },
-      { time: "1:45–2:45pm", plan: "Shinsegae Gangnam / Central City shopping", notes: "Mall + department store block" },
-      { time: "3:00–4:30pm", plan: "Gangnam Station / Gangnam-daero", notes: "Mainstream shopping block" },
-      { time: "5:00pm onward", plan: "Banpo Hangang Park / Sebitseom", notes: "Best Han River fit for this day" },
-      { time: "Night", plan: "Return to Four Seasons", notes: "Keep flexible depending on jet lag" }
+      scheduleItem("Early morning", "Arrive Seoul → Four Seasons Seoul", "Drop bags / check in if possible", "four-seasons-arrival", "FS"),
+      scheduleItem("9:30–9:45am", "Leave for Seocho Station area", "Taxi likely easiest", "seocho-taxi", "Seocho"),
+      scheduleItem("10:20am", "Church near Seocho Station", "Hard anchor", "seocho-church", "Church", true),
+      scheduleItem("11:45am–12:20pm", "Head to Shinsegae Gangnam / House of Shinsegae", "Short ride from Seocho", "shinsegae-approach", "Shinsegae"),
+      scheduleItem("12:30pm", "Yoon Haeundae Seoul reservation", "Hard anchor", "yoon-haeundae", "Yoon", true),
+      scheduleItem("1:45–2:45pm", "Shinsegae Gangnam / Central City shopping", "Mall + department store block", "central-city", "Central"),
+      scheduleItem("3:00–4:30pm", "Gangnam Station / Gangnam-daero", "Mainstream shopping block", "gangnam-daero", "Gangnam"),
+      scheduleItem("5:00pm onward", "Banpo Hangang Park / Sebitseom", "Best Han River fit for this day", "banpo-hangang", "Banpo"),
+      scheduleItem("Night", "Return to Four Seasons", "Keep flexible depending on jet lag", "four-seasons-night", "FS")
     ]
   },
   {
@@ -74,17 +80,17 @@ const itineraryDays: ItineraryDay[] = [
     accent: "#c3a7ed",
     icon: <Coffee size={19} />,
     items: [
-      { time: "Morning", plan: "Artist Bakery Anguk", notes: "Bakery anchor" },
-      { time: "Morning", plan: "Bukchon / Samcheong / Anguk walk", notes: "Palace-adjacent neighborhoods" },
-      { time: "Late morning", plan: "Fritz Wonseo", notes: "Fritz #1" },
-      { time: "1:00pm", plan: "Niuroumianguan Gwanghwamun reservation", notes: "Hard lunch anchor", anchor: true },
-      { time: "Backup", plan: "Doughroom Gwanghwamun", notes: "Keep if pivoting to Italian" },
-      { time: "2:15–3:15pm", plan: "Insadong / Ikseon-dong", notes: "Light browsing" },
-      { time: "3:15–4:30pm", plan: "Jongno Jewelry District / Piccadilly-Jongno 3-ga", notes: "Jewelry district browse" },
-      { time: "4:30–5:30pm", plan: "Jayeondo Salt Bread Ikseon-dong", notes: "Salt bread / cafe break" },
-      { time: "Evening", plan: "Dinner flexible around Jongno / Euljiro", notes: "Keep easy" },
-      { time: "Night", plan: "Cheonggyecheon lit-up walk", notes: "Best night attraction this day" },
-      { time: "Optional late", plan: "Dongdaemun / DDP exterior only", notes: "Skip if tired" }
+      scheduleItem("Morning", "Artist Bakery Anguk", "Bakery anchor", "artist-bakery", "Artist"),
+      scheduleItem("Morning", "Bukchon / Samcheong / Anguk walk", "Palace-adjacent neighborhoods", "bukchon-hanok", "Bukchon"),
+      scheduleItem("Late morning", "Fritz Wonseo", "Fritz #1", "fritz-wonseo", "Fritz"),
+      scheduleItem("1:00pm", "Niuroumianguan Gwanghwamun reservation", "Hard lunch anchor", "niuroumianguan", "Noodle", true),
+      scheduleItem("Backup", "Doughroom Gwanghwamun", "Keep if pivoting to Italian", "doughroom", "Dough"),
+      scheduleItem("2:15–3:15pm", "Insadong / Ikseon-dong", "Light browsing", "insadong-ikseon", "Ikseon"),
+      scheduleItem("3:15–4:30pm", "Jongno Jewelry District / Piccadilly-Jongno 3-ga", "Jewelry district browse", "jongno-jewelry", "Jongno"),
+      scheduleItem("4:30–5:30pm", "Jayeondo Salt Bread Ikseon-dong", "Salt bread / cafe break", "jayeondo-salt", "Salt"),
+      scheduleItem("Evening", "Dinner flexible around Jongno / Euljiro", "Keep easy", "euljiro-dinner", "Euljiro"),
+      scheduleItem("Night", "Cheonggyecheon lit-up walk", "Best night attraction this day", "cheonggyecheon", "Stream"),
+      scheduleItem("Optional late", "Dongdaemun / DDP exterior only", "Skip if tired", "ddp-exterior", "DDP")
     ]
   },
   {
@@ -96,14 +102,14 @@ const itineraryDays: ItineraryDay[] = [
     accent: "#ffc6a6",
     icon: <ShoppingBag size={19} />,
     items: [
-      { time: "9:00–9:25am", plan: "Gamegol handmade jumbo dumplings", notes: "Dine in if possible", anchor: true },
-      { time: "9:30am–12:30pm", plan: "Namdaemun Market + Burdeng children's clothing", notes: "Protected 3-hour shopping block" },
-      { time: "12:30–1:15pm", plan: "Snack / quick lunch / reset", notes: "Use as buffer" },
-      { time: "1:30–3:30pm", plan: "Myeongdong duty-free loop", notes: "Lotte and Shinsegae duty-free / department stores" },
-      { time: "3:30–4:30pm", plan: "Drop bags / reset at Four Seasons", notes: "Important after shopping" },
-      { time: "4:30–6:30pm", plan: "Optional Hannam-dong / Hanbang Chicken", notes: "Cut if day is too full" },
-      { time: "7:00–9:00pm", plan: "Yongsan I'Park Mall shopping + Pokémon store", notes: "Bake in shopping before movie" },
-      { time: "9:00pm+", plan: "CGV Yongsan I'Park Mall movie", notes: "Prioritize IMAX / 4DX / ScreenX" }
+      scheduleItem("9:00–9:25am", "Gamegol handmade jumbo dumplings", "Dine in if possible", "gamegol-dumplings", "Gamegol", true),
+      scheduleItem("9:30am–12:30pm", "Namdaemun Market + Burdeng children's clothing", "Protected 3-hour shopping block", "namdaemun-burdeng", "Namdaemun"),
+      scheduleItem("12:30–1:15pm", "Snack / quick lunch / reset", "Use as buffer", "namdaemun-snack", "Snack"),
+      scheduleItem("1:30–3:30pm", "Myeongdong duty-free loop", "Lotte and Shinsegae duty-free / department stores", "myeongdong-dutyfree", "Duty Free"),
+      scheduleItem("3:30–4:30pm", "Drop bags / reset at Four Seasons", "Important after shopping", "four-seasons-reset", "FS"),
+      scheduleItem("4:30–6:30pm", "Optional Hannam-dong / Hanbang Chicken", "Cut if day is too full", "hanbang-chicken", "Hanbang"),
+      scheduleItem("7:00–9:00pm", "Yongsan I'Park Mall shopping + Pokémon store", "Bake in shopping before movie", "yongsan-pokemon", "Yongsan"),
+      scheduleItem("9:00pm+", "CGV Yongsan I'Park Mall movie", "Prioritize IMAX / 4DX / ScreenX", "cgv-yongsan", "CGV")
     ]
   },
   {
@@ -115,17 +121,17 @@ const itineraryDays: ItineraryDay[] = [
     accent: "#a7c98f",
     icon: <Trees size={19} />,
     items: [
-      { time: "9:30–10:00am", plan: "Check out Four Seasons", notes: "Take luggage with you" },
-      { time: "10:00–10:45am", plan: "Taxi to Signiel Jamsil", notes: "Luggage-first redesign" },
-      { time: "10:45–11:15am", plan: "Drop bags at Signiel / check in if possible", notes: "Avoid carrying bags all day" },
-      { time: "11:15am–12:00pm", plan: "Head to Seongsu", notes: "East Seoul day" },
-      { time: "12:00–1:30pm", plan: "Lunch in Seongsu", notes: "Ggupdang Seongsu is a potential pork lunch spot" },
-      { time: "1:30–2:30pm", plan: "Obok Rice Cake + Seongsu browsing", notes: "Food + neighborhood anchor" },
-      { time: "2:30–3:45pm", plan: "Seoul Forest + Pokémon Secret Forest exhibit", notes: "Key attraction" },
-      { time: "3:45–4:30pm", plan: "Standard Bread Seongsu / cafe", notes: "Bakery anchor" },
-      { time: "4:30–5:30pm", plan: "Return to Signiel / reset", notes: "Buffer before dinner" },
-      { time: "6:00pm", plan: "Family dinner near Jamsil", notes: "Bookmark / soft-hard anchor", anchor: true },
-      { time: "After dinner", plan: "Optional Lotte World Mall / Seokchon Lake", notes: "Keep relaxed" }
+      scheduleItem("9:30–10:00am", "Check out Four Seasons", "Take luggage with you", "four-seasons-checkout", "FS"),
+      scheduleItem("10:00–10:45am", "Taxi to Signiel Jamsil", "Luggage-first redesign", "taxi-signiel", "Jamsil"),
+      scheduleItem("10:45–11:15am", "Drop bags at Signiel / check in if possible", "Avoid carrying bags all day", "signiel-bagdrop", "Signiel"),
+      scheduleItem("11:15am–12:00pm", "Head to Seongsu", "East Seoul day", "seongsu-arrival", "Seongsu"),
+      scheduleItem("12:00–1:30pm", "Lunch in Seongsu", "Ggupdang Seongsu is a potential pork lunch spot", "ggupdang-seongsu", "Ggupdang"),
+      scheduleItem("1:30–2:30pm", "Obok Rice Cake + Seongsu browsing", "Food + neighborhood anchor", "obok-ricecake", "Obok"),
+      scheduleItem("2:30–3:45pm", "Seoul Forest + Pokémon Secret Forest exhibit", "Key attraction", "seoul-forest-pokemon", "Forest"),
+      scheduleItem("3:45–4:30pm", "Standard Bread Seongsu / cafe", "Bakery anchor", "standard-bread", "Bread"),
+      scheduleItem("4:30–5:30pm", "Return to Signiel / reset", "Buffer before dinner", "signiel-reset", "Signiel"),
+      scheduleItem("6:00pm", "Family dinner near Jamsil", "Bookmark / soft-hard anchor", "jamsil-family-dinner", "Jamsil", true),
+      scheduleItem("After dinner", "Optional Lotte World Mall / Seokchon Lake", "Keep relaxed", "seokchon-lotte", "Lake")
     ]
   },
   {
@@ -137,17 +143,17 @@ const itineraryDays: ItineraryDay[] = [
     accent: "#f49d96",
     icon: <Sparkles size={19} />,
     items: [
-      { time: "9:45–10:00am", plan: "Leave Signiel", notes: "Taxi to Apgujeong/Cheongdam" },
-      { time: "10:45am", plan: "Arrive at Myeon Seoul", notes: "Hard arrival target", anchor: true },
-      { time: "11:00am–12:15pm", plan: "Myeon Seoul lunch", notes: "Keep pace comfortable" },
-      { time: "12:15–1:10pm", plan: "Buffer / coffee / short walk toward spa", notes: "Do not overpack" },
-      { time: "1:15pm", plan: "Arrive at Spa Gogyeol Cheongdam", notes: "Check-in buffer" },
-      { time: "1:30–3:00pm", plan: "Spa Gogyeol massage", notes: "Hard anchor", anchor: true },
-      { time: "3:00–3:30pm", plan: "Change / tea / checkout", notes: "Realistic spa buffer" },
-      { time: "3:45–5:15pm", plan: "Hyundai Department Store Apgujeong Main", notes: "Main shopping block" },
-      { time: "5:15–5:40pm", plan: "Head toward Wooga / buffer", notes: "Avoid rushing" },
-      { time: "6:00pm", plan: "Wooga reservation", notes: "Hard dinner anchor", anchor: true },
-      { time: "After dinner", plan: "Optional Cheongdam / Apgujeong Rodeo walk", notes: "Energy-dependent" }
+      scheduleItem("9:45–10:00am", "Leave Signiel", "Taxi to Apgujeong/Cheongdam", "signiel-depart", "Signiel"),
+      scheduleItem("10:45am", "Arrive at Myeon Seoul", "Hard arrival target", "myeon-seoul", "Myeon", true),
+      scheduleItem("11:00am–12:15pm", "Myeon Seoul lunch", "Keep pace comfortable", "myeon-lunch", "Myeon"),
+      scheduleItem("12:15–1:10pm", "Buffer / coffee / short walk toward spa", "Do not overpack", "cheongdam-buffer", "Cheongdam"),
+      scheduleItem("1:15pm", "Arrive at Spa Gogyeol Cheongdam", "Check-in buffer", "spa-gogyeol-arrival", "Spa"),
+      scheduleItem("1:30–3:00pm", "Spa Gogyeol massage", "Hard anchor", "spa-gogyeol", "Gogyeol", true),
+      scheduleItem("3:00–3:30pm", "Change / tea / checkout", "Realistic spa buffer", "spa-tea", "Tea"),
+      scheduleItem("3:45–5:15pm", "Hyundai Department Store Apgujeong Main", "Main shopping block", "hyundai-apgujeong", "Hyundai"),
+      scheduleItem("5:15–5:40pm", "Head toward Wooga / buffer", "Avoid rushing", "wooga-approach", "Wooga"),
+      scheduleItem("6:00pm", "Wooga reservation", "Hard dinner anchor", "wooga", "Wooga", true),
+      scheduleItem("After dinner", "Optional Cheongdam / Apgujeong Rodeo walk", "Energy-dependent", "apgujeong-rodeo", "Rodeo")
     ]
   },
   {
@@ -159,12 +165,12 @@ const itineraryDays: ItineraryDay[] = [
     accent: "#7dc6be",
     icon: <Plane size={19} />,
     items: [
-      { time: "Morning", plan: "Seokchon Lake walk / easy breakfast", notes: "Departure-safe" },
-      { time: "9:30–10:30am", plan: "Pack / check out / leave bags if needed", notes: "Keep logistics clean" },
-      { time: "10:30am–12:15pm", plan: "Lotte World Mall / Avenuel / Lotte Duty Free World Tower", notes: "Main Jamsil shopping block" },
-      { time: "12:15–12:45pm", plan: "Food hall / snacks / final bags", notes: "Last-minute gifts" },
-      { time: "12:30–1:00pm", plan: "Leave Signiel for airport", notes: "For 4:50pm flight" },
-      { time: "4:50pm", plan: "Flight", notes: "Hard anchor", anchor: true }
+      scheduleItem("Morning", "Seokchon Lake walk / easy breakfast", "Departure-safe", "seokchon-morning", "Lake"),
+      scheduleItem("9:30–10:30am", "Pack / check out / leave bags if needed", "Keep logistics clean", "signiel-checkout", "Signiel"),
+      scheduleItem("10:30am–12:15pm", "Lotte World Mall / Avenuel / Lotte Duty Free World Tower", "Main Jamsil shopping block", "lotte-world-mall", "Lotte"),
+      scheduleItem("12:15–12:45pm", "Food hall / snacks / final bags", "Last-minute gifts", "lotte-foodhall", "Foodhall"),
+      scheduleItem("12:30–1:00pm", "Leave Signiel for airport", "For 4:50pm flight", "airport-taxi", "ICN"),
+      scheduleItem("4:50pm", "Flight", "Hard anchor", "icn-flight", "ICN", true)
     ]
   }
 ];
@@ -470,46 +476,17 @@ function DayScene({ day }: { day: ItineraryDay }) {
   );
 }
 
-function getEventVariant(item: ScheduleItem) {
-  const text = `${item.plan} ${item.notes}`.toLowerCase();
-  if (/flight|airport|icn/.test(text)) return "flight";
-  if (/taxi|head to|leave for|leave signiel|toward/.test(text)) return "transit";
-  if (/church/.test(text)) return "church";
-  if (/spa|massage/.test(text)) return "spa";
-  if (/movie|cgv|cinema|imax|4dx|screenx/.test(text)) return "movie";
-  if (/forest|pokémon|pokemon|seokchon|tree/.test(text)) return "forest";
-  if (/river|hangang|cheonggyecheon|lake/.test(text)) return "river";
-  if (/jewelry|piccadilly/.test(text)) return "jewelry";
-  if (/duty-free|shopping|shinsegae|gangnam|namdaemun|burdeng|myeongdong|lotte|hyundai|avenuel|mall|store/.test(text)) return "shopping";
-  if (/dumpling|lunch|dinner|wooga|myeon|niuroumianguan|chicken|food|snack|ggupdang/.test(text)) return "dining";
-  if (/bakery|fritz|cafe|coffee|salt bread|standard bread|artist bakery|obok/.test(text)) return "cafe";
-  if (/bag|luggage|check out|check in|pack|reset|return/.test(text)) return "luggage";
-  if (/walk|bukchon|samcheong|anguk|insadong|ikseon|dongdaemun|ddp|garosu|rodeo/.test(text)) return "walk";
-  return "place";
-}
-
 function EventPaperArt({ item, accent }: { item: ScheduleItem; accent: string }) {
-  const variant = getEventVariant(item);
   return (
-    <div className={`eventPaperArt ${variant}`} style={{ "--event-accent": accent } as CSSProperties} aria-hidden="true">
-      <span className="eventGround" />
-      <span className="eventSun" />
-      <span className="eventCloud one" />
-      <span className="eventCloud two" />
-      {variant === "flight" && <span className="eventPlane"><PaperPlaneSvg small /></span>}
-      {variant === "transit" && <><span className="eventCar" /><span className="eventRoad" /></>}
-      {variant === "church" && <><span className="eventBuilding churchShape" /><span className="eventCross" /></>}
-      {variant === "spa" && <><span className="eventBath" /><span className="eventSteam one" /><span className="eventSteam two" /></>}
-      {variant === "movie" && <><span className="eventScreen" /><span className="eventSeats" /></>}
-      {variant === "forest" && <><span className="eventTree big" /><span className="eventTree small" /><span className="eventBall" /></>}
-      {variant === "river" && <><span className="eventRiver" /><span className="eventBridge" /></>}
-      {variant === "jewelry" && <><span className="eventGem" /><span className="eventGem small" /><span className="eventCounter" /></>}
-      {variant === "shopping" && <><span className="eventShop" /><span className="eventBag one" /><span className="eventBag two" /></>}
-      {variant === "dining" && <><span className="eventBowl" /><span className="eventChopsticks" /><span className="eventPlate" /></>}
-      {variant === "cafe" && <><span className="eventCup" /><span className="eventPastry" /></>}
-      {variant === "luggage" && <><span className="eventSuitcase" /><span className="eventTag" /></>}
-      {variant === "walk" && <><span className="eventPath" /><span className="eventPin" /><span className="eventTree small" /></>}
-      {variant === "place" && <><span className="eventBuilding" /><span className="eventPin" /></>}
+    <div className={`eventPaperArt art-${item.art}`} style={{ "--event-accent": accent } as CSSProperties} aria-hidden="true">
+      <span className="paperBackdrop" />
+      <span className="paperWater" />
+      <span className="paperRoute" />
+      <span className="paperLandmark" />
+      <span className="paperDetail one" />
+      <span className="paperDetail two" />
+      <span className="paperDetail three" />
+      <span className="paperLabel">{item.artLabel}</span>
     </div>
   );
 }
