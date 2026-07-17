@@ -29,6 +29,16 @@ const signals = [
 
 const projects: Project[] = [
   {
+    title: "Wardrobe",
+    tone: "shipping",
+    stage: "Live personal tool",
+    summary:
+      "A visual catalog built from real outfit photos, with clean garment cutouts, useful filters, and modeled references for every piece.",
+    outcome:
+      "A private photo archive turned into a calm, browsable record of what is actually in rotation.",
+    href: "/wardrobe",
+  },
+  {
     title: "Amex Platinum Benefit Tracker",
     tone: "shipping",
     stage: "Live household tool",
@@ -166,8 +176,8 @@ export function App() {
               <a className="showcase-button showcase-button-primary" href="#projects">
                 Browse the projects
               </a>
-              <a className="showcase-button showcase-button-secondary" href="/amex-platinum-tracker/">
-                Open Amex tracker
+              <a className="showcase-button showcase-button-secondary" href="/wardrobe">
+                Open Wardrobe
               </a>
             </div>
           </div>
@@ -177,9 +187,9 @@ export function App() {
 
             <article className="showcase-artifact showcase-artifact-primary">
               <p className="showcase-artifact-label">Featured now</p>
-              <strong>Amex Platinum Tracker</strong>
+              <strong>Wardrobe</strong>
               <span>
-                household benefit tracking before credits quietly expire
+                outfit photos turned into a clean, modeled clothing catalog
               </span>
             </article>
 

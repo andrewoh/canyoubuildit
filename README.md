@@ -14,6 +14,7 @@ Open `http://localhost:3000`.
 ## Routes
 
 - `/` — public build archive
+- `/wardrobe` — browsable wardrobe catalog with modeled item views
 - `/interview-prep` — interview practice workspace
 - `/podcast/notebook` — notebook walkthrough podcast
 - `/bowman` — Bowman card explorer
