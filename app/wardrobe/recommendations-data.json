@@ -1,0 +1,431 @@
+{
+  "version": 1,
+  "checkedAt": "2026-07-17",
+  "ownedOutfits": [
+    {
+      "id": "pacific-neutrals",
+      "name": "Pacific Neutrals",
+      "occasion": [
+        "Weekend",
+        "Dinner"
+      ],
+      "garmentIds": [
+        "import-416c48a1-a3cb-44a9-bffc-cb79ecf02fc9",
+        "import-fd87f9d2-be80-494e-8c97-4231fc32b178",
+        "import-8c15bada-dd46-4e90-b4a3-f2bf65709b18"
+      ],
+      "reason": "The tonal taupe and brown textures soften the black tapered pants for an easy coastal look.",
+      "setting": "quiet coastal promenade at golden hour",
+      "image": "/wardrobe/outfits/pacific-neutrals.webp",
+      "status": "accepted"
+    },
+    {
+      "id": "gallery-contrast",
+      "name": "Gallery Contrast",
+      "occasion": [
+        "Smart casual",
+        "City day"
+      ],
+      "garmentIds": [
+        "import-731289bd-7f66-4c4c-9974-7df441bafb22",
+        "import-5d63b506-055c-4243-a7a7-5eb487c92f5a",
+        "import-197c4d28-dcac-47ec-bc97-29a242f00863"
+      ],
+      "reason": "A clean black polo sharpens the light-gray trousers, while chunky sneakers keep the look relaxed.",
+      "setting": "minimal contemporary gallery corridor",
+      "image": "/wardrobe/outfits/gallery-contrast.webp",
+      "status": "accepted"
+    },
+    {
+      "id": "linen-afternoon",
+      "name": "Linen Afternoon",
+      "occasion": [
+        "Weekend",
+        "Warm weather"
+      ],
+      "garmentIds": [
+        "import-ae5e75d9-77e5-4d19-a57a-948b1d2dc0ae",
+        "import-550281d4-62ce-4606-bc85-cfc0de9973fd",
+        "import-8c15bada-dd46-4e90-b4a3-f2bf65709b18"
+      ],
+      "reason": "Light linen and sand chinos create a soft neutral column, grounded by the brown suede sneakers.",
+      "setting": "sunlit neighborhood coffee shop exterior",
+      "image": "/wardrobe/outfits/linen-afternoon.webp",
+      "status": "accepted"
+    },
+    {
+      "id": "soft-summer",
+      "name": "Soft Summer",
+      "occasion": [
+        "Day off",
+        "Travel"
+      ],
+      "garmentIds": [
+        "import-9eb6a259-ad21-4aa7-af70-4e94edd67a47",
+        "import-63384431-ef76-42ae-b2ea-fab3b2a9e959",
+        "import-197c4d28-dcac-47ec-bc97-29a242f00863",
+        "import-05dcec13-4c00-4980-9450-883c53aab521"
+      ],
+      "reason": "The ivory knit polo and tailored gray shorts stay polished without feeling formal.",
+      "setting": "restrained modern resort courtyard",
+      "image": "/wardrobe/outfits/soft-summer.webp",
+      "status": "accepted"
+    },
+    {
+      "id": "travel-uniform",
+      "name": "Travel Uniform",
+      "occasion": [
+        "Travel",
+        "Everyday"
+      ],
+      "garmentIds": [
+        "import-c61428bc-1f0e-4ed4-8076-771a56b0efdc",
+        "import-f67e5c77-d4a1-4027-98b7-a0ffec5f5fe9",
+        "import-949c3c4a-78d6-488e-bd92-501d457e525c"
+      ],
+      "reason": "Navy-on-navy reads cohesive and calm, with gray sneakers adding practical contrast.",
+      "setting": "restrained airport lounge",
+      "image": "/wardrobe/outfits/travel-uniform.webp",
+      "status": "accepted"
+    },
+    {
+      "id": "market-layer",
+      "name": "Market Layer",
+      "occasion": [
+        "Weekend",
+        "Errands"
+      ],
+      "garmentIds": [
+        "import-e443468a-e63e-4f9d-a0df-3130480c21af",
+        "import-991a9b65-0c94-4d28-b628-291cfe6a7592",
+        "import-fd87f9d2-be80-494e-8c97-4231fc32b178",
+        "import-197c4d28-dcac-47ec-bc97-29a242f00863"
+      ],
+      "reason": "The pale tee lifts the warm plaid overshirt, while black pants and white sneakers keep the palette focused.",
+      "setting": "quiet covered market walkway",
+      "image": "/wardrobe/outfits/market-layer.webp",
+      "status": "accepted"
+    },
+    {
+      "id": "green-off-duty",
+      "name": "Green Off-Duty",
+      "occasion": [
+        "Casual",
+        "Cool weather"
+      ],
+      "garmentIds": [
+        "import-becc6735-276e-466d-8e1f-f0ec929dff39",
+        "import-987b6bb7-e367-4084-b4b0-4510273ccbb6",
+        "import-949c3c4a-78d6-488e-bd92-501d457e525c",
+        "import-bc572e46-3394-41d2-aecb-049ce0e3a82e"
+      ],
+      "reason": "Forest green gives the gray sweats more depth, and the neutral cap and sneakers keep it grounded.",
+      "setting": "calm tree-lined residential sidewalk",
+      "image": "/wardrobe/outfits/green-off-duty.webp",
+      "status": "accepted"
+    },
+    {
+      "id": "active-weekend",
+      "name": "Active Weekend",
+      "occasion": [
+        "Recreation",
+        "Hot weather"
+      ],
+      "garmentIds": [
+        "import-5d6821d6-5d95-4564-8f66-bc51478a41d0",
+        "import-dbece27c-296d-4160-81c2-cf29f0940d35",
+        "import-0c87a282-844c-49d6-96eb-c49edd681372",
+        "import-5f31eff2-d86c-454f-a8f9-bff80319f214"
+      ],
+      "reason": "The navy performance top and bright shorts form a clean athletic base with easy slides and a matching cap.",
+      "setting": "calm modern recreation court",
+      "image": "/wardrobe/outfits/active-weekend.webp",
+      "status": "accepted"
+    },
+    {
+      "id": "ballpark-day",
+      "name": "Ballpark Day",
+      "occasion": [
+        "Game day",
+        "Weekend"
+      ],
+      "garmentIds": [
+        "import-74fd5328-94fa-4748-8537-4587e7ccc1d7",
+        "import-f67e5c77-d4a1-4027-98b7-a0ffec5f5fe9",
+        "import-197c4d28-dcac-47ec-bc97-29a242f00863",
+        "import-05dcec13-4c00-4980-9450-883c53aab521"
+      ],
+      "reason": "The cream Giants jersey and Bay Area cap carry the theme, balanced by navy trousers and neutral sneakers.",
+      "setting": "quiet ballpark concourse before gates open",
+      "image": "/wardrobe/outfits/ballpark-day.webp",
+      "status": "accepted"
+    },
+    {
+      "id": "evening-ease",
+      "name": "Evening Ease",
+      "occasion": [
+        "Dinner",
+        "Smart casual"
+      ],
+      "garmentIds": [
+        "import-f71b7cca-ab57-4658-8371-33183eeef95d",
+        "import-550281d4-62ce-4606-bc85-cfc0de9973fd",
+        "import-0922e13c-89c3-4677-a2f0-47650a30dc95"
+      ],
+      "reason": "Black and sand make a dependable high-contrast pairing, finished with warm brown leather.",
+      "setting": "warm restrained restaurant entry",
+      "image": "/wardrobe/outfits/evening-ease.webp",
+      "status": "accepted"
+    },
+    {
+      "id": "checked-dinner",
+      "name": "Checked Dinner",
+      "occasion": [
+        "Dinner",
+        "Date night"
+      ],
+      "garmentIds": [
+        "import-a108dafa-a19e-49cb-b8ba-f3190780eed5",
+        "import-fd87f9d2-be80-494e-8c97-4231fc32b178",
+        "import-0922e13c-89c3-4677-a2f0-47650a30dc95"
+      ],
+      "reason": "The fine navy-red grid adds interest while black pants and brown derbies keep the outfit mature and simple.",
+      "setting": "intimate wood-paneled dining room entry",
+      "image": "/wardrobe/outfits/checked-dinner.webp",
+      "status": "accepted"
+    },
+    {
+      "id": "tailored-light",
+      "name": "Tailored Light",
+      "occasion": [
+        "Formal",
+        "Celebration"
+      ],
+      "garmentIds": [
+        "import-e73c37d8-319e-4e90-b6cb-b738d8b193f5",
+        "import-034392e5-f411-4e3b-96e2-5488a77fcb6b",
+        "import-5d63b506-055c-4243-a7a7-5eb487c92f5a",
+        "import-82d6fc9a-84f9-4051-b0bc-5cc5bbc9734e",
+        "import-0922e13c-89c3-4677-a2f0-47650a30dc95"
+      ],
+      "reason": "The light-gray suit and white shirt let the plum floral tie carry the color, with brown leather adding warmth.",
+      "setting": "restrained upscale hotel lobby",
+      "image": "/wardrobe/outfits/tailored-light.webp",
+      "status": "accepted"
+    }
+  ],
+  "mixedOutfits": [
+    {
+      "id": "mix-asket-white-tshirt",
+      "name": "White Tee, Light Tailoring",
+      "reason": "A clean white base brightens the navy knit, beige chinos, and light-gray tailoring.",
+      "ownedGarmentIds": [
+        "import-e73c37d8-319e-4e90-b6cb-b738d8b193f5",
+        "import-550281d4-62ce-4606-bc85-cfc0de9973fd",
+        "import-197c4d28-dcac-47ec-bc97-29a242f00863"
+      ],
+      "shopItems": [
+        {
+          "id": "ext-asket-white-tshirt",
+          "brand": "Asket",
+          "name": "The T-Shirt",
+          "category": "T-Shirt",
+          "color": "White",
+          "priceText": "$65 USD",
+          "productUrl": "https://www.asket.com/en-us/mens-t-shirt-white",
+          "imageUrl": "https://images.asket.com/pim-images/1755179769-asket_tee-ma-whi_slideshow_1.jpg",
+          "reason": "A clean white base brightens the navy knit, beige chinos, and light-gray tailoring.",
+          "availabilityNote": "Active US product page; verify the desired size and length at checkout."
+        }
+      ]
+    },
+    {
+      "id": "mix-asket-blue-oxford",
+      "name": "Blue Oxford, Navy Suit",
+      "reason": "Adds the missing casual blue Oxford that works with both navy tailoring and beige chinos.",
+      "ownedGarmentIds": [
+        "import-da88f139-639f-41dd-9d0f-c66fbf22b780",
+        "import-d7749165-02e7-4179-8755-220919b90b3d",
+        "import-0922e13c-89c3-4677-a2f0-47650a30dc95"
+      ],
+      "shopItems": [
+        {
+          "id": "ext-asket-blue-oxford",
+          "brand": "Asket",
+          "name": "The Oxford Shirt",
+          "category": "Button-Down Shirt",
+          "color": "Blue",
+          "priceText": "$190 USD",
+          "productUrl": "https://www.asket.com/en-us/mens-oxford-shirt-blue",
+          "imageUrl": "https://images.asket.com/pim-images/1755182110-asket_oxf-ma-blu_slideshow_1.jpg",
+          "reason": "Adds the missing casual blue Oxford that works with both navy tailoring and beige chinos.",
+          "availabilityNote": "Active US product page; verify size and garment length at checkout."
+        }
+      ]
+    },
+    {
+      "id": "mix-levis-501-crispy-rinse",
+      "name": "Dark Denim, Ivory Knit",
+      "reason": "Dark straight denim is the largest everyday-bottom gap and grounds ivory, green, and gray tops.",
+      "ownedGarmentIds": [
+        "import-9eb6a259-ad21-4aa7-af70-4e94edd67a47",
+        "import-8c15bada-dd46-4e90-b4a3-f2bf65709b18"
+      ],
+      "shopItems": [
+        {
+          "id": "ext-levis-501-crispy-rinse",
+          "brand": "Levi's",
+          "name": "501 Original Men's Jeans",
+          "category": "Jeans",
+          "color": "Crispy Rinse Dark Wash",
+          "priceText": "$110",
+          "productUrl": "https://www.levi.com/US/en_US/clothing/men/jeans/straight/501-original-mens-jeans/p/005011484",
+          "imageUrl": "https://lscoglobal.scene7.com/is/image/lscoglobal/MB_00501-1484_GLO_CM_DA?fit=crop%2C1&fmt=jpeg&hei=348&op_usm=0.6%2C0.6%2C8&qlt=70&resMode=sharp2&wid=348",
+          "reason": "Dark straight denim is the largest everyday-bottom gap and grounds ivory, green, and gray tops.",
+          "availabilityNote": "Waists 28–42 and several inseams were displayed; exact variant stock is selected dynamically."
+        }
+      ]
+    },
+    {
+      "id": "mix-banana-republic-olive-chino",
+      "name": "Olive Chinos, Ivory Texture",
+      "reason": "Olive introduces a useful neutral that complements ivory shirts, navy knitwear, and white sneakers.",
+      "ownedGarmentIds": [
+        "import-a227be80-6378-42a6-a668-58d2ba9dc57c",
+        "import-197c4d28-dcac-47ec-bc97-29a242f00863"
+      ],
+      "shopItems": [
+        {
+          "id": "ext-banana-republic-olive-chino",
+          "brand": "Banana Republic",
+          "name": "Slim Italian-Stretch Chino",
+          "category": "Chinos",
+          "color": "Light Olive Green",
+          "priceText": "$74.97 sale (was $100)",
+          "productUrl": "https://bananarepublic.gap.com/browse/product.do?pid=6491610923030",
+          "imageUrl": "https://bananarepublic.gap.com/webcontent/0059/874/465/cn59874465.jpg",
+          "reason": "Olive introduces a useful neutral that complements ivory shirts, navy knitwear, and white sneakers.",
+          "availabilityNote": "Shown in stock in multiple waist and inseam combinations; listed as final sale."
+        }
+      ]
+    },
+    {
+      "id": "mix-barbour-ashby-olive",
+      "name": "Waxed Olive, Black and Sand",
+      "reason": "Supplies the missing structured casual outer layer and works with black, tan, and brown.",
+      "ownedGarmentIds": [
+        "import-f7cbdf54-489c-4d71-a023-81c6df8d3dc5",
+        "import-550281d4-62ce-4606-bc85-cfc0de9973fd",
+        "import-0922e13c-89c3-4677-a2f0-47650a30dc95"
+      ],
+      "shopItems": [
+        {
+          "id": "ext-barbour-ashby-olive",
+          "brand": "Barbour",
+          "name": "Ashby Waxed Jacket",
+          "category": "Casual Jacket",
+          "color": "Olive",
+          "priceText": "$398",
+          "productUrl": "https://www.barbour.com/us/ashby-waxed-jacket-MWX0339OL71XL.html",
+          "imageUrl": "https://www.barbour.com/dw/image/v2/BLCL_PRD/on/demandware.static/-/Sites-master-catalog/default/dwd7e9b5ab/images/MWX0339OL71/MWX0339OL71_01front.jpg?q=70&strip=false&sw=1500",
+          "reason": "Supplies the missing structured casual outer layer and works with black, tan, and brown.",
+          "availabilityNote": "XS–XXXL were displayed with Add to Cart; stock can vary by selected size."
+        }
+      ]
+    },
+    {
+      "id": "mix-eddie-bauer-cloud-cap-green",
+      "name": "Rain Shell, Gray Active Base",
+      "reason": "Adds genuine waterproof protection while coordinating with the black and gray activewear.",
+      "ownedGarmentIds": [
+        "import-5d6821d6-5d95-4564-8f66-bc51478a41d0",
+        "import-987b6bb7-e367-4084-b4b0-4510273ccbb6",
+        "import-949c3c4a-78d6-488e-bd92-501d457e525c"
+      ],
+      "shopItems": [
+        {
+          "id": "ext-eddie-bauer-cloud-cap-green",
+          "brand": "Eddie Bauer",
+          "name": "Cloud Cap 3L Waterproof Stretch Hooded Rain Jacket",
+          "category": "Rain Jacket",
+          "color": "Vibrant Green",
+          "priceText": "$179",
+          "productUrl": "https://www.eddiebauer.com/products/mens-cloud-cap-3l-31388660?variant=42884503797827",
+          "imageUrl": "https://www.eddiebauer.com/cdn/shop/files/D0881074_323C1.png?v=1772386648&width=1440",
+          "reason": "Adds genuine waterproof protection while coordinating with the black and gray activewear.",
+          "availabilityNote": "Vibrant Green regular sizes S–XXL were listed in stock; URL selects medium."
+        }
+      ]
+    },
+    {
+      "id": "mix-adidas-samba-og-white",
+      "name": "Low-Profile Sneakers, Soft Summer",
+      "reason": "A lower-profile sneaker gives the wardrobe a sharper alternative to the existing chunky pairs.",
+      "ownedGarmentIds": [
+        "import-9eb6a259-ad21-4aa7-af70-4e94edd67a47",
+        "import-63384431-ef76-42ae-b2ea-fab3b2a9e959"
+      ],
+      "shopItems": [
+        {
+          "id": "ext-adidas-samba-og-white",
+          "brand": "Adidas",
+          "name": "Samba OG Shoes",
+          "category": "Sneakers",
+          "color": "Cloud White / Core Black / Gum",
+          "priceText": "$100",
+          "productUrl": "https://www.adidas.com/us/samba-og-shoes/B75806.html",
+          "imageUrl": "https://assets.adidas.com/images/w_500%2Cf_auto%2Cq_auto/3bbecbdf584e40398446a8bf0117cf62_9366/Samba_OG_Shoes_White_B75806_01_00_standard.jpg",
+          "reason": "A lower-profile sneaker gives the wardrobe a sharper alternative to the existing chunky pairs.",
+          "availabilityNote": "Add to Bag was displayed; exact sizes are loaded dynamically."
+        }
+      ]
+    },
+    {
+      "id": "mix-ghbass-larson-venetian-brown",
+      "name": "Brown Loafers, City Contrast",
+      "reason": "Fills the smart-casual footwear gap between sneakers and the formal brown derbies.",
+      "ownedGarmentIds": [
+        "import-731289bd-7f66-4c4c-9974-7df441bafb22",
+        "import-5d63b506-055c-4243-a7a7-5eb487c92f5a"
+      ],
+      "shopItems": [
+        {
+          "id": "ext-ghbass-larson-venetian-brown",
+          "brand": "G.H. Bass",
+          "name": "Larson Venetian Loom Weejuns Loafer",
+          "category": "Loafers",
+          "color": "Dark Brown",
+          "priceText": "$169.99 sale (was $225; extra 20% at cart shown)",
+          "productUrl": "https://www.ghbass.com/products/men-larson-venetian-loom-weejuns-loafer-dark-brown",
+          "imageUrl": "https://www.ghbass.com/cdn/shop/files/product_14335846_venetian_20lwj_mm_brown_201-001-043_main_sq_gy.jpg?v=1768971072&width=1946",
+          "reason": "Fills the smart-casual footwear gap between sneakers and the formal brown derbies.",
+          "availabilityNote": "Sizes 7–14 were displayed; sizes 6 and 6.5 were unavailable."
+        }
+      ]
+    },
+    {
+      "id": "mix-llbean-bean-boot-brown-tan",
+      "name": "Weather Boots, Plaid Layers",
+      "reason": "Adds rain-ready footwear that naturally matches the plaid overshirt, green hoodie, and tan chinos.",
+      "ownedGarmentIds": [
+        "import-e443468a-e63e-4f9d-a0df-3130480c21af",
+        "import-991a9b65-0c94-4d28-b628-291cfe6a7592",
+        "import-550281d4-62ce-4606-bc85-cfc0de9973fd"
+      ],
+      "shopItems": [
+        {
+          "id": "ext-llbean-bean-boot-brown-tan",
+          "brand": "L.L.Bean",
+          "name": "Men's Bean Boots, 8-inch",
+          "category": "Weather Boots",
+          "color": "Brown / Tan Opaque",
+          "priceText": "$150",
+          "productUrl": "https://www.llbean.com/llb/shop/129628?page=mens-bean-boot-8in-mens",
+          "imageUrl": "https://cdni.llbean.net/is/image/wim/523482_57650_41?defaultImage=llbprod%2F523482_57650_41&hei=1000&wid=1000",
+          "reason": "Adds rain-ready footwear that naturally matches the plaid overshirt, green hoodie, and tan chinos.",
+          "availabilityNote": "Sizes 7–14 were displayed; L.L.Bean recommends ordering one full size down."
+        }
+      ]
+    }
+  ]
+}

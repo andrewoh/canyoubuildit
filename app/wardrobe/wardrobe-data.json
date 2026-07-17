@@ -882,5 +882,101 @@
     "thumbnail": "/wardrobe/items/import-197c4d28-dcac-47ec-bc97-29a242f00863-garment.webp",
     "modeledImage": "/wardrobe/items/import-197c4d28-dcac-47ec-bc97-29a242f00863-modeled.webp",
     "importJobId": "197c4d28-dcac-47ec-bc97-29a242f00863"
+  },
+  {
+    "id": "import-416c48a1-a3cb-44a9-bffc-cb79ecf02fc9",
+    "name": "Taupe Textured Camp-Collar Shirt",
+    "part": "upperbody",
+    "color": "#9a8065",
+    "secondaryColor": "#ddd1bd",
+    "palette": [
+      "#9a8065",
+      "#ddd1bd"
+    ],
+    "tags": [
+      "camp collar",
+      "short sleeve",
+      "button front",
+      "taupe",
+      "textured",
+      "resort",
+      "summer",
+      "late 2025"
+    ],
+    "image": "/wardrobe/items/import-416c48a1-a3cb-44a9-bffc-cb79ecf02fc9-garment.webp",
+    "thumbnail": "/wardrobe/items/import-416c48a1-a3cb-44a9-bffc-cb79ecf02fc9-garment.webp",
+    "modeledImage": "/wardrobe/items/import-416c48a1-a3cb-44a9-bffc-cb79ecf02fc9-modeled.webp",
+    "importJobId": "416c48a1-a3cb-44a9-bffc-cb79ecf02fc9"
+  },
+  {
+    "id": "import-fd87f9d2-be80-494e-8c97-4231fc32b178",
+    "name": "Black Tapered Travel Pants",
+    "part": "lowerbody",
+    "color": "#1c1b1b",
+    "secondaryColor": null,
+    "palette": [
+      "#1c1b1b"
+    ],
+    "tags": [
+      "drawstring",
+      "tapered",
+      "black",
+      "travel",
+      "lightweight",
+      "casual",
+      "late 2025"
+    ],
+    "image": "/wardrobe/items/import-fd87f9d2-be80-494e-8c97-4231fc32b178-garment.webp",
+    "thumbnail": "/wardrobe/items/import-fd87f9d2-be80-494e-8c97-4231fc32b178-garment.webp",
+    "modeledImage": "/wardrobe/items/import-fd87f9d2-be80-494e-8c97-4231fc32b178-modeled.webp",
+    "importJobId": "fd87f9d2-be80-494e-8c97-4231fc32b178"
+  },
+  {
+    "id": "import-731289bd-7f66-4c4c-9974-7df441bafb22",
+    "name": "Black Short-Sleeve Polo",
+    "part": "upperbody",
+    "color": "#18191a",
+    "secondaryColor": null,
+    "palette": [
+      "#18191a"
+    ],
+    "tags": [
+      "polo",
+      "black",
+      "short sleeve",
+      "button placket",
+      "minimal",
+      "smart casual",
+      "summer 2026"
+    ],
+    "image": "/wardrobe/items/import-731289bd-7f66-4c4c-9974-7df441bafb22-garment.webp",
+    "thumbnail": "/wardrobe/items/import-731289bd-7f66-4c4c-9974-7df441bafb22-garment.webp",
+    "modeledImage": "/wardrobe/items/import-731289bd-7f66-4c4c-9974-7df441bafb22-modeled.webp",
+    "importJobId": "731289bd-7f66-4c4c-9974-7df441bafb22"
+  },
+  {
+    "id": "import-8c15bada-dd46-4e90-b4a3-f2bf65709b18",
+    "name": "Brown Striped Suede Sneakers",
+    "part": "shoes",
+    "color": "#745338",
+    "secondaryColor": "#e4dac4",
+    "palette": [
+      "#745338",
+      "#e4dac4"
+    ],
+    "tags": [
+      "sneakers",
+      "brown",
+      "suede",
+      "cream stripes",
+      "gum sole",
+      "low top",
+      "casual",
+      "fall 2025"
+    ],
+    "image": "/wardrobe/items/import-8c15bada-dd46-4e90-b4a3-f2bf65709b18-garment.webp",
+    "thumbnail": "/wardrobe/items/import-8c15bada-dd46-4e90-b4a3-f2bf65709b18-garment.webp",
+    "modeledImage": "/wardrobe/items/import-8c15bada-dd46-4e90-b4a3-f2bf65709b18-modeled.webp",
+    "importJobId": "8c15bada-dd46-4e90-b4a3-f2bf65709b18"
   }
 ]
