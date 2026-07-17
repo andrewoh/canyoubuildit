@@ -29,6 +29,16 @@ const signals = [
 
 const projects: Project[] = [
   {
+    title: "Now Boards",
+    tone: "shipping",
+    stage: "Live prototype",
+    summary:
+      "A Pinterest-like visual workspace that turns recurring plans, saves, and ideas into living interest boards.",
+    outcome:
+      "A connector-ready prototype for seeing what keeps resurfacing across the tools already in use.",
+    href: "/interest-boards",
+  },
+  {
     title: "Wardrobe",
     tone: "shipping",
     stage: "Live personal tool",
