@@ -5,8 +5,16 @@
     "part": "wholebody_up",
     "color": "#a8a9a7",
     "secondaryColor": null,
-    "palette": ["#a8a9a7"],
-    "tags": ["blazer", "suit", "notch lapel", "two button", "light gray"],
+    "palette": [
+      "#a8a9a7"
+    ],
+    "tags": [
+      "blazer",
+      "suit",
+      "notch lapel",
+      "two button",
+      "light gray"
+    ],
     "image": "/wardrobe/items/import-e73c37d8-319e-4e90-b6cb-b738d8b193f5-garment.webp",
     "thumbnail": "/wardrobe/items/import-e73c37d8-319e-4e90-b6cb-b738d8b193f5-garment.webp",
     "modeledImage": "/wardrobe/items/import-e73c37d8-319e-4e90-b6cb-b738d8b193f5-modeled.webp",
@@ -18,8 +26,15 @@
     "part": "lowerbody",
     "color": "#a8a9a7",
     "secondaryColor": null,
-    "palette": ["#a8a9a7"],
-    "tags": ["trousers", "suit", "straight leg", "light gray"],
+    "palette": [
+      "#a8a9a7"
+    ],
+    "tags": [
+      "trousers",
+      "suit",
+      "straight leg",
+      "light gray"
+    ],
     "image": "/wardrobe/items/import-5d63b506-055c-4243-a7a7-5eb487c92f5a-garment.webp",
     "thumbnail": "/wardrobe/items/import-5d63b506-055c-4243-a7a7-5eb487c92f5a-garment.webp",
     "modeledImage": "/wardrobe/items/import-5d63b506-055c-4243-a7a7-5eb487c92f5a-modeled.webp",
@@ -31,8 +46,18 @@
     "part": "upperbody",
     "color": "#c91f32",
     "secondaryColor": "#f4f2ed",
-    "palette": ["#c91f32", "#f4f2ed"],
-    "tags": ["jersey", "football", "49ers", "number 13", "red", "striped sleeve"],
+    "palette": [
+      "#c91f32",
+      "#f4f2ed"
+    ],
+    "tags": [
+      "jersey",
+      "football",
+      "49ers",
+      "number 13",
+      "red",
+      "striped sleeve"
+    ],
     "image": "/wardrobe/items/import-7b920d59-8124-48a3-93ae-ed2007fdbc3b-garment.webp",
     "thumbnail": "/wardrobe/items/import-7b920d59-8124-48a3-93ae-ed2007fdbc3b-garment.webp",
     "modeledImage": "/wardrobe/items/import-7b920d59-8124-48a3-93ae-ed2007fdbc3b-modeled.webp",
@@ -44,8 +69,17 @@
     "part": "upperbody",
     "color": "#1f2333",
     "secondaryColor": "#a33b45",
-    "palette": ["#1f2333", "#a33b45"],
-    "tags": ["button down", "grid check", "navy", "red", "long sleeve"],
+    "palette": [
+      "#1f2333",
+      "#a33b45"
+    ],
+    "tags": [
+      "button down",
+      "grid check",
+      "navy",
+      "red",
+      "long sleeve"
+    ],
     "image": "/wardrobe/items/import-a108dafa-a19e-49cb-b8ba-f3190780eed5-garment.webp",
     "thumbnail": "/wardrobe/items/import-a108dafa-a19e-49cb-b8ba-f3190780eed5-garment.webp",
     "modeledImage": "/wardrobe/items/import-a108dafa-a19e-49cb-b8ba-f3190780eed5-modeled.webp",
@@ -57,8 +91,16 @@
     "part": "wholebody_up",
     "color": "#252a3a",
     "secondaryColor": null,
-    "palette": ["#252a3a"],
-    "tags": ["cardigan", "shawl collar", "navy", "button front", "patch pockets"],
+    "palette": [
+      "#252a3a"
+    ],
+    "tags": [
+      "cardigan",
+      "shawl collar",
+      "navy",
+      "button front",
+      "patch pockets"
+    ],
     "image": "/wardrobe/items/import-af1826c3-12fc-4809-b812-4a5e62b6dfc5-garment.webp",
     "thumbnail": "/wardrobe/items/import-af1826c3-12fc-4809-b812-4a5e62b6dfc5-garment.webp",
     "modeledImage": "/wardrobe/items/import-af1826c3-12fc-4809-b812-4a5e62b6dfc5-modeled.webp",
@@ -70,8 +112,16 @@
     "part": "upperbody",
     "color": "#343337",
     "secondaryColor": null,
-    "palette": ["#343337"],
-    "tags": ["hoodie", "charcoal", "textured knit", "kangaroo pocket", "pullover"],
+    "palette": [
+      "#343337"
+    ],
+    "tags": [
+      "hoodie",
+      "charcoal",
+      "textured knit",
+      "kangaroo pocket",
+      "pullover"
+    ],
     "image": "/wardrobe/items/import-8abaad82-b3df-46f2-afee-47013ac3032d-garment.webp",
     "thumbnail": "/wardrobe/items/import-8abaad82-b3df-46f2-afee-47013ac3032d-garment.webp",
     "modeledImage": "/wardrobe/items/import-8abaad82-b3df-46f2-afee-47013ac3032d-modeled.webp",
@@ -83,8 +133,18 @@
     "part": "wholebody_up",
     "color": "#3b3026",
     "secondaryColor": "#20283a",
-    "palette": ["#3b3026", "#20283a"],
-    "tags": ["plaid", "overshirt", "button-front", "flannel", "long-sleeve", "chest-pocket"],
+    "palette": [
+      "#3b3026",
+      "#20283a"
+    ],
+    "tags": [
+      "plaid",
+      "overshirt",
+      "button-front",
+      "flannel",
+      "long-sleeve",
+      "chest-pocket"
+    ],
     "image": "/wardrobe/items/import-991a9b65-0c94-4d28-b628-291cfe6a7592-garment.webp",
     "thumbnail": "/wardrobe/items/import-991a9b65-0c94-4d28-b628-291cfe6a7592-garment.webp",
     "modeledImage": "/wardrobe/items/import-991a9b65-0c94-4d28-b628-291cfe6a7592-modeled.webp",
@@ -96,8 +156,17 @@
     "part": "upperbody",
     "color": "#eeeae1",
     "secondaryColor": "#71809a",
-    "palette": ["#eeeae1", "#71809a"],
-    "tags": ["button-front", "short-sleeve", "micro-pattern", "collared", "summer"],
+    "palette": [
+      "#eeeae1",
+      "#71809a"
+    ],
+    "tags": [
+      "button-front",
+      "short-sleeve",
+      "micro-pattern",
+      "collared",
+      "summer"
+    ],
     "image": "/wardrobe/items/import-bbc643f2-c04b-465e-9f22-c08228a009fb-garment.webp",
     "thumbnail": "/wardrobe/items/import-bbc643f2-c04b-465e-9f22-c08228a009fb-garment.webp",
     "modeledImage": "/wardrobe/items/import-bbc643f2-c04b-465e-9f22-c08228a009fb-modeled.webp",
@@ -109,8 +178,15 @@
     "part": "lowerbody",
     "color": "#151b2a",
     "secondaryColor": null,
-    "palette": ["#151b2a"],
-    "tags": ["trousers", "slim", "travel", "flat-front"],
+    "palette": [
+      "#151b2a"
+    ],
+    "tags": [
+      "trousers",
+      "slim",
+      "travel",
+      "flat-front"
+    ],
     "image": "/wardrobe/items/import-f67e5c77-d4a1-4027-98b7-a0ffec5f5fe9-garment.webp",
     "thumbnail": "/wardrobe/items/import-f67e5c77-d4a1-4027-98b7-a0ffec5f5fe9-garment.webp",
     "modeledImage": "/wardrobe/items/import-f67e5c77-d4a1-4027-98b7-a0ffec5f5fe9-modeled.webp",
@@ -122,8 +198,17 @@
     "part": "upperbody",
     "color": "#162746",
     "secondaryColor": "#edf1f2",
-    "palette": ["#162746", "#edf1f2"],
-    "tags": ["activewear", "long-sleeve", "crewneck", "logo", "performance"],
+    "palette": [
+      "#162746",
+      "#edf1f2"
+    ],
+    "tags": [
+      "activewear",
+      "long-sleeve",
+      "crewneck",
+      "logo",
+      "performance"
+    ],
     "image": "/wardrobe/items/import-5d6821d6-5d95-4564-8f66-bc51478a41d0-garment.webp",
     "thumbnail": "/wardrobe/items/import-5d6821d6-5d95-4564-8f66-bc51478a41d0-garment.webp",
     "modeledImage": "/wardrobe/items/import-5d6821d6-5d95-4564-8f66-bc51478a41d0-modeled.webp",
@@ -135,8 +220,15 @@
     "part": "lowerbody",
     "color": "#eceff1",
     "secondaryColor": null,
-    "palette": ["#eceff1"],
-    "tags": ["shorts", "athletic", "lightweight", "elastic-waist"],
+    "palette": [
+      "#eceff1"
+    ],
+    "tags": [
+      "shorts",
+      "athletic",
+      "lightweight",
+      "elastic-waist"
+    ],
     "image": "/wardrobe/items/import-dbece27c-296d-4160-81c2-cf29f0940d35-garment.webp",
     "thumbnail": "/wardrobe/items/import-dbece27c-296d-4160-81c2-cf29f0940d35-garment.webp",
     "modeledImage": "/wardrobe/items/import-dbece27c-296d-4160-81c2-cf29f0940d35-modeled.webp",
@@ -148,8 +240,16 @@
     "part": "shoes",
     "color": "#161616",
     "secondaryColor": null,
-    "palette": ["#161616"],
-    "tags": ["slides", "sandals", "double-band", "open-toe", "casual"],
+    "palette": [
+      "#161616"
+    ],
+    "tags": [
+      "slides",
+      "sandals",
+      "double-band",
+      "open-toe",
+      "casual"
+    ],
     "image": "/wardrobe/items/import-0c87a282-844c-49d6-96eb-c49edd681372-garment.webp",
     "thumbnail": "/wardrobe/items/import-0c87a282-844c-49d6-96eb-c49edd681372-garment.webp",
     "modeledImage": "/wardrobe/items/import-0c87a282-844c-49d6-96eb-c49edd681372-modeled.webp",
@@ -161,8 +261,17 @@
     "part": "wholebody_up",
     "color": "#3e495d",
     "secondaryColor": "#f0f0ec",
-    "palette": ["#3e495d", "#f0f0ec"],
-    "tags": ["hoodie", "pullover", "drawstring", "fleece", "casual"],
+    "palette": [
+      "#3e495d",
+      "#f0f0ec"
+    ],
+    "tags": [
+      "hoodie",
+      "pullover",
+      "drawstring",
+      "fleece",
+      "casual"
+    ],
     "image": "/wardrobe/items/import-062da5e5-3e59-408a-aaf1-dbb5a4c711f6-garment.webp",
     "thumbnail": "/wardrobe/items/import-062da5e5-3e59-408a-aaf1-dbb5a4c711f6-garment.webp",
     "modeledImage": "/wardrobe/items/import-062da5e5-3e59-408a-aaf1-dbb5a4c711f6-modeled.webp",
@@ -174,8 +283,17 @@
     "part": "accessories_up",
     "color": "#172440",
     "secondaryColor": "#f1f2f2",
-    "palette": ["#172440", "#f1f2f2"],
-    "tags": ["cap", "flat-brim", "embroidered", "logo", "baseball-cap"],
+    "palette": [
+      "#172440",
+      "#f1f2f2"
+    ],
+    "tags": [
+      "cap",
+      "flat-brim",
+      "embroidered",
+      "logo",
+      "baseball-cap"
+    ],
     "image": "/wardrobe/items/import-5f31eff2-d86c-454f-a8f9-bff80319f214-garment.webp",
     "thumbnail": "/wardrobe/items/import-5f31eff2-d86c-454f-a8f9-bff80319f214-garment.webp",
     "modeledImage": "/wardrobe/items/import-5f31eff2-d86c-454f-a8f9-bff80319f214-modeled.webp",
@@ -187,8 +305,15 @@
     "part": "upperbody",
     "color": "#cbd9da",
     "secondaryColor": null,
-    "palette": ["#cbd9da"],
-    "tags": ["t-shirt", "crewneck", "short-sleeve", "minimal"],
+    "palette": [
+      "#cbd9da"
+    ],
+    "tags": [
+      "t-shirt",
+      "crewneck",
+      "short-sleeve",
+      "minimal"
+    ],
     "image": "/wardrobe/items/import-e443468a-e63e-4f9d-a0df-3130480c21af-garment.webp",
     "thumbnail": "/wardrobe/items/import-e443468a-e63e-4f9d-a0df-3130480c21af-garment.webp",
     "modeledImage": "/wardrobe/items/import-e443468a-e63e-4f9d-a0df-3130480c21af-modeled.webp",
@@ -200,8 +325,17 @@
     "part": "lowerbody",
     "color": "#36393e",
     "secondaryColor": "#efefe9",
-    "palette": ["#36393e", "#efefe9"],
-    "tags": ["joggers", "drawstring", "tapered", "zip-pocket", "casual"],
+    "palette": [
+      "#36393e",
+      "#efefe9"
+    ],
+    "tags": [
+      "joggers",
+      "drawstring",
+      "tapered",
+      "zip-pocket",
+      "casual"
+    ],
     "image": "/wardrobe/items/import-34e3d345-0839-415c-9d5e-da0c8f8d338f-garment.webp",
     "thumbnail": "/wardrobe/items/import-34e3d345-0839-415c-9d5e-da0c8f8d338f-garment.webp",
     "modeledImage": "/wardrobe/items/import-34e3d345-0839-415c-9d5e-da0c8f8d338f-modeled.webp",
@@ -213,11 +347,540 @@
     "part": "lowerbody",
     "color": "#1b1c20",
     "secondaryColor": "#315fbd",
-    "palette": ["#1b1c20", "#315fbd"],
-    "tags": ["basketball", "shorts", "athletic", "contrast-trim", "mesh"],
+    "palette": [
+      "#1b1c20",
+      "#315fbd"
+    ],
+    "tags": [
+      "basketball",
+      "shorts",
+      "athletic",
+      "contrast-trim",
+      "mesh"
+    ],
     "image": "/wardrobe/items/import-b1819aeb-459a-43fc-a55c-0ae28300ff59-garment.webp",
     "thumbnail": "/wardrobe/items/import-b1819aeb-459a-43fc-a55c-0ae28300ff59-garment.webp",
     "modeledImage": "/wardrobe/items/import-b1819aeb-459a-43fc-a55c-0ae28300ff59-modeled.webp",
     "importJobId": "b1819aeb-459a-43fc-a55c-0ae28300ff59"
+  },
+  {
+    "id": "import-c61428bc-1f0e-4ed4-8076-771a56b0efdc",
+    "name": "Navy Textured Crewneck",
+    "part": "upperbody",
+    "color": "#18243a",
+    "secondaryColor": null,
+    "palette": [
+      "#18243a"
+    ],
+    "tags": [
+      "sweater",
+      "crewneck",
+      "navy",
+      "textured knit",
+      "long sleeve",
+      "late summer 2025",
+      "winter 2026"
+    ],
+    "image": "/wardrobe/items/import-c61428bc-1f0e-4ed4-8076-771a56b0efdc-garment.webp",
+    "thumbnail": "/wardrobe/items/import-c61428bc-1f0e-4ed4-8076-771a56b0efdc-garment.webp",
+    "modeledImage": "/wardrobe/items/import-c61428bc-1f0e-4ed4-8076-771a56b0efdc-modeled.webp",
+    "importJobId": "c61428bc-1f0e-4ed4-8076-771a56b0efdc"
+  },
+  {
+    "id": "import-da88f139-639f-41dd-9d0f-c66fbf22b780",
+    "name": "Navy Suit Blazer",
+    "part": "wholebody_up",
+    "color": "#17243b",
+    "secondaryColor": null,
+    "palette": [
+      "#17243b"
+    ],
+    "tags": [
+      "blazer",
+      "suit",
+      "navy",
+      "notch lapel",
+      "two button",
+      "late summer 2025"
+    ],
+    "image": "/wardrobe/items/import-da88f139-639f-41dd-9d0f-c66fbf22b780-garment.webp",
+    "thumbnail": "/wardrobe/items/import-da88f139-639f-41dd-9d0f-c66fbf22b780-garment.webp",
+    "modeledImage": "/wardrobe/items/import-da88f139-639f-41dd-9d0f-c66fbf22b780-modeled.webp",
+    "importJobId": "da88f139-639f-41dd-9d0f-c66fbf22b780"
+  },
+  {
+    "id": "import-d7749165-02e7-4179-8755-220919b90b3d",
+    "name": "Navy Suit Trousers",
+    "part": "lowerbody",
+    "color": "#17243b",
+    "secondaryColor": null,
+    "palette": [
+      "#17243b"
+    ],
+    "tags": [
+      "trousers",
+      "suit",
+      "navy",
+      "flat front",
+      "tapered",
+      "late summer 2025"
+    ],
+    "image": "/wardrobe/items/import-d7749165-02e7-4179-8755-220919b90b3d-garment.webp",
+    "thumbnail": "/wardrobe/items/import-d7749165-02e7-4179-8755-220919b90b3d-garment.webp",
+    "modeledImage": "/wardrobe/items/import-d7749165-02e7-4179-8755-220919b90b3d-modeled.webp",
+    "importJobId": "d7749165-02e7-4179-8755-220919b90b3d"
+  },
+  {
+    "id": "import-034392e5-f411-4e3b-96e2-5488a77fcb6b",
+    "name": "White Dress Shirt",
+    "part": "upperbody",
+    "color": "#f2f1e8",
+    "secondaryColor": null,
+    "palette": [
+      "#f2f1e8"
+    ],
+    "tags": [
+      "dress shirt",
+      "white",
+      "button front",
+      "spread collar",
+      "long sleeve",
+      "late summer 2025"
+    ],
+    "image": "/wardrobe/items/import-034392e5-f411-4e3b-96e2-5488a77fcb6b-garment.webp",
+    "thumbnail": "/wardrobe/items/import-034392e5-f411-4e3b-96e2-5488a77fcb6b-garment.webp",
+    "modeledImage": "/wardrobe/items/import-034392e5-f411-4e3b-96e2-5488a77fcb6b-modeled.webp",
+    "importJobId": "034392e5-f411-4e3b-96e2-5488a77fcb6b"
+  },
+  {
+    "id": "import-82d6fc9a-84f9-4051-b0bc-5cc5bbc9734e",
+    "name": "Plum Floral Tie",
+    "part": "accessories_up",
+    "color": "#7d6173",
+    "secondaryColor": "#e3d7cf",
+    "palette": [
+      "#7d6173",
+      "#e3d7cf"
+    ],
+    "tags": [
+      "tie",
+      "floral",
+      "plum",
+      "cream",
+      "formal",
+      "late summer 2025"
+    ],
+    "image": "/wardrobe/items/import-82d6fc9a-84f9-4051-b0bc-5cc5bbc9734e-garment.webp",
+    "thumbnail": "/wardrobe/items/import-82d6fc9a-84f9-4051-b0bc-5cc5bbc9734e-garment.webp",
+    "modeledImage": "/wardrobe/items/import-82d6fc9a-84f9-4051-b0bc-5cc5bbc9734e-modeled.webp",
+    "importJobId": "82d6fc9a-84f9-4051-b0bc-5cc5bbc9734e"
+  },
+  {
+    "id": "import-0922e13c-89c3-4677-a2f0-47650a30dc95",
+    "name": "Brown Leather Derbies",
+    "part": "shoes",
+    "color": "#7c4d30",
+    "secondaryColor": "#3d2b22",
+    "palette": [
+      "#7c4d30",
+      "#3d2b22"
+    ],
+    "tags": [
+      "derby",
+      "dress shoes",
+      "brown leather",
+      "lace up",
+      "cap toe",
+      "late summer 2025"
+    ],
+    "image": "/wardrobe/items/import-0922e13c-89c3-4677-a2f0-47650a30dc95-garment.webp",
+    "thumbnail": "/wardrobe/items/import-0922e13c-89c3-4677-a2f0-47650a30dc95-garment.webp",
+    "modeledImage": "/wardrobe/items/import-0922e13c-89c3-4677-a2f0-47650a30dc95-modeled.webp",
+    "importJobId": "0922e13c-89c3-4677-a2f0-47650a30dc95"
+  },
+  {
+    "id": "import-21d236cf-5cfe-420a-9086-3a0f2e035461",
+    "name": "Black Alo Half-Zip Windbreaker",
+    "part": "wholebody_up",
+    "color": "#17191d",
+    "secondaryColor": "#f0f0ec",
+    "palette": [
+      "#17191d",
+      "#f0f0ec"
+    ],
+    "tags": [
+      "windbreaker",
+      "half zip",
+      "black",
+      "alo",
+      "activewear",
+      "pullover",
+      "fall 2025"
+    ],
+    "image": "/wardrobe/items/import-21d236cf-5cfe-420a-9086-3a0f2e035461-garment.webp",
+    "thumbnail": "/wardrobe/items/import-21d236cf-5cfe-420a-9086-3a0f2e035461-garment.webp",
+    "modeledImage": "/wardrobe/items/import-21d236cf-5cfe-420a-9086-3a0f2e035461-modeled.webp",
+    "importJobId": "21d236cf-5cfe-420a-9086-3a0f2e035461"
+  },
+  {
+    "id": "import-8fa21d27-bd68-4240-9f9e-040da453ac3b",
+    "name": "Red Pullover Hoodie",
+    "part": "upperbody",
+    "color": "#a81f24",
+    "secondaryColor": null,
+    "palette": [
+      "#a81f24"
+    ],
+    "tags": [
+      "hoodie",
+      "red",
+      "pullover",
+      "fleece",
+      "kangaroo pocket",
+      "fall 2025"
+    ],
+    "image": "/wardrobe/items/import-8fa21d27-bd68-4240-9f9e-040da453ac3b-garment.webp",
+    "thumbnail": "/wardrobe/items/import-8fa21d27-bd68-4240-9f9e-040da453ac3b-garment.webp",
+    "modeledImage": "/wardrobe/items/import-8fa21d27-bd68-4240-9f9e-040da453ac3b-modeled.webp",
+    "importJobId": "8fa21d27-bd68-4240-9f9e-040da453ac3b"
+  },
+  {
+    "id": "import-bc572e46-3394-41d2-aecb-049ce0e3a82e",
+    "name": "Cream Stacked-Letter Cap",
+    "part": "accessories_up",
+    "color": "#e4dfd0",
+    "secondaryColor": "#1d252b",
+    "palette": [
+      "#e4dfd0",
+      "#1d252b"
+    ],
+    "tags": [
+      "cap",
+      "cream",
+      "embroidered",
+      "curved brim",
+      "baseball cap",
+      "fall 2025"
+    ],
+    "image": "/wardrobe/items/import-bc572e46-3394-41d2-aecb-049ce0e3a82e-garment.webp",
+    "thumbnail": "/wardrobe/items/import-bc572e46-3394-41d2-aecb-049ce0e3a82e-garment.webp",
+    "modeledImage": "/wardrobe/items/import-bc572e46-3394-41d2-aecb-049ce0e3a82e-modeled.webp",
+    "importJobId": "bc572e46-3394-41d2-aecb-049ce0e3a82e"
+  },
+  {
+    "id": "import-987b6bb7-e367-4084-b4b0-4510273ccbb6",
+    "name": "Heather Gray Sweatpants",
+    "part": "lowerbody",
+    "color": "#77787b",
+    "secondaryColor": null,
+    "palette": [
+      "#77787b"
+    ],
+    "tags": [
+      "sweatpants",
+      "heather gray",
+      "joggers",
+      "elastic waist",
+      "tapered",
+      "fall 2025"
+    ],
+    "image": "/wardrobe/items/import-987b6bb7-e367-4084-b4b0-4510273ccbb6-garment.webp",
+    "thumbnail": "/wardrobe/items/import-987b6bb7-e367-4084-b4b0-4510273ccbb6-garment.webp",
+    "modeledImage": "/wardrobe/items/import-987b6bb7-e367-4084-b4b0-4510273ccbb6-modeled.webp",
+    "importJobId": "987b6bb7-e367-4084-b4b0-4510273ccbb6"
+  },
+  {
+    "id": "import-949c3c4a-78d6-488e-bd92-501d457e525c",
+    "name": "Gray N-Logo Sneakers",
+    "part": "shoes",
+    "color": "#8a8d90",
+    "secondaryColor": "#e5e3dc",
+    "palette": [
+      "#8a8d90",
+      "#e5e3dc"
+    ],
+    "tags": [
+      "sneakers",
+      "gray",
+      "suede",
+      "mesh",
+      "n logo",
+      "running shoe",
+      "fall 2025"
+    ],
+    "image": "/wardrobe/items/import-949c3c4a-78d6-488e-bd92-501d457e525c-garment.webp",
+    "thumbnail": "/wardrobe/items/import-949c3c4a-78d6-488e-bd92-501d457e525c-garment.webp",
+    "modeledImage": "/wardrobe/items/import-949c3c4a-78d6-488e-bd92-501d457e525c-modeled.webp",
+    "importJobId": "949c3c4a-78d6-488e-bd92-501d457e525c"
+  },
+  {
+    "id": "import-f71b7cca-ab57-4658-8371-33183eeef95d",
+    "name": "Black Long-Sleeve Polo",
+    "part": "upperbody",
+    "color": "#17181a",
+    "secondaryColor": null,
+    "palette": [
+      "#17181a"
+    ],
+    "tags": [
+      "polo",
+      "black",
+      "long sleeve",
+      "button placket",
+      "classic",
+      "fall 2025"
+    ],
+    "image": "/wardrobe/items/import-f71b7cca-ab57-4658-8371-33183eeef95d-garment.webp",
+    "thumbnail": "/wardrobe/items/import-f71b7cca-ab57-4658-8371-33183eeef95d-garment.webp",
+    "modeledImage": "/wardrobe/items/import-f71b7cca-ab57-4658-8371-33183eeef95d-modeled.webp",
+    "importJobId": "f71b7cca-ab57-4658-8371-33183eeef95d"
+  },
+  {
+    "id": "import-550281d4-62ce-4606-bc85-cfc0de9973fd",
+    "name": "Sand Beige Chinos",
+    "part": "lowerbody",
+    "color": "#c2b396",
+    "secondaryColor": null,
+    "palette": [
+      "#c2b396"
+    ],
+    "tags": [
+      "chinos",
+      "beige",
+      "flat front",
+      "straight leg",
+      "casual",
+      "fall 2025"
+    ],
+    "image": "/wardrobe/items/import-550281d4-62ce-4606-bc85-cfc0de9973fd-garment.webp",
+    "thumbnail": "/wardrobe/items/import-550281d4-62ce-4606-bc85-cfc0de9973fd-garment.webp",
+    "modeledImage": "/wardrobe/items/import-550281d4-62ce-4606-bc85-cfc0de9973fd-modeled.webp",
+    "importJobId": "550281d4-62ce-4606-bc85-cfc0de9973fd"
+  },
+  {
+    "id": "import-05dcec13-4c00-4980-9450-883c53aab521",
+    "name": "Cream Bay Area Cap",
+    "part": "accessories_up",
+    "color": "#d7d4c9",
+    "secondaryColor": "#25272c",
+    "palette": [
+      "#d7d4c9",
+      "#25272c"
+    ],
+    "tags": [
+      "cap",
+      "bay area",
+      "cream",
+      "embroidered",
+      "flat brim",
+      "holiday 2025"
+    ],
+    "image": "/wardrobe/items/import-05dcec13-4c00-4980-9450-883c53aab521-garment.webp",
+    "thumbnail": "/wardrobe/items/import-05dcec13-4c00-4980-9450-883c53aab521-garment.webp",
+    "modeledImage": "/wardrobe/items/import-05dcec13-4c00-4980-9450-883c53aab521-modeled.webp",
+    "importJobId": "05dcec13-4c00-4980-9450-883c53aab521"
+  },
+  {
+    "id": "import-becc6735-276e-466d-8e1f-f0ec929dff39",
+    "name": "Forest Green Pullover Hoodie",
+    "part": "upperbody",
+    "color": "#263f35",
+    "secondaryColor": null,
+    "palette": [
+      "#263f35"
+    ],
+    "tags": [
+      "hoodie",
+      "forest green",
+      "pullover",
+      "fleece",
+      "kangaroo pocket",
+      "winter 2026"
+    ],
+    "image": "/wardrobe/items/import-becc6735-276e-466d-8e1f-f0ec929dff39-garment.webp",
+    "thumbnail": "/wardrobe/items/import-becc6735-276e-466d-8e1f-f0ec929dff39-garment.webp",
+    "modeledImage": "/wardrobe/items/import-becc6735-276e-466d-8e1f-f0ec929dff39-modeled.webp",
+    "importJobId": "becc6735-276e-466d-8e1f-f0ec929dff39"
+  },
+  {
+    "id": "import-9eb6a259-ad21-4aa7-af70-4e94edd67a47",
+    "name": "Ivory Textured Knit Polo",
+    "part": "upperbody",
+    "color": "#e5e0d4",
+    "secondaryColor": null,
+    "palette": [
+      "#e5e0d4"
+    ],
+    "tags": [
+      "polo",
+      "ivory",
+      "knit",
+      "short sleeve",
+      "textured",
+      "winter 2026"
+    ],
+    "image": "/wardrobe/items/import-9eb6a259-ad21-4aa7-af70-4e94edd67a47-garment.webp",
+    "thumbnail": "/wardrobe/items/import-9eb6a259-ad21-4aa7-af70-4e94edd67a47-garment.webp",
+    "modeledImage": "/wardrobe/items/import-9eb6a259-ad21-4aa7-af70-4e94edd67a47-modeled.webp",
+    "importJobId": "9eb6a259-ad21-4aa7-af70-4e94edd67a47"
+  },
+  {
+    "id": "import-f7cbdf54-489c-4d71-a023-81c6df8d3dc5",
+    "name": "Faded Black Crewneck Tee",
+    "part": "upperbody",
+    "color": "#2b2b29",
+    "secondaryColor": null,
+    "palette": [
+      "#2b2b29"
+    ],
+    "tags": [
+      "t shirt",
+      "faded black",
+      "crewneck",
+      "short sleeve",
+      "plain",
+      "spring 2026"
+    ],
+    "image": "/wardrobe/items/import-f7cbdf54-489c-4d71-a023-81c6df8d3dc5-garment.webp",
+    "thumbnail": "/wardrobe/items/import-f7cbdf54-489c-4d71-a023-81c6df8d3dc5-garment.webp",
+    "modeledImage": "/wardrobe/items/import-f7cbdf54-489c-4d71-a023-81c6df8d3dc5-modeled.webp",
+    "importJobId": "f7cbdf54-489c-4d71-a023-81c6df8d3dc5"
+  },
+  {
+    "id": "import-ae5e75d9-77e5-4d19-a57a-948b1d2dc0ae",
+    "name": "Light Gray Linen Button-Down",
+    "part": "upperbody",
+    "color": "#d8d5cb",
+    "secondaryColor": null,
+    "palette": [
+      "#d8d5cb"
+    ],
+    "tags": [
+      "button down",
+      "light gray",
+      "linen",
+      "long sleeve",
+      "casual",
+      "spring 2026"
+    ],
+    "image": "/wardrobe/items/import-ae5e75d9-77e5-4d19-a57a-948b1d2dc0ae-garment.webp",
+    "thumbnail": "/wardrobe/items/import-ae5e75d9-77e5-4d19-a57a-948b1d2dc0ae-garment.webp",
+    "modeledImage": "/wardrobe/items/import-ae5e75d9-77e5-4d19-a57a-948b1d2dc0ae-modeled.webp",
+    "importJobId": "ae5e75d9-77e5-4d19-a57a-948b1d2dc0ae"
+  },
+  {
+    "id": "import-74fd5328-94fa-4748-8537-4587e7ccc1d7",
+    "name": "Ivory SF Giants Jersey",
+    "part": "upperbody",
+    "color": "#ece6d5",
+    "secondaryColor": "#e75a2a",
+    "palette": [
+      "#ece6d5",
+      "#e75a2a"
+    ],
+    "tags": [
+      "baseball jersey",
+      "giants",
+      "ivory",
+      "orange",
+      "button front",
+      "nike",
+      "spring 2026"
+    ],
+    "image": "/wardrobe/items/import-74fd5328-94fa-4748-8537-4587e7ccc1d7-garment.webp",
+    "thumbnail": "/wardrobe/items/import-74fd5328-94fa-4748-8537-4587e7ccc1d7-garment.webp",
+    "modeledImage": "/wardrobe/items/import-74fd5328-94fa-4748-8537-4587e7ccc1d7-modeled.webp",
+    "importJobId": "74fd5328-94fa-4748-8537-4587e7ccc1d7"
+  },
+  {
+    "id": "import-b052ea64-b33e-48d8-9651-2e8014377824",
+    "name": "Navy Korea Patch Cap",
+    "part": "accessories_up",
+    "color": "#1e315c",
+    "secondaryColor": "#e8e5db",
+    "palette": [
+      "#1e315c",
+      "#e8e5db"
+    ],
+    "tags": [
+      "cap",
+      "navy",
+      "korea patch",
+      "baseball cap",
+      "curved brim",
+      "spring 2026"
+    ],
+    "image": "/wardrobe/items/import-b052ea64-b33e-48d8-9651-2e8014377824-garment.webp",
+    "thumbnail": "/wardrobe/items/import-b052ea64-b33e-48d8-9651-2e8014377824-garment.webp",
+    "modeledImage": "/wardrobe/items/import-b052ea64-b33e-48d8-9651-2e8014377824-modeled.webp",
+    "importJobId": "b052ea64-b33e-48d8-9651-2e8014377824"
+  },
+  {
+    "id": "import-a227be80-6378-42a6-a668-58d2ba9dc57c",
+    "name": "Ivory Textured Camp-Collar Shirt",
+    "part": "upperbody",
+    "color": "#e5dfcf",
+    "secondaryColor": null,
+    "palette": [
+      "#e5dfcf"
+    ],
+    "tags": [
+      "camp collar",
+      "ivory",
+      "button front",
+      "short sleeve",
+      "textured knit",
+      "summer 2026"
+    ],
+    "image": "/wardrobe/items/import-a227be80-6378-42a6-a668-58d2ba9dc57c-garment.webp",
+    "thumbnail": "/wardrobe/items/import-a227be80-6378-42a6-a668-58d2ba9dc57c-garment.webp",
+    "modeledImage": "/wardrobe/items/import-a227be80-6378-42a6-a668-58d2ba9dc57c-modeled.webp",
+    "importJobId": "a227be80-6378-42a6-a668-58d2ba9dc57c"
+  },
+  {
+    "id": "import-63384431-ef76-42ae-b2ea-fab3b2a9e959",
+    "name": "Medium Gray Tailored Shorts",
+    "part": "lowerbody",
+    "color": "#73767a",
+    "secondaryColor": null,
+    "palette": [
+      "#73767a"
+    ],
+    "tags": [
+      "shorts",
+      "gray",
+      "tailored",
+      "flat front",
+      "above knee",
+      "summer 2026"
+    ],
+    "image": "/wardrobe/items/import-63384431-ef76-42ae-b2ea-fab3b2a9e959-garment.webp",
+    "thumbnail": "/wardrobe/items/import-63384431-ef76-42ae-b2ea-fab3b2a9e959-garment.webp",
+    "modeledImage": "/wardrobe/items/import-63384431-ef76-42ae-b2ea-fab3b2a9e959-modeled.webp",
+    "importJobId": "63384431-ef76-42ae-b2ea-fab3b2a9e959"
+  },
+  {
+    "id": "import-197c4d28-dcac-47ec-bc97-29a242f00863",
+    "name": "White Gray Chunky N Sneakers",
+    "part": "shoes",
+    "color": "#d9d7d0",
+    "secondaryColor": "#777b7e",
+    "palette": [
+      "#d9d7d0",
+      "#777b7e"
+    ],
+    "tags": [
+      "sneakers",
+      "white",
+      "gray",
+      "chunky sole",
+      "n logo",
+      "running shoe",
+      "summer 2026"
+    ],
+    "image": "/wardrobe/items/import-197c4d28-dcac-47ec-bc97-29a242f00863-garment.webp",
+    "thumbnail": "/wardrobe/items/import-197c4d28-dcac-47ec-bc97-29a242f00863-garment.webp",
+    "modeledImage": "/wardrobe/items/import-197c4d28-dcac-47ec-bc97-29a242f00863-modeled.webp",
+    "importJobId": "197c4d28-dcac-47ec-bc97-29a242f00863"
   }
 ]
