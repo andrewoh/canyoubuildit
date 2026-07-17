@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
-import "./seoul.css";
+import "./showcase.css";
 
 export const metadata: Metadata = {
-  title: "Seoul Trip | canyoubuildit.com",
-  description: "Password-protected Seoul trip schedule and budget dashboard."
+  title: "canyoubuildit.com",
+  description: "A personal showcase of AI projects, experiments, shipped ideas, and useful failures."
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

@@ -1,5 +1,1 @@
-import { redirect } from "next/navigation";
-
-export default function HomePage() {
-  redirect("/seoul");
-}
+export { App as default } from "./showcase";

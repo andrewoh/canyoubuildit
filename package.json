@@ -1,5 +1,5 @@
 {
-  "name": "seoul-trip-finance-dashboard",
+  "name": "canyoubuildit",
   "version": "1.0.0",
   "private": true,
   "packageManager": "pnpm@10.6.3",
@@ -10,9 +10,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@codemirror/commands": "^6.10.3",
+    "@codemirror/lang-python": "^6.2.1",
+    "@codemirror/lang-sql": "^6.10.0",
+    "@codemirror/language": "^6.12.3",
+    "@codemirror/state": "^6.6.0",
+    "@codemirror/view": "^6.43.0",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@uiw/react-codemirror": "^4.25.10",
     "@vercel/blob": "^2.4.0",
     "framer-motion": "latest",
     "lucide-react": "latest",
@@ -20,9 +27,11 @@
     "react": "latest",
     "react-dom": "latest",
     "recharts": "latest",
+    "sql.js": "^1.14.1",
     "typescript": "latest"
   },
   "devDependencies": {
+    "@types/sql.js": "^1.4.11",
     "eslint": "latest",
     "eslint-config-next": "latest"
   }
