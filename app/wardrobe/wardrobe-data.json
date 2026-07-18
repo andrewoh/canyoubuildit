@@ -978,5 +978,121 @@
     "thumbnail": "/wardrobe/items/import-8c15bada-dd46-4e90-b4a3-f2bf65709b18-garment.webp",
     "modeledImage": "/wardrobe/items/import-8c15bada-dd46-4e90-b4a3-f2bf65709b18-modeled.webp",
     "importJobId": "8c15bada-dd46-4e90-b4a3-f2bf65709b18"
+  },
+  {
+    "id": "import-a0e6d0db-d5e1-4624-afa9-e7f0dbf24d35",
+    "name": "Heather Gray Relaxed Tee",
+    "part": "upperbody",
+    "color": "#9b9890",
+    "secondaryColor": null,
+    "palette": [
+      "#9b9890"
+    ],
+    "tags": [
+      "tee",
+      "crewneck",
+      "heather",
+      "relaxed",
+      "plain",
+      "casual"
+    ],
+    "image": "/wardrobe/items/import-a0e6d0db-d5e1-4624-afa9-e7f0dbf24d35-garment.webp",
+    "thumbnail": "/wardrobe/items/import-a0e6d0db-d5e1-4624-afa9-e7f0dbf24d35-garment.webp",
+    "modeledImage": "/wardrobe/items/import-a0e6d0db-d5e1-4624-afa9-e7f0dbf24d35-modeled.webp",
+    "importJobId": "a0e6d0db-d5e1-4624-afa9-e7f0dbf24d35"
+  },
+  {
+    "id": "import-2e06ba66-8ae3-44f8-bea4-59c84abe5509",
+    "name": "Charcoal Vintage Graphic Tee",
+    "part": "upperbody",
+    "color": "#25282a",
+    "secondaryColor": "#7d4f4e",
+    "palette": [
+      "#25282a",
+      "#7d4f4e"
+    ],
+    "tags": [
+      "tee",
+      "crewneck",
+      "graphic",
+      "vintage",
+      "distressed",
+      "charcoal"
+    ],
+    "image": "/wardrobe/items/import-2e06ba66-8ae3-44f8-bea4-59c84abe5509-garment.webp",
+    "thumbnail": "/wardrobe/items/import-2e06ba66-8ae3-44f8-bea4-59c84abe5509-garment.webp",
+    "modeledImage": "/wardrobe/items/import-2e06ba66-8ae3-44f8-bea4-59c84abe5509-modeled.webp",
+    "importJobId": "2e06ba66-8ae3-44f8-bea4-59c84abe5509"
+  },
+  {
+    "id": "import-78b0cf37-280e-4bb2-a95d-441d01c1d8fd",
+    "name": "Light Wash Straight Jeans",
+    "part": "lowerbody",
+    "color": "#9fc6e7",
+    "secondaryColor": null,
+    "palette": [
+      "#9fc6e7"
+    ],
+    "tags": [
+      "jeans",
+      "denim",
+      "light-wash",
+      "straight",
+      "five-pocket",
+      "casual"
+    ],
+    "image": "/wardrobe/items/import-78b0cf37-280e-4bb2-a95d-441d01c1d8fd-garment.webp",
+    "thumbnail": "/wardrobe/items/import-78b0cf37-280e-4bb2-a95d-441d01c1d8fd-garment.webp",
+    "modeledImage": "/wardrobe/items/import-78b0cf37-280e-4bb2-a95d-441d01c1d8fd-modeled.webp",
+    "importJobId": "78b0cf37-280e-4bb2-a95d-441d01c1d8fd"
+  },
+  {
+    "id": "import-638a3a1a-6df9-441e-85db-407df4553cd5",
+    "name": "Black Seoul Korea Logo Tee",
+    "part": "upperbody",
+    "color": "#101114",
+    "secondaryColor": "#f1f0ec",
+    "palette": [
+      "#101114",
+      "#f1f0ec"
+    ],
+    "tags": [
+      "tee",
+      "crewneck",
+      "black",
+      "logo",
+      "seoul",
+      "new-balance",
+      "casual"
+    ],
+    "image": "/wardrobe/items/import-638a3a1a-6df9-441e-85db-407df4553cd5-garment.webp",
+    "thumbnail": "/wardrobe/items/import-638a3a1a-6df9-441e-85db-407df4553cd5-garment.webp",
+    "modeledImage": "/wardrobe/items/import-638a3a1a-6df9-441e-85db-407df4553cd5-modeled.webp",
+    "importJobId": "638a3a1a-6df9-441e-85db-407df4553cd5"
+  },
+  {
+    "id": "import-6a64d891-8fc2-4e31-999a-1632110f327d",
+    "name": "Blue Warriors Curry Jersey",
+    "part": "upperbody",
+    "color": "#1554b7",
+    "secondaryColor": "#f2b42c",
+    "palette": [
+      "#1554b7",
+      "#f2b42c"
+    ],
+    "tags": [
+      "jersey",
+      "basketball",
+      "warriors",
+      "curry",
+      "blue",
+      "gold",
+      "adidas",
+      "sport"
+    ],
+    "image": "/wardrobe/items/import-6a64d891-8fc2-4e31-999a-1632110f327d-garment.webp",
+    "thumbnail": "/wardrobe/items/import-6a64d891-8fc2-4e31-999a-1632110f327d-garment.webp",
+    "modeledImage": "/wardrobe/items/import-6a64d891-8fc2-4e31-999a-1632110f327d-modeled.webp",
+    "importJobId": "6a64d891-8fc2-4e31-999a-1632110f327d"
   }
 ]

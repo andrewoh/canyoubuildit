@@ -46,6 +46,7 @@ type MixedOutfit = {
   id?: string;
   name?: string;
   reason?: string;
+  image?: string;
   ownedGarmentIds?: string[];
   shopItems?: ShopItem[];
 };
@@ -212,6 +213,74 @@ function OwnedOutfitEntry({
   );
 }
 
+function MixedOutfitArtwork({
+  outfit,
+  name,
+  itemMap
+}: {
+  outfit: MixedOutfit;
+  name: string;
+  itemMap: Map<string, WardrobeItem>;
+}) {
+  const ownedPreview = (outfit.ownedGarmentIds || [])
+    .map((id) => itemMap.get(id))
+    .filter((item): item is WardrobeItem => Boolean(item))
+    .map((item) => ({ id: item.id, src: item.thumbnail || item.image, source: "Owned" }));
+  const shopPreview = (outfit.shopItems || [])
+    .filter((item) => Boolean(item.imageUrl))
+    .map((item, index) => ({
+      id: item.id || `shop-preview-${index}`,
+      src: item.imageUrl as string,
+      source: "Suggested"
+    }));
+  const previewPieces = [...ownedPreview, ...shopPreview].slice(0, 4);
+  const hasModeledImage = Boolean(outfit.image);
+
+  return (
+    <figure className={`wardrobe-mixed-artwork${hasModeledImage ? "" : " is-preview"}`}>
+      <div className="wardrobe-mixed-artwork-stage">
+        {hasModeledImage ? (
+          <img
+            className="wardrobe-mixed-modeled"
+            src={outfit.image}
+            alt={`Modeled view of ${name}, combining your wardrobe with a suggested online piece`}
+            loading="lazy"
+          />
+        ) : (
+          <div
+            className="wardrobe-mixed-preview"
+            role="img"
+            aria-label={`${name} pieces shown while the modeled preview is prepared`}
+          >
+            {previewPieces.map((piece) => (
+              <span className="wardrobe-mixed-preview-piece" key={piece.id}>
+                <img src={piece.src} alt="" loading="lazy" referrerPolicy="no-referrer" />
+                <small>{piece.source}</small>
+              </span>
+            ))}
+            {!previewPieces.length ? (
+              <span className="wardrobe-mixed-preview-empty" aria-hidden="true">
+                Preview in progress
+              </span>
+            ) : null}
+          </div>
+        )}
+        <span className="wardrobe-mixed-artwork-label">
+          {hasModeledImage ? "Modeled on you" : "Preview in progress"}
+        </span>
+      </div>
+      <figcaption>
+        <span>{hasModeledImage ? "See the complete look" : "Modeled view coming soon"}</span>
+        <small>
+          {hasModeledImage
+            ? "Your wardrobe + suggested piece"
+            : "The selected pieces are shown while your image is prepared"}
+        </small>
+      </figcaption>
+    </figure>
+  );
+}
+
 function MixedOutfitEntry({
   outfit,
   index,
@@ -235,55 +304,59 @@ function MixedOutfitEntry({
         {outfit.reason ? <p className="wardrobe-outfit-reason">{outfit.reason}</p> : null}
       </header>
 
-      <div className="wardrobe-mixed-composition">
-        <section aria-label="Pieces you already own">
-          <div className="wardrobe-outfit-subhead">
-            <span>You already own</span>
-            <small>{garmentIds.length} {garmentIds.length === 1 ? "piece" : "pieces"}</small>
-          </div>
-          <OwnedGarments garmentIds={garmentIds} itemMap={itemMap} compact onOpen={onOpen} />
-        </section>
+      <div className="wardrobe-mixed-story">
+        <MixedOutfitArtwork outfit={outfit} name={name} itemMap={itemMap} />
 
-        <section aria-label="Suggested items available online">
-          <div className="wardrobe-outfit-subhead">
-            <span>Add from online</span>
-            <small>External shops</small>
-          </div>
-          <div className="wardrobe-shop-items">
-            {shopItems.map((item, itemIndex) => {
-              const href = safeShopUrl(item.url ?? item.productUrl);
-              const label = `${item.brand ? `${item.brand} ` : ""}${item.name || "suggested item"}`;
-              const content = (
-                <>
-                  <ShopItemImage item={item} />
-                  <span className="wardrobe-shop-meta">
-                    <small>{[item.brand, item.color].filter(Boolean).join(" · ") || item.category || "Suggested item"}</small>
-                    <strong>{item.name || "Shop this piece"}</strong>
-                    <span>{formatShopPrice(item)}</span>
-                  </span>
-                  {href ? <span className="wardrobe-shop-arrow" aria-hidden="true">↗</span> : null}
-                </>
-              );
+        <div className="wardrobe-mixed-composition">
+          <section aria-label="Pieces you already own">
+            <div className="wardrobe-outfit-subhead">
+              <span>You already own</span>
+              <small>{garmentIds.length} {garmentIds.length === 1 ? "piece" : "pieces"}</small>
+            </div>
+            <OwnedGarments garmentIds={garmentIds} itemMap={itemMap} compact onOpen={onOpen} />
+          </section>
 
-              return href ? (
-                <a
-                  className="wardrobe-shop-item"
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  key={item.id || `${href}-${itemIndex}`}
-                  aria-label={`${label}, opens online shop in a new tab`}
-                >
-                  {content}
-                </a>
-              ) : (
-                <div className="wardrobe-shop-item is-unavailable" key={item.id || `${item.name}-${itemIndex}`}>
-                  {content}
-                </div>
-              );
-            })}
-          </div>
-        </section>
+          <section aria-label="Suggested items available online">
+            <div className="wardrobe-outfit-subhead">
+              <span>Add from online</span>
+              <small>External shops</small>
+            </div>
+            <div className="wardrobe-shop-items">
+              {shopItems.map((item, itemIndex) => {
+                const href = safeShopUrl(item.url ?? item.productUrl);
+                const label = `${item.brand ? `${item.brand} ` : ""}${item.name || "suggested item"}`;
+                const content = (
+                  <>
+                    <ShopItemImage item={item} />
+                    <span className="wardrobe-shop-meta">
+                      <small>{[item.brand, item.color].filter(Boolean).join(" · ") || item.category || "Suggested item"}</small>
+                      <strong>{item.name || "Shop this piece"}</strong>
+                      <span>{formatShopPrice(item)}</span>
+                    </span>
+                    {href ? <span className="wardrobe-shop-arrow" aria-hidden="true">↗</span> : null}
+                  </>
+                );
+
+                return href ? (
+                  <a
+                    className="wardrobe-shop-item"
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    key={item.id || `${href}-${itemIndex}`}
+                    aria-label={`${label}, opens online shop in a new tab`}
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <div className="wardrobe-shop-item is-unavailable" key={item.id || `${item.name}-${itemIndex}`}>
+                    {content}
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        </div>
       </div>
     </article>
   );

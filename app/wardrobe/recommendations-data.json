@@ -217,6 +217,7 @@
   "mixedOutfits": [
     {
       "id": "mix-asket-white-tshirt",
+      "image": "/wardrobe/outfits/mix-asket-white-tshirt.webp",
       "name": "White Tee, Light Tailoring",
       "reason": "A clean white base brightens the navy knit, beige chinos, and light-gray tailoring.",
       "ownedGarmentIds": [
@@ -241,6 +242,7 @@
     },
     {
       "id": "mix-asket-blue-oxford",
+      "image": "/wardrobe/outfits/mix-asket-blue-oxford.webp",
       "name": "Blue Oxford, Navy Suit",
       "reason": "Adds the missing casual blue Oxford that works with both navy tailoring and beige chinos.",
       "ownedGarmentIds": [
@@ -265,6 +267,7 @@
     },
     {
       "id": "mix-levis-501-crispy-rinse",
+      "image": "/wardrobe/outfits/mix-levis-501-crispy-rinse.webp",
       "name": "Dark Denim, Ivory Knit",
       "reason": "Dark straight denim is the largest everyday-bottom gap and grounds ivory, green, and gray tops.",
       "ownedGarmentIds": [
@@ -288,6 +291,7 @@
     },
     {
       "id": "mix-banana-republic-olive-chino",
+      "image": "/wardrobe/outfits/mix-banana-republic-olive-chino.webp",
       "name": "Olive Chinos, Ivory Texture",
       "reason": "Olive introduces a useful neutral that complements ivory shirts, navy knitwear, and white sneakers.",
       "ownedGarmentIds": [
@@ -311,6 +315,7 @@
     },
     {
       "id": "mix-barbour-ashby-olive",
+      "image": "/wardrobe/outfits/mix-barbour-ashby-olive.webp",
       "name": "Waxed Olive, Black and Sand",
       "reason": "Supplies the missing structured casual outer layer and works with black, tan, and brown.",
       "ownedGarmentIds": [
@@ -335,6 +340,7 @@
     },
     {
       "id": "mix-eddie-bauer-cloud-cap-green",
+      "image": "/wardrobe/outfits/mix-eddie-bauer-cloud-cap-green.webp",
       "name": "Rain Shell, Gray Active Base",
       "reason": "Adds genuine waterproof protection while coordinating with the black and gray activewear.",
       "ownedGarmentIds": [
@@ -359,6 +365,7 @@
     },
     {
       "id": "mix-adidas-samba-og-white",
+      "image": "/wardrobe/outfits/mix-adidas-samba-og-white.webp",
       "name": "Low-Profile Sneakers, Soft Summer",
       "reason": "A lower-profile sneaker gives the wardrobe a sharper alternative to the existing chunky pairs.",
       "ownedGarmentIds": [
@@ -382,6 +389,7 @@
     },
     {
       "id": "mix-ghbass-larson-venetian-brown",
+      "image": "/wardrobe/outfits/mix-ghbass-larson-venetian-brown.webp",
       "name": "Brown Loafers, City Contrast",
       "reason": "Fills the smart-casual footwear gap between sneakers and the formal brown derbies.",
       "ownedGarmentIds": [
@@ -405,6 +413,7 @@
     },
     {
       "id": "mix-llbean-bean-boot-brown-tan",
+      "image": "/wardrobe/outfits/mix-llbean-bean-boot-brown-tan.webp",
       "name": "Weather Boots, Plaid Layers",
       "reason": "Adds rain-ready footwear that naturally matches the plaid overshirt, green hoodie, and tan chinos.",
       "ownedGarmentIds": [
