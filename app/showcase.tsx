@@ -1,3 +1,8 @@
+import {
+  recentProjects,
+  recentProjectsUpdatedAt,
+} from "../data/recent-projects";
+
 type ProjectTone = "shipping" | "learning" | "retired";
 
 type Project = {
@@ -19,6 +24,13 @@ type Note = {
   title: string;
   copy: string;
 };
+
+const recentProjectsCheckedLabel = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+}).format(new Date(`${recentProjectsUpdatedAt}T00:00:00Z`));
 
 const signals = [
   "personal ai projects",
@@ -159,9 +171,9 @@ export function App() {
           </a>
 
           <nav aria-label="Primary" className="showcase-nav-links">
-            <a href="#projects">Projects</a>
+            <a href="#in-flight">In flight</a>
+            <a href="#projects">Archive</a>
             <a href="#process">Process</a>
-            <a href="#notes">Notes</a>
           </nav>
         </header>
 
@@ -183,8 +195,8 @@ export function App() {
             </p>
 
             <div className="showcase-actions showcase-reveal showcase-reveal-4">
-              <a className="showcase-button showcase-button-primary" href="#projects">
-                Browse the projects
+              <a className="showcase-button showcase-button-primary" href="#in-flight">
+                See what is moving
               </a>
               <a className="showcase-button showcase-button-secondary" href="/wardrobe">
                 Open Wardrobe
@@ -192,34 +204,29 @@ export function App() {
             </div>
           </div>
 
-          <div aria-hidden="true" className="showcase-visual">
-            <div className="showcase-visual-rim" />
+          <div className="showcase-demo showcase-reveal showcase-reveal-3">
+            <img
+              alt="A looping demo of the current projects in flight"
+              className="showcase-demo-motion"
+              height="800"
+              src="/images/project-reel.gif"
+              width="1200"
+            />
+            <img
+              alt=""
+              aria-hidden="true"
+              className="showcase-demo-still"
+              height="800"
+              src="/images/project-reel-still.jpg"
+              width="1200"
+            />
 
-            <article className="showcase-artifact showcase-artifact-primary">
-              <p className="showcase-artifact-label">Featured now</p>
-              <strong>Wardrobe</strong>
+            <div className="showcase-demo-meta">
               <span>
-                outfit photos turned into a clean, modeled clothing catalog
+                <i aria-hidden="true" /> 30-day build reel
               </span>
-            </article>
-
-            <article className="showcase-artifact showcase-artifact-secondary">
-              <p className="showcase-artifact-label">Still probing</p>
-              <strong>Calendar Co-Pilot</strong>
-              <span>
-                suggestions, slots, and drafts without pretending to be your
-                boss
-              </span>
-            </article>
-
-            <article className="showcase-artifact showcase-artifact-tertiary">
-              <p className="showcase-artifact-label">Worth the lesson</p>
-              <strong>Draft Autopilot</strong>
-              <span>
-                retired because overconfident software is worse than slow
-                software
-              </span>
-            </article>
+              <span>{recentProjects.length} projects in flight</span>
+            </div>
           </div>
         </div>
 
@@ -227,6 +234,45 @@ export function App() {
           {signals.map((signal) => (
             <span key={signal}>{signal}</span>
           ))}
+        </div>
+      </section>
+
+      <section className="showcase-section showcase-inflight" id="in-flight">
+        <div className="showcase-inflight-grid">
+          <div className="showcase-inflight-intro">
+            <p className="showcase-section-label">In flight / last 30 days</p>
+            <h2>Everything still warm on the workbench.</h2>
+            <p>
+              Every project I opened or worked on in the current 30-day window,
+              collected in one place and refreshed weekly.
+            </p>
+            <p className="showcase-update-stamp">
+              Last checked{" "}
+              <time dateTime={recentProjectsUpdatedAt}>
+                {recentProjectsCheckedLabel}
+              </time>
+            </p>
+          </div>
+
+          <div className="showcase-inflight-list">
+            {recentProjects.map((project, index) => (
+              <a className="showcase-inflight-link" href={project.href} key={project.title}>
+                <span className="showcase-inflight-index">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="showcase-inflight-copy">
+                  <span className="showcase-inflight-meta">
+                    {project.surface} · touched {project.touched}
+                  </span>
+                  <strong>{project.title}</strong>
+                  <span>{project.summary}</span>
+                </span>
+                <span aria-hidden="true" className="showcase-inflight-arrow">
+                  ↗
+                </span>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -315,9 +361,8 @@ export function App() {
           stage.
         </h2>
         <p>
-          More builds will get added over time. For now, this gives Personal
-          Superhuman and the Amex Platinum tracker the right home: projects on
-          the wall, not the wall itself.
+          The in-flight shelf stays current automatically. The archive keeps the
+          older builds and useful misses visible after the attention moves on.
         </p>
 
         <div className="showcase-actions">
