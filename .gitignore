@@ -3,3 +3,6 @@ node_modules
 .env.local
 .env
 .vercel
+
+# Rebuilt from verified source chunks during the website build.
+/public/sports/49ers/reproducibility.zip

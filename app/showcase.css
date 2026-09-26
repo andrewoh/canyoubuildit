@@ -859,3 +859,5 @@
     gap: 18px;
   }
 }
+
+.showcase-sports-feature{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}.showcase-sports-feature h3{font-size:clamp(28px,3.5vw,46px);line-height:1.12;margin:14px 0 24px;letter-spacing:-.035em}.showcase-sports-feature p:not(.showcase-section-label){color:var(--showcase-muted);font-size:18px;line-height:1.6;max-width:600px}.showcase-sports-feature img{width:100%;height:auto;display:block}.showcase-sports-feature .showcase-button{margin-top:18px}@media(max-width:760px){.showcase-sports-feature{grid-template-columns:1fr;gap:30px}.showcase-nav-links{flex-wrap:wrap;justify-content:flex-end}}

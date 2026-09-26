@@ -173,6 +173,7 @@ export function App() {
           <nav aria-label="Primary" className="showcase-nav-links">
             <a href="#in-flight">In flight</a>
             <a href="#projects">Archive</a>
+            <a href="/sports">Sports analysis</a>
             <a href="#process">Process</a>
           </nav>
         </header>
@@ -315,6 +316,17 @@ export function App() {
               <p className="showcase-project-outcome">{project.outcome}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="showcase-section showcase-sports" id="sports-analysis">
+        <div className="showcase-section-head">
+          <p className="showcase-section-label">A new section / sports</p>
+          <h2>Andrew’s Sports Analysis Deep Dives</h2>
+        </div>
+        <div className="showcase-sports-feature">
+          <div><p className="showcase-section-label">No. 01 / The 49ers’ injury history</p><h3>A real injury problem.<br />An explanation worth testing.</h3><p>Nine seasons of NFL data, the playoff hangover question, and interactive team comparisons. Read the evidence and explore the charts yourself.</p><a className="showcase-button showcase-button-primary" href="/sports">Explore the deep dives ↗</a></div>
+          <a href="/sports/49ers-injuries" aria-label="Read the 49ers injury analysis"><img src="/sports/49ers/social-cover.png" width="1200" height="630" alt="The 49ers’ injury burden was 40 percent above the NFL average across 2017–2025." loading="lazy" /></a>
         </div>
       </section>
 

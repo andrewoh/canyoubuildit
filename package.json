@@ -5,7 +5,7 @@
   "packageManager": "pnpm@10.6.3",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/assemble-sports-data.mjs && next build",
     "start": "next start",
     "lint": "next lint"
   },
