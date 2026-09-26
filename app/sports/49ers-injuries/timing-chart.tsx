@@ -4,6 +4,8 @@ import { useId, useRef, useState, type ComponentProps, type RefObject } from "re
 import rawData from "./timing-data.json";
 
 import { Metric } from "./glossary";
+import { TeamBadge, SvgTeamLogo } from "./team-identity";
+import { ShareComparison, DirectionKey } from "./comparison";
 
 const PAPER = "#f6f3ec";
 const INK = "#22251f";
@@ -187,7 +189,7 @@ export function TimingChart() {
   const ticks = Array.from({ length: Math.round(maximum / (maximum > 0.8 ? 0.2 : 0.1)) + 1 }, (_, i) => i * (maximum > 0.8 ? 0.2 : 0.1)).filter(value => value <= maximum + 0.001);
   const title = "Do injury announcements pile up after halftime?";
   const exportTitle = `When injury announcements occur: ${team}, ${periodLabel}`;
-  const exportSubtitle = `Regular-season on-play announcements, not all clinical injuries. Red = ${team}; dark gray = the other 31 franchises. Percentages exclude overtime. ${view === "halves" ? "Thin lines show game-bootstrap 95% confidence intervals." : "Quarter splits are descriptive."} Second-half share: ${pct(selected.second_share)} vs ${pct(selected.rest_second_share)}; difference ${pp(selected.difference)} percentage points (95% interval ${pp(selected.difference_ci[0])} to ${pp(selected.difference_ci[1])}).`;
+  const exportSubtitle = `Regular-season on-play announcements, not all clinical injuries. Red = ${team}; dark gray = the other 31 franchises. Percentages exclude overtime. Higher/lower labels compare timing shares, not health or injury risk. ${view === "halves" ? "Thin lines show game-bootstrap 95% confidence intervals." : "Quarter splits are descriptive."} Second-half share: ${pct(selected.second_share)} vs ${pct(selected.rest_second_share)}; difference ${pp(selected.difference)} percentage points (95% interval ${pp(selected.difference_ci[0])} to ${pp(selected.difference_ci[1])}).`;
   return <figure className="sports-figure" aria-labelledby={`${id}-heading`}>
     <div className="sports-figure-head">
       <div><span className="sports-figure-num">Figure 08</span><h3 id={`${id}-heading`}>{title}</h3><p className="sports-figure-sub">First explicit on-play injury announcement per player-game. These records capture a subset of injuries; overtime is counted separately.</p></div>
@@ -198,8 +200,8 @@ export function TimingChart() {
       <label className="sports-control" htmlFor={`${id}-period`}>Seasons<select id={`${id}-period`} value={period} onChange={event => setPeriod(event.target.value)}>{data.periods.map(item => <option key={item.key} value={item.key}>{item.label}</option>)}</select></label>
       <div className="sports-toggle" role="group" aria-label="Group game timing"><button type="button" aria-pressed={view === "halves"} onClick={() => setView("halves")}>Halves</button><button type="button" aria-pressed={view === "quarters"} onClick={() => setView("quarters")}>Quarters</button></div>
     </div>
-    <div className="sports-key" aria-label="Chart legend"><span><i style={{ background: RED }} />{teamName}</span><span><i style={{ background: INK }} />Other 31 franchises</span>{view === "halves" && <span>Thin line = <Metric term="interval">95% uncertainty range</Metric></span>}</div>
-    <p className="sports-scroll-hint">Swipe the chart horizontally to see the full comparison →</p>
+    <div className="sports-key" aria-label="Chart legend"><span><i style={{ background: RED }} /><TeamBadge team={team}/></span><span><i style={{ background: INK }} />Other 31 franchises</span>{view === "halves" && <span>Thin line = <Metric term="interval">95% uncertainty range</Metric></span>}</div>
+    <ShareComparison team={team} period={periodLabel} label="Second-half share" difference={selected.difference*100}/><DirectionKey kind="timing"/><p className="sports-scroll-hint">Swipe the chart horizontally to see the full comparison →</p>
     <div className="sports-chart-scroll" tabIndex={0} role="region" aria-label="Injury announcement timing chart; scroll horizontally on small screens">
       <svg ref={svg} className="sports-chart" style={chartStyle} viewBox={`0 0 800 ${height}`} role="img" aria-labelledby={`${id}-title ${id}-desc`}>
         <title id={`${id}-title`}>{exportTitle}</title>
@@ -213,7 +215,7 @@ export function TimingChart() {
           const restShare = row.rest / selected.rest_regulation_events;
           return <g key={row.label}>
             <Text x={0} y={y + 6} style={{ fill: INK, fontWeight: 700 }}>{row.label}</Text><Text x={0} y={y + 30}>{row.note}</Text>
-            <Text x={LEFT - 12} y={y + 5} textAnchor="end" style={{ fill: RED, fontWeight: 700 }}>{team}</Text>
+            <SvgTeamLogo team={team} x={LEFT-72} y={y-15} size={24}/><Text x={LEFT - 12} y={y + 5} textAnchor="end" style={{ fill: RED, fontWeight: 700 }}>{team}</Text>
             <Text x={LEFT - 12} y={y + 39} textAnchor="end">Others</Text>
             <rect x={LEFT} y={y - 8} width={x(share) - LEFT} height={17} fill={RED} />
             <rect x={LEFT} y={y + 26} width={x(restShare) - LEFT} height={17} fill={INK} />
@@ -225,6 +227,7 @@ export function TimingChart() {
             </>}
             <Text x={785} y={y + 5} textAnchor="end" style={{ fill: RED, fontWeight: 700 }}>{`${pct(share)} (${row.team.toLocaleString("en-US")})`}</Text>
             <Text x={785} y={y + 39} textAnchor="end" style={{ fill: INK }}>{`${pct(restShare)} (${row.rest.toLocaleString("en-US")})`}</Text>
+            <Text x={785} y={y + 74} textAnchor="end" style={{fill:INK,fontSize:12,fontWeight:700}}>{Math.abs(share-restShare)<.0005?"≈ Same share":`${share>restShare?"↑":"↓"} ${Math.abs((share-restShare)*100).toFixed(1)} pp ${share>restShare?"higher":"lower"} share`}</Text>
           </g>;
         })}
       </svg>
@@ -234,7 +237,7 @@ export function TimingChart() {
     <details className="sports-view-table"><summary>View counts, uncertainty, and exclusions</summary><div className="sports-table-scroll"><table className="sports-table">
       <caption className="sports-mini-caption">{`${periodLabel}. One first explicit on-play announcement per player per game; regular season only.`}</caption>
       <thead><tr><th scope="col">Group</th><th scope="col">Q1</th><th scope="col">Q2</th><th scope="col">Q3</th><th scope="col">Q4</th><th scope="col">First half</th><th scope="col">Second half</th><th scope="col">Second-half share</th><th scope="col">95% interval</th><th scope="col">OT (separate)</th></tr></thead>
-      <tbody>{[{ label: teamName, counts: selected.counts, share: selected.second_share, ci: selected.second_ci }, { label: "Other 31 franchises", counts: selected.rest_counts, share: selected.rest_second_share, ci: selected.rest_second_ci }].map(item => <tr key={item.label}><th scope="row">{item.label}</th>{item.counts.slice(0, 4).map((count, index) => <td key={index}>{count.toLocaleString("en-US")}</td>)}<td>{(item.counts[0] + item.counts[1]).toLocaleString("en-US")}</td><td>{(item.counts[2] + item.counts[3]).toLocaleString("en-US")}</td><td>{pct(item.share)}</td><td>{`${pct(item.ci[0])}–${pct(item.ci[1])}`}</td><td>{item.counts[4]}</td></tr>)}</tbody>
+      <tbody>{[{ label: teamName, counts: selected.counts, share: selected.second_share, ci: selected.second_ci }, { label: "Other 31 franchises", counts: selected.rest_counts, share: selected.rest_second_share, ci: selected.rest_second_ci }].map(item => <tr key={item.label}><th scope="row">{item.label===teamName?<TeamBadge team={team}/>:item.label}</th>{item.counts.slice(0, 4).map((count, index) => <td key={index}>{count.toLocaleString("en-US")}</td>)}<td>{(item.counts[0] + item.counts[1]).toLocaleString("en-US")}</td><td>{(item.counts[2] + item.counts[3]).toLocaleString("en-US")}</td><td>{pct(item.share)}</td><td>{`${pct(item.ci[0])}–${pct(item.ci[1])}`}</td><td>{item.counts[4]}</td></tr>)}</tbody>
     </table></div><p className="sports-mini-caption">Updates, nonspecific injury timeouts, and reports without an explicit player/team on-play clause are excluded. Practice and offseason injuries have no game-half assignment. Repeated announcements for the same player in a game are counted only at the first recorded occurrence. Filters are descriptive comparisons; viewing many teams or seasons is not a test of a preselected medical hypothesis.</p></details>
   </figure>;
 }
