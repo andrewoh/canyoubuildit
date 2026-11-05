@@ -4,6 +4,7 @@ import "./globals.css";
 import "./showcase.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.canyoubuildit.com"),
   title: "canyoubuildit.com",
   description: "A personal showcase of AI projects, experiments, shipped ideas, and useful failures."
 };

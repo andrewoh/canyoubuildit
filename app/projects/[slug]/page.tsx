@@ -29,7 +29,7 @@ export default async function ProjectPreviewPage({ params }: ProjectPreviewPageP
       }}
     >
       <section style={{ maxWidth: 760 }}>
-        <a href="/#in-flight" style={{ color: "#9fc3ad", textDecoration: "none" }}>
+        <a href="/archive#in-flight" style={{ color: "#9fc3ad", textDecoration: "none" }}>
           ← canyoubuildit.com / in flight
         </a>
         <p style={{ color: "#f0b86f", fontSize: 13, letterSpacing: ".14em", marginTop: 54, textTransform: "uppercase" }}>
