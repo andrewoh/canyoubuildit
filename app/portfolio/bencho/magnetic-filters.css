@@ -1,0 +1,105 @@
+/* Bencho MagneticSelect adaptation; source and MIT attribution in MagneticFilters.tsx. */
+.bencho-filters {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 12px;
+  padding: 10px 7px 25px;
+  margin: 0 0 28px;
+  border-bottom: 1px solid #cbd1c0;
+  overflow: visible;
+}
+
+.bencho-filters .bencho-filter {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 12px 19px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #43523a;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.25;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bencho-filter-surface {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border: 1px solid #cbd2bf;
+  border-radius: inherit;
+  background: #e8ebdf;
+  pointer-events: none;
+  transition: background-color 160ms, border-color 160ms;
+}
+
+.bencho-filter-label {
+  position: relative;
+  font-weight: 500;
+}
+
+.bencho-filter-count {
+  position: relative;
+  font: 10px/1 "Courier New", monospace;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.72;
+}
+
+.bencho-filters .bencho-filter[aria-pressed="true"] {
+  color: #d7fd78;
+}
+
+.bencho-filter[aria-pressed="true"] .bencho-filter-surface {
+  border-color: #203019;
+  background: #203019;
+}
+
+.bencho-filter:focus-visible {
+  z-index: 1;
+  outline: 2px solid #364e1c;
+  outline-offset: 5px;
+}
+
+@media (hover: hover) {
+  .bencho-filter:not([aria-pressed="true"]):hover .bencho-filter-surface {
+    border-color: #80916f;
+    background: #dde3ce;
+  }
+}
+
+@media (max-width: 560px) {
+  .bencho-filters {
+    gap: 12px 10px;
+    margin-bottom: 20px;
+    padding: 9px 7px 21px;
+  }
+
+  .bencho-filters .bencho-filter {
+    gap: 10px;
+    padding: 11px 14px;
+    font-size: 11px;
+  }
+}
+
+.bencho-filters[data-still] .bencho-filter-surface {
+  transform: none !important;
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bencho-filter-surface {
+    transform: none !important;
+    transition: none;
+  }
+}

@@ -1,0 +1,5 @@
+.project-tilt{position:relative;perspective:1100px}
+.project-tilt-surface{position:relative;transform-origin:center;isolation:isolate}
+.project-tilt-sheen{position:absolute;inset:0;z-index:2;pointer-events:none;border:1px solid #d7fd781f}
+@media(prefers-reduced-motion:reduce){.project-tilt-surface{transform:none!important}.project-tilt-sheen{display:none}}
+@media(hover:none){.project-tilt-surface{transform:none!important}.project-tilt-sheen{display:none}}

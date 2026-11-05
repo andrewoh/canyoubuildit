@@ -1,0 +1,98 @@
+/* Bencho GlassDock adaptation, MIT — Lorenzo Cabra. See PortfolioDock.tsx. */
+.portfolio .portfolio-dock {
+  position: fixed;
+  z-index: 30;
+  bottom: max(22px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  gap: 9px;
+  padding: 10px 14px;
+  border-radius: 25px;
+  background: rgba(20, 29, 18, .89);
+  color: #f0efe9;
+  border: 1px solid rgba(220, 241, 194, .2);
+  box-shadow: inset 0 1px 0 #efffd51a, 0 10px 35px #0005;
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  backdrop-filter: blur(18px) saturate(130%);
+  isolation: isolate;
+  touch-action: pan-y;
+  animation: portfolio-dock-arrive .4s ease-out both;
+}
+.portfolio .portfolio-dock-item {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: #c1cdb6;
+  border-radius: 12px;
+  transition: color .22s ease;
+}
+.portfolio .portfolio-dock-item[data-near="0"],
+.portfolio .portfolio-dock-item[data-active="true"] { color: #d7fd78; }
+.portfolio .portfolio-dock-item[data-near="1"] { color: #e0e8d8; }
+.portfolio .portfolio-dock-item:focus-visible { outline: 2px solid #d7fd78; outline-offset: 2px; }
+.portfolio-dock-glyph {
+  display: grid;
+  place-items: center;
+  transform-origin: center bottom;
+  transition: transform .42s cubic-bezier(.24, 1.34, .38, 1);
+}
+.portfolio-dock-dot {
+  position: absolute;
+  bottom: 2px;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #d7fd78;
+  opacity: 0;
+  transform: scale(.4);
+  transition: opacity .22s, transform .42s cubic-bezier(.24, 1.34, .38, 1);
+}
+.portfolio-dock-item[data-active="true"] .portfolio-dock-dot { opacity: 1; transform: scale(1); }
+.portfolio-dock-tip {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 13px);
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid #b8d29435;
+  border-radius: 999px;
+  background: #1b2917;
+  color: #e8f1dd;
+  font: 11px/30px Arial, Helvetica, sans-serif;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .16s cubic-bezier(.22, 1, .36, 1), width .16s cubic-bezier(.22, 1, .36, 1), opacity .16s ease;
+}
+.portfolio-dock-tip > span { flex: none; }
+.portfolio-dock-tip[data-ready="false"] { transition: opacity .16s ease; }
+.portfolio-dock-tip[data-visible="true"] { opacity: 1; }
+.portfolio-dock-mobile-label { display: none; }
+.portfolio .portfolio-dock[data-still="true"],
+.portfolio-dock[data-still="true"] * { animation: none; transition: none; }
+@keyframes portfolio-dock-arrive {
+  from { opacity: 0; translate: 0 12px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@media (hover: none), (max-width: 600px) {
+  .portfolio .portfolio-dock { gap: 7px; padding: 9px 10px; bottom: max(12px, env(safe-area-inset-bottom)); border-radius: 21px; }
+  .portfolio .portfolio-dock-item { height: 47px; width: 44px; align-content: center; gap: 4px; }
+  .portfolio-dock-glyph { transform: none !important; }
+  .portfolio-dock-glyph svg { width: 18px; height: 18px; }
+  .portfolio-dock-mobile-label { display: block; font: 8px/1.2 Arial, Helvetica, sans-serif; }
+  .portfolio-dock-dot { bottom: -4px; width: 3px; height: 3px; }
+  .portfolio-dock-tip { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio .portfolio-dock, .portfolio-dock * { animation: none !important; transition: none !important; }
+  .portfolio-dock-glyph { transform: none !important; }
+}
+@media print { .portfolio .portfolio-dock { display: none; } }

@@ -15,3 +15,8 @@
 
 .legacy-anchor{position:absolute;pointer-events:none}.approach-section,.work-section{position:relative}
 .work-filters button,.project-list button>span,.project-list small,.project-status,.project-copy .eyebrow,.work-bottom{color:#59664c}
+
+/* Keep the floating section dock clear of the last page links. */
+.portfolio-footer{padding-bottom:110px}
+.portfolio.motion-paused *{animation:none!important;transition:none!important}
+html:has(.portfolio.motion-paused){scroll-behavior:auto}
