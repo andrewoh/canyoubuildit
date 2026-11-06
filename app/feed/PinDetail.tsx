@@ -115,7 +115,7 @@ export default function PinDetail({ pin, next, saved, onSave, onClose, onNext, t
             </a>
           </div>
           <div className="pin-detail-art">
-            {showsGarment ? <WardrobeCompare /> : <PinArt pin={pin} />}
+            {showsGarment ? <WardrobeCompare /> : <PinArt pin={pin} detail />}
           </div>
         </div>
 

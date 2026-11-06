@@ -1,0 +1,79 @@
+.life-photo {
+  position: relative;
+  isolation: isolate;
+  container-type: inline-size;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  background: var(--life-mount);
+}
+.life-photo--portrait {
+  --life-mount: #385347;
+  --life-stock: #f8eddb;
+  --life-well: #d8bfa0;
+  --life-ink: #352c22;
+  aspect-ratio: .94;
+}
+.life-photo--career {
+  --life-mount: #a2b4b7;
+  --life-stock: #f1eee2;
+  --life-well: #a8b9b6;
+  --life-ink: #283b3f;
+  aspect-ratio: 1.15;
+}
+.life-print {
+  position: absolute;
+  inset: 8% 10% 9%;
+  display: flex;
+  flex-direction: column;
+  padding: 4%;
+  color: var(--life-ink);
+  background: var(--life-stock);
+  transform: rotate(-4deg);
+  box-shadow: .25cqw .75cqw 1.6cqw #1828223a;
+}
+.life-photo--career .life-print {
+  inset: 11% 8% 12%;
+  padding: 3.2%;
+  transform: rotate(3deg);
+}
+.life-print::before {
+  content: '';
+  position: absolute;
+  top: -2.5%;
+  left: 38%;
+  z-index: 1;
+  width: 25%;
+  height: 5.8%;
+  transform: rotate(2deg);
+  background: #e6d6b7d6;
+  clip-path: polygon(1% 0, 100% 1%, 98% 27%, 100% 52%, 98% 100%, 0 99%, 2% 68%, 0 36%);
+}
+.life-well {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  color: var(--life-ink);
+  background: var(--life-well);
+  background-image: radial-gradient(#5e50331c .45px, transparent .7px), linear-gradient(140deg, #ffffff19, #3830210b);
+  background-size: 3px 3px, 100% 100%;
+}
+.life-well img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.life-photo--career .life-well img { object-position: center; }
+.life-registration { display: grid; justify-items: center; gap: 2cqw; }
+.life-registration svg { display: block; width: 23cqw; height: auto; stroke-width: 1.15; opacity: .6; }
+.life-registration span {
+  font: 500 3.3cqw/1.2 'Courier New', monospace;
+  letter-spacing: .07em;
+}
+.life-caption { display: grid; gap: 1.2cqw; padding: 3.6cqw .6cqw .6cqw; }
+.life-caption strong {
+  font: italic 500 10.7cqw/.95 Georgia, 'Times New Roman', serif;
+  letter-spacing: -.075em;
+}
+.life-caption small { font: 500 3.3cqw/1.24 Arial, sans-serif; letter-spacing: -.005em; }
+.life-photo--career .life-caption strong { font-size: 8.7cqw; }

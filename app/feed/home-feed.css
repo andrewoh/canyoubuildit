@@ -58,6 +58,7 @@ html:has(.home-feed) { scrollbar-gutter: stable; }
 .feed-search:focus-within { border-color: #81766a; background: white; }
 .feed-search input { flex: 1; width: 0; min-width: 0; height: 100%; padding: 0; border: 0; background: transparent; color: var(--ink); font-size: 14px; }
 .feed-search input:focus-visible { outline: none; }
+.feed-search input::placeholder { color: #625b54; opacity: 1; }
 .feed-search input::-webkit-search-cancel-button { display: none; }
 .feed-search button { display: grid; place-items: center; width: 32px; height: 32px; border: 0; border-radius: 50%; background: transparent; }
 .feed-search button:hover { background: #ddd7cd; }

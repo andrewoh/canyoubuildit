@@ -4,6 +4,10 @@ import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from 'r
 import { ArrowRight, ArrowUpRight, Bookmark, Check, Search, X } from 'lucide-react';
 import { feedPins, type Board, type FeedPin } from './pins';
 import PinArt from './PinArt';
+import ProjectTilt from '../portfolio/bencho/ProjectTilt';
+import TransportMark from '../portfolio/bencho/TransportMark';
+import { recordings } from './recordings';
+import useFeedPreviews from './useFeedPreviews';
 import PinDetail from './PinDetail';
 import './home-feed.css';
 
@@ -81,7 +85,9 @@ export default function HomeFeed() {
     (view === 'home' || saved.includes(pin.id)) && (!board || board === pin.board)
     && terms.every(term => searchIndex.get(pin.id)!.includes(term)),
   );
-  const gridRef = useMasonry(visible.map(pin => pin.id).join('.'));
+  const visibleKey = visible.map(item => item.id).join('.');
+  const gridRef = useMasonry(visibleKey);
+  const previews = useFeedPreviews(gridRef, visibleKey, Boolean(opened));
   const pin = opened ? byId.get(opened.id) : null;
   const tourIndex = opened?.touring ? tourStops.findIndex(stop => stop.id === opened.id) : -1;
   const nextStop = tourIndex >= 0 ? tourStops[tourIndex + 1] : null;
@@ -176,7 +182,7 @@ export default function HomeFeed() {
         <div className="feed-intro" id="intro">
           <div>
             <h1 tabIndex={-1}>{view === 'home' ? <>My home <em>feed.</em></> : <>Saved <em>pins.</em></>}</h1>
-            <p>{view === 'home' ? 'A little about me and the things I’ve been building with AI and data.' : 'The pins you’ve kept on this device.'}</p>
+            <p>{view === 'home' ? 'I’m Andrew, Director of Data Science at Xero. These are the things I build outside work.' : 'The pins you’ve kept on this device.'}</p>
           </div>
           {view === 'home' && <button type="button" className="feed-tour" onClick={() => openPin(tourStops[0].id, true)}>
             <span className="feed-stack" aria-hidden="true"><i/><i/><i>ao</i></span>
@@ -191,24 +197,46 @@ export default function HomeFeed() {
               <button type="button" aria-pressed={!board} onClick={() => setBoard(null)}>All pins</button>
               {boards.map(name => <button type="button" key={name} aria-pressed={board === name} onClick={() => setBoard(name)}>{name}</button>)}
             </div>
-            <span className="feed-result-count" role="status">{visible.length} {visible.length === 1 ? 'pin' : 'pins'}</span>
+            <div className="feed-visibility-tools">
+              {visible.some(item => recordings[item.id]) && <button type="button" className="feed-play-toggle"
+                disabled={!previews.automaticAllowed} aria-pressed={previews.autoOn}
+                aria-label={!previews.automaticAllowed ? 'Automatic previews off. Use a pin’s play button.' : previews.autoOn ? 'Pause automatic previews' : 'Enable automatic previews'}
+                title={previews.automaticAllowed ? 'Turn automatic video previews on or off' : 'Select a play button on a pin to preview it'}
+                onClick={previews.toggleAuto}>
+                <TransportMark playing={previews.autoOn} size={14} />
+                <span className="feed-play-label">{previews.autoOn ? 'Pause previews' : previews.automaticAllowed ? 'Autoplay previews' : 'Manual previews'}</span>
+              </button>}
+              <span className="feed-result-count" role="status">{visible.length} {visible.length === 1 ? 'pin' : 'pins'}</span>
+            </div>
           </div>
           <div ref={gridRef} className="feed-grid">
             {visible.map(item => {
               const kept = saved.includes(item.id);
+              const recording = recordings[item.id];
+              const playing = previews.activeId === item.id;
+              const cover = <PinArt pin={item} playing={playing} onFailure={previews.playbackFailed} />;
+              const href = '#pin/' + item.id;
               return <div key={item.id} className="feed-cell">
-                <article className="feed-tile">
-                  <a className="feed-pin-link" href={'#pin/' + item.id} aria-label={'Open pin: ' + item.title} onClick={event => followPin(event, item.id)}>
-                    <div className="feed-cover"><PinArt pin={item} /></div>
-                    <div className="feed-caption">
-                      <span className="feed-project">{item.project}</span>
-                      <h2>{item.title}</h2>
-                    </div>
-                  </a>
-                  <button className="feed-save" type="button" aria-label={(kept ? 'Unsave ' : 'Save ') + item.title} aria-pressed={kept}
-                    title={kept ? 'Remove from saved pins' : 'Save pin'} onClick={() => toggleSave(item)}>
-                    {kept ? <Check size={16} /> : <Bookmark size={16} />}
-                  </button>
+                <article className="feed-tile" data-demo-id={recording ? item.id : undefined}>
+                  <div className="feed-media-stage">
+                    <a className="feed-pin-link" href={href} aria-label={'Open pin: ' + item.title} onClick={event => followPin(event, item.id)}>
+                      <div className="feed-cover">{recording ? cover : <ProjectTilt>{cover}</ProjectTilt>}</div>
+                    </a>
+                    {recording && <button type="button" className="feed-preview-action"
+                      aria-label={(playing ? 'Pause ' : 'Play ') + item.project + ' preview'} aria-pressed={playing}
+                      onClick={() => previews.togglePin(item.id)}>
+                      <TransportMark playing={playing} size={13} />
+                      <span>0:{String(recording.seconds).padStart(2, '0')}</span>
+                    </button>}
+                    <button className="feed-save" type="button" aria-label={(kept ? 'Unsave ' : 'Save ') + item.title} aria-pressed={kept}
+                      title={kept ? 'Remove from saved pins' : 'Save pin'} onClick={() => toggleSave(item)}>
+                      {kept ? <Check size={16} /> : <Bookmark size={16} />}
+                    </button>
+                  </div>
+                  <div className="feed-caption">
+                    <span className="feed-project">{item.project}{recording ? ' · ' + recording.label : ''}</span>
+                    <h2><a href={href} tabIndex={-1} onClick={event => followPin(event, item.id)}>{item.title}</a></h2>
+                  </div>
                 </article>
               </div>;
             })}

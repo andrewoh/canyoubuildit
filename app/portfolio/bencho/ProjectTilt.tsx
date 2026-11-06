@@ -2,7 +2,6 @@
 
 // Adapted from Bencho Tilt by Lorenzo Cabra (MIT). See ./LICENSE and README.md.
 import { useEffect, useRef, useState, type ReactNode, type PointerEvent } from 'react';
-import { useReducedMotion } from 'framer-motion';
 import './project-tilt.css';
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
@@ -20,6 +19,7 @@ function useSurfaceSpring(target: number, instant: boolean) {
       setAt(target);
       return;
     }
+    if (current.current === target && velocity.current === 0) return;
     let frame = 0;
     let previous = 0;
     const tick = (time: number) => {
@@ -49,7 +49,14 @@ export default function ProjectTilt({ children, paused = false, disabled = false
   const frame = useRef<HTMLDivElement>(null);
   const [pointer, setPointer] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
-  const reducedMotion = useReducedMotion();
+  const [reducedMotion, setReducedMotion] = useState(false);
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const sync = () => setReducedMotion(media.matches);
+    sync();
+    media.addEventListener('change', sync);
+    return () => media.removeEventListener('change', sync);
+  }, []);
   const still = !!reducedMotion || paused || disabled;
   const active = hovered && !still;
   const x = useSurfaceSpring(active ? pointer.x : 0, still);

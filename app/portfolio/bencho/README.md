@@ -6,6 +6,7 @@ The full upstream copyright and permission notice is retained in [LICENSE](./LIC
 
 | Local component | Upstream source | Portfolio adaptation |
 | --- | --- | --- |
+| TransportMark | `blocks/step-player/StepPlayer.tsx` | Play/pause geometry for the feed’s preview controls, with native CSS motion |
 | ProjectTilt | `blocks/tilt/Tilt.tsx`, `Tilt.css` | Responsive child content, gentler perspective, mouse-only hover, pause and live reduced-motion preferences |
 | MagneticFilters | `blocks/magnet-select/MagneticSelect.tsx`, `MagneticSelect.css` | Real category selection, stable readable labels and hit targets, responsive layout |
 | PortfolioDock | `blocks/dock/GlassDock.tsx`, `GlassDock.css` | Real section links, active section tracking, keyboard labels and touch support |

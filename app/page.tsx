@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import HomeFeed from './feed/HomeFeed';
+import { LifePhotoProvider } from './feed/LifePhoto';
+import { getLifePhotos } from './feed/photo-slots';
 
 export const metadata: Metadata = {
   title: 'Andrew Oh’s home feed | Can You Build It?',
@@ -14,5 +16,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomeFeed />;
+  return <LifePhotoProvider photos={getLifePhotos()}><HomeFeed /></LifePhotoProvider>;
 }
