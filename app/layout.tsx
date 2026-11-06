@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "./globals.css";
-import "./showcase.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.canyoubuildit.com"),

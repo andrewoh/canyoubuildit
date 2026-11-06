@@ -1,3 +1,4 @@
+import '../showcase.css';
 import type { Metadata } from 'next';
 import { App } from '../showcase';
 export const metadata: Metadata = {title:'Build archive — Andrew Oh'};
