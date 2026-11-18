@@ -12,10 +12,12 @@ export const experience: Experience[] = [
     employer: 'Xero',
     role: 'Director of Data Science',
     dates: 'Sep 2024 – Present',
-    summary: 'Lead data science for Payments, Payroll and Ecosystem. Work with product and engineering leaders to choose AI pilots and decide how to measure their success.',
+    summary: 'Lead data science across Payments, Payroll and Ecosystem. My teams build and evaluate AI systems and bots for data analysis.',
     work: [
-      'Built AI-assisted analytics workflows around shared business metrics, with evaluation and human review before teams act on recommendations.',
-      'Coach data scientists to frame ambiguous product questions, direct AI-assisted investigations and challenge the answers.',
+      'Established evaluation methods and reusable business context for AI-assisted analysis, with human review and clear ownership of recommendations.',
+      'Oversaw product experiments that measured customer and business outcomes alongside engagement, helping teams decide what to scale, improve or stop.',
+      'Built and led a multidisciplinary team while staying hands-on with evaluation design, complex root-cause investigations, and decisions about product scope and priorities.',
+      'Partnered with product and engineering leaders to build AI-native accounting, payroll and payments products for small businesses, accountants and bookkeepers.',
     ],
   },
   {
