@@ -32,11 +32,11 @@ export const recentProjects: RecentProject[] = [
     surface: "Private reading adventure",
     touched: "Sep 20",
     summary:
-      "A private iPhone and iPad reading adventure where two young readers practice an adaptive, phonics-led course and earn Pokémon packs and collections.",
+      "I built PokéRead for two young readers on iPhone and iPad. Each has an adaptive phonics course and a library of illustrated stories, with progress stored on the device.",
     preview: {
       eyebrow: "Native family learning beta",
       detail:
-        "Seventy-four trainer lessons turn supported reading practice into a local-first trail of badges, storybooks, packs, and discoveries.",
+        "Across 74 lessons, young readers practice sounds, blend them into words and apply those skills in storybooks.",
     },
   },
   {

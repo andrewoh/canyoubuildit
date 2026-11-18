@@ -23,28 +23,13 @@ export default function LifePhoto({ slot }: { slot: LifePhotoSlot }) {
   const alt = photo ? name + ' · ' + caption : 'Reserved ' + name.toLowerCase() + ' space for Andrew Oh';
   return (
     <figure className={'life-photo life-photo--' + slot} role="img" aria-label={alt + '. ' + detail}>
-      <div className="life-print" aria-hidden="true">
-        <div className="life-well">
-          {photo ? (
-            <img
-              src={photo} alt="" decoding="async"
-              loading={slot === 'portrait' ? 'eager' : 'lazy'}
-              onError={() => setFailedSource(photo)}
-            />
-          ) : (
-            <div className="life-registration">
-              <svg viewBox="0 0 96 68" fill="none" stroke="currentColor" aria-hidden="true">
-                <path d="M2 18V2h16m60 0h16v16m0 32v16H78m-60 0H2V50M41 34h14m-7-7v14" />
-              </svg>
-              <span>{name}</span>
-            </div>
-          )}
-        </div>
-        <div className="life-caption">
-          <strong>{caption}</strong>
-          <small>{detail}</small>
-        </div>
+      <div className="life-well" aria-hidden="true">
+        {photo ? <img src={photo} alt="" decoding="async" loading="lazy" onError={() => setFailedSource(photo)} /> :
+          <div className="life-test-card"><span>{name}</span></div>}
       </div>
+      <figcaption className="life-lower-third" aria-hidden="true">
+        <strong>{caption}</strong><small>{detail}</small>
+      </figcaption>
     </figure>
   );
 }

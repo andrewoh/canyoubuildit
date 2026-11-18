@@ -1,53 +1,51 @@
-import { notFound } from "next/navigation";
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { ArrowLeft } from 'lucide-react';
+import { recentProjects } from '../../../data/recent-projects';
+import { feedPins } from '../../feed/pins';
+import { recordings, movieUrl, posterUrl } from '../../feed/recordings';
+import './program.css';
 
-import { recentProjects } from "../../../data/recent-projects";
+type Props = { params: Promise<{ slug: string }> };
 
-type ProjectPreviewPageProps = {
-  params: Promise<{ slug: string }>;
-};
+function findProject(slug: string) {
+  return recentProjects.find(entry => entry.href === '/projects/' + slug && entry.preview);
+}
 
-export default async function ProjectPreviewPage({ params }: ProjectPreviewPageProps) {
-  const { slug } = await params;
-  const project = recentProjects.find(
-    (entry) => entry.href === `/projects/${slug}` && entry.preview,
-  );
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const project = findProject((await params).slug);
+  return project ? { title: project.title + ' | After Hours with Andrew Oh', description: project.summary } : {};
+}
 
-  if (!project?.preview) {
-    notFound();
-  }
+export default async function ProjectPreviewPage({ params }: Props) {
+  const project = findProject((await params).slug);
+  if (!project?.preview) notFound();
 
-  return (
-    <main
-      style={{
-        alignItems: "center",
-        background: "#07100d",
-        color: "#f8f1e4",
-        display: "flex",
-        fontFamily: "Arial, sans-serif",
-        minHeight: "100vh",
-        padding: "clamp(28px, 8vw, 110px)",
-      }}
-    >
-      <section style={{ maxWidth: 760 }}>
-        <a href="/archive#in-flight" style={{ color: "#9fc3ad", textDecoration: "none" }}>
-          ← canyoubuildit.com / in flight
-        </a>
-        <p style={{ color: "#f0b86f", fontSize: 13, letterSpacing: ".14em", marginTop: 54, textTransform: "uppercase" }}>
-          {project.preview.eyebrow}
-        </p>
-        <h1 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(48px, 9vw, 100px)", letterSpacing: "-.055em", lineHeight: 0.95, margin: "14px 0 28px" }}>
-          {project.title}
-        </h1>
-        <p style={{ fontFamily: "Georgia, serif", fontSize: "clamp(24px, 3.5vw, 38px)", lineHeight: 1.15, margin: 0 }}>
-          {project.preview.detail}
-        </p>
-        <p style={{ borderTop: "1px solid #375044", color: "#c4d0c6", fontSize: 17, lineHeight: 1.55, marginTop: 48, maxWidth: 620, paddingTop: 24 }}>
-          {project.summary}
-        </p>
-        <p style={{ color: "#9fc3ad", fontSize: 14, marginTop: 38 }}>
-          Public project preview · last local activity {project.touched}
-        </p>
-      </section>
-    </main>
-  );
+  const program = feedPins.find(entry => entry.href === project.href);
+  const clip = program && recordings[program.id];
+  const still = program?.id === 'dropalpha';
+  const hasMedia = Boolean(clip || still);
+
+  return <main className="episode-page">
+    <nav aria-label="Portfolio"><a href={program ? '/#work' : '/archive#in-flight'}><ArrowLeft size={16} />
+      {program ? 'Channel guide' : 'Build archive'}</a><a href="/resume">Résumé</a></nav>
+    <header className="episode-mast"><div>
+      <p>After Hours {program && <span>CH {program.number}</span>}</p>
+      <h1>{project.title}</h1>
+      <p className="episode-lead">{program?.caption ?? project.preview.detail}</p>
+    </div></header>
+    <div className={'episode-body' + (hasMedia ? ' with-media' : '')}>
+      {hasMedia && <figure>
+        {clip ? <video controls playsInline muted preload="none" aria-label={clip.description}
+          width={clip.width} height={clip.height} poster={posterUrl(clip)} src={movieUrl(clip)} /> :
+          <img src="/feed/media/dropalpha-native.webp" alt={program!.alt} width="390" height="570"/>}
+        <figcaption>{clip ? clip.label + ' · ' + clip.seconds + 's' : 'Example data'}</figcaption>
+      </figure>}
+      <div className="episode-notes">
+        <h2>{program ? 'Program notes' : project.preview.eyebrow}</h2>
+        <p>{program?.story ?? project.summary}</p>
+        {program && <p>{program.decision}</p>}
+      </div>
+    </div>
+  </main>;
 }

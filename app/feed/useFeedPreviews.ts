@@ -52,7 +52,7 @@ export default function useFeedPreviews(
 
     const tiles = new Map<string, HTMLElement>();
     element.querySelectorAll<HTMLElement>(tileSelector).forEach(tile => {
-      const cover = tile.querySelector<HTMLElement>('.studio-screen, .feed-cover') ?? tile;
+      const cover = tile.querySelector<HTMLElement>('.studio-screen, .guide-media') ?? tile;
       tiles.set(tile.dataset.demoId!, cover);
     });
     if (tiles.size === 0) return;

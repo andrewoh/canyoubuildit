@@ -41,26 +41,6 @@ const signals = [
 
 const projects: Project[] = [
   {
-    title: "Now Boards",
-    tone: "shipping",
-    stage: "Live prototype",
-    summary:
-      "A Pinterest-like visual workspace that turns recurring plans, saves, and ideas into living interest boards.",
-    outcome:
-      "A connector-ready prototype for seeing what keeps resurfacing across the tools already in use.",
-    href: "/interest-boards",
-  },
-  {
-    title: "Wardrobe",
-    tone: "shipping",
-    stage: "Live personal tool",
-    summary:
-      "A visual catalog built from real outfit photos, with clean garment cutouts, useful filters, and modeled references for every piece.",
-    outcome:
-      "A private photo archive turned into a calm, browsable record of what is actually in rotation.",
-    href: "/wardrobe",
-  },
-  {
     title: "Amex Platinum Benefit Tracker",
     tone: "shipping",
     stage: "Live household tool",
@@ -199,8 +179,8 @@ export function App() {
               <a className="showcase-button showcase-button-primary" href="#in-flight">
                 See what is moving
               </a>
-              <a className="showcase-button showcase-button-secondary" href="/wardrobe">
-                Open Wardrobe
+              <a className="showcase-button showcase-button-secondary" href="/">
+                Watch After Hours
               </a>
             </div>
           </div>

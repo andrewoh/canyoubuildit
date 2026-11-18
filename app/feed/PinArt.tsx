@@ -19,9 +19,5 @@ export default function PinArt({ pin, playing, detail, onFailure }: Props) {
     <span>DropAlpha · Example data</span>
     <img src="/feed/media/dropalpha-native.webp" width="390" height="570" alt="" loading="lazy" decoding="async" draggable="false" />
   </figure>;
-  return <figure className="pin-art cover-wardrobe" role="img" aria-label={pin.alt}>
-    <img className="wardrobe-image" src="/feed/linen-400.webp" srcSet="/feed/linen-400.webp 400w, /feed/linen-780.webp 780w"
-      sizes="auto, (max-width:720px) 50vw, (max-width:1080px) 33vw, 360px"
-      alt="" loading="lazy" decoding="async" draggable="false" />
-  </figure>;
+  return null;
 }

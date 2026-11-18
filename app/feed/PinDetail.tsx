@@ -2,9 +2,9 @@
 
 import { useId, useLayoutEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Bookmark, Check } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 import PinArt from './PinArt';
-import type { FeedPin } from './pins';
+import { type FeedPin } from './pins';
 import './pin-detail.css';
 
 const DataLab = dynamic(() => import('../portfolio/DataLab'), {
@@ -15,22 +15,15 @@ const DecisionLab = dynamic(() => import('../portfolio/DecisionLab'), {
   ssr: false,
   loading: () => <div className="pin-detail-loading" role="status">Loading sample notes…</div>,
 });
-const WardrobeCompare = dynamic(() => import('../portfolio/bencho/WardrobeCompare'), {
-  ssr: false,
-  loading: () => <div className="pin-detail-loading pin-detail-loading-garment" role="status">Loading garment views…</div>,
-});
-
 type PinDetailProps = {
   pin: FeedPin;
   next: FeedPin | null;
-  saved: boolean;
-  onSave: () => void;
   onClose: () => void;
   onNext: () => void;
   tour?: { step: number; total: number; note: string };
 };
 
-export default function PinDetail({ pin, next, saved, onSave, onClose, onNext, tour }: PinDetailProps) {
+export default function PinDetail({ pin, next, onClose, onNext, tour }: PinDetailProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const backdropPress = useRef(false);
@@ -68,7 +61,6 @@ export default function PinDetail({ pin, next, saved, onSave, onClose, onNext, t
 
   const showsChart = pin.art === 'injury';
   const showsReview = pin.art === 'family';
-  const showsGarment = pin.art === 'wardrobe';
 
   return (
     <dialog
@@ -89,12 +81,9 @@ export default function PinDetail({ pin, next, saved, onSave, onClose, onNext, t
     >
       <div className="pin-detail-toolbar">
         <button type="button" className="pin-detail-back" onClick={onClose}>
-          <ArrowLeft size={19} aria-hidden="true" /> Back to feed
+          <ArrowLeft size={19} aria-hidden="true" /> Close program
         </button>
-        <button type="button" className="pin-detail-save" aria-pressed={saved} onClick={onSave}>
-          {saved ? <Check size={16} aria-hidden="true" /> : <Bookmark size={16} aria-hidden="true" />}
-          {saved ? 'Saved' : 'Save'}
-        </button>
+        <span className="program-station"><i aria-hidden="true"/> After Hours <b>CH {pin.number}</b></span>
       </div>
 
       <div className="pin-detail-body">
@@ -115,7 +104,7 @@ export default function PinDetail({ pin, next, saved, onSave, onClose, onNext, t
             </a>
           </div>
           <div className="pin-detail-art">
-            {showsGarment ? <WardrobeCompare /> : <PinArt pin={pin} detail />}
+            <PinArt pin={pin} detail />
           </div>
         </div>
 
@@ -134,13 +123,13 @@ export default function PinDetail({ pin, next, saved, onSave, onClose, onNext, t
 
         {next && (
           <button type="button" className="pin-detail-next" onClick={onNext}>
-            <span><small>{tour ? 'Continue the story' : 'Next pin'}</small><strong>{next.title}</strong></span>
+            <span><small>{tour ? 'Continue the story' : 'Up next'}</small><strong>{next.title}</strong></span>
             <ArrowRight size={24} aria-hidden="true" />
           </button>
         )}
         {tour && !next && (
           <button type="button" className="pin-detail-next" onClick={onClose}>
-            <strong>Back to feed</strong><ArrowLeft size={24} aria-hidden="true" />
+            <strong>Close program</strong><ArrowLeft size={24} aria-hidden="true" />
           </button>
         )}
       </div>

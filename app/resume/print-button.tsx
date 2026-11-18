@@ -1,2 +1,9 @@
 'use client';
-export default function PrintButton(){return <button onClick={()=>window.print()}>Print / save PDF ↗</button>}
+
+import { Printer } from 'lucide-react';
+
+export default function PrintButton() {
+  return <button type="button" onClick={() => window.print()}>
+    <Printer size={15} aria-hidden="true" /> Print
+  </button>;
+}

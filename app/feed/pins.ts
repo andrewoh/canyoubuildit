@@ -2,6 +2,7 @@ export type Board = 'About me' | 'Data science' | 'AI systems' | 'Products';
 
 export type FeedPin = {
   id: string;
+  number: string;
   board: Board;
   title: string;
   caption: string;
@@ -9,7 +10,7 @@ export type FeedPin = {
   decision: string;
   href: string;
   action: string;
-  art: 'injury' | 'family' | 'wardrobe' | 'boards' | 'tend' | 'economics' | 'cases' | 'bio' | 'career' | 'spark' | 'reading';
+  art: 'injury' | 'family' | 'birthday' | 'tend' | 'economics' | 'cases' | 'bio' | 'career' | 'spark' | 'reading';
   alt: string;
   project: string;
 };
@@ -17,45 +18,21 @@ export type FeedPin = {
 export const feedPins: FeedPin[] = [
   {
     id: 'pokeread',
+    number: '01',
     board: 'Products',
     project: 'PokéRead',
-    title: 'Phonics and Pokémon packs',
-    caption: 'A private reading adventure for two young readers on iPhone and iPad.',
-    story: 'I built PokéRead around a simple exchange. A child works through a phonics lesson, then earns something for their Pokémon collection. The adventure has 74 trainer lessons, storybooks and badges.',
-    decision: 'Each reader follows an adaptive course, with reading practice and progress kept local. The collection gives them something to come back to when it’s time for the next lesson.',
+    title: 'Reading with Eevee',
+    caption: 'Build a word one sound at a time in a Pokémon phonics lesson.',
+    story: 'I built PokéRead for two young readers. In this lesson, Squirtle introduces the sh sound. The reader joins sh, i and p beside Eevee to spell “ship,” then checks the result.',
+    decision: 'The lesson is one stop on a 74-lesson reading path. Children can practice sounds, read illustrated stories and revisit words at their own pace. Each reader’s progress stays on the device.',
     href: '/projects/pokeread',
     action: 'Read about PokéRead',
     art: 'reading',
-    alt: 'An open book with letter tiles that spell pack',
-  },
-  {
-    id: 'spark',
-    board: 'AI systems',
-    project: 'SPARK',
-    title: 'Save an AI demo with its source',
-    caption: 'An iPhone app for saving AI demos alongside the people who made them.',
-    story: 'SPARK is my iPhone app for browsing AI demos and practical ideas. I wanted to be able to find the original creator again and tell when a demo was published.',
-    decision: 'The feed keeps the source and publication date with each idea. Saves stay on the phone, where recommendations can adapt to the things I choose to keep.',
-    href: '/projects/spark',
-    action: 'Read about SPARK',
-    art: 'spark',
-    alt: 'SPARK’s collection of attributed AI demos and ideas',
-  },
-  {
-    id: 'about-andrew',
-    board: 'About me',
-    project: 'Andrew Oh',
-    title: 'A little about me',
-    caption: 'Data science, family projects, football and a closet full of photos.',
-    story: 'I’m Andrew Oh, Director of Data Science at Xero. Outside work, I build things for everyday use. Family OS turns a school note into a task I can review. Wardrobe lets me find a piece of clothing from a photograph.',
-    decision: 'I also spend time with questions that fit better in a chart. The 49ers injury study started with a familiar football argument and ended up with nine seasons of data. Both kinds of work live here.',
-    href: '/resume',
-    action: 'Read my one-page profile',
-    art: 'bio',
-    alt: 'A reserved portrait space for Andrew Oh.',
+    alt: 'Eevee’s phonics lesson asks a reader to build the word ship.',
   },
   {
     id: '49ers',
+    number: '02',
     board: 'Data science',
     project: 'The injury question',
     title: 'Do the 49ers really lose more time to injury?',
@@ -68,20 +45,8 @@ export const feedPins: FeedPin[] = [
     alt: 'A chart comparing nine seasons of injury burden for San Francisco and Seattle.',
   },
   {
-    id: 'wardrobe',
-    board: 'Products',
-    project: 'Wardrobe',
-    title: 'My closet, piece by piece',
-    caption: 'Outfit photos became a catalog I can browse by garment.',
-    story: 'An outfit photo records what went together on one day. I wanted to find a particular piece again, even when I couldn’t remember the rest of the outfit. That became Wardrobe, a personal catalog of the clothes in those photos.',
-    decision: 'Each garment gets a cutout for browsing and a modeled reference for context. You can narrow the collection, open a piece and see how it looks worn.',
-    href: '/wardrobe',
-    action: 'Browse the wardrobe',
-    art: 'wardrobe',
-    alt: 'A modeled linen outfit from the Wardrobe catalog',
-  },
-  {
     id: 'tend',
+    number: '03',
     board: 'AI systems',
     project: 'Tend',
     title: 'Turn a message into a task to review',
@@ -94,33 +59,36 @@ export const feedPins: FeedPin[] = [
     alt: 'Tend opens the evidence behind a suggested school-form task.',
   },
   {
-    id: 'interest-boards',
+    id: 'forty-at-the-plate',
+    number: '40',
     board: 'Products',
-    project: 'STACK.',
-    title: 'The cards I’d keep',
-    caption: 'I sort the trading cards I find into Owned and Want.',
-    story: 'A Shohei Ohtani card and a Pokémon card might catch my eye for different reasons. STACK. gives sports, Pokémon and Lorcana cards a shared place to browse, with the card art front and center.',
-    decision: 'I gave each save a purpose. Owned records a piece of the collection. Want keeps a prospect around for another look. Try sorting a few cards and the feed starts to feel like your own.',
-    href: '/interest-boards',
-    action: 'Explore STACK.',
-    art: 'boards',
-    alt: 'An opened card from the STACK. discovery feed.',
+    project: 'Forty at the Plate',
+    title: 'My 40th, from the dugout',
+    caption: 'A game-day site for my four-team Wiffle ball birthday tournament.',
+    story: 'I built Forty at the Plate for my 40th birthday. Four teams play Wiffle ball, a home-run derby and a target toss. The scoreboard brings the points from all three events into the team standings.',
+    decision: 'Between innings, a player can check a house rule or open the illustrated pitching guide to see how to grip a riser. The same site keeps the schedule and scores handy on a phone at the field.',
+    href: '/40',
+    action: 'Open the birthday tournament',
+    art: 'birthday',
+    alt: 'The tournament scoreboard and illustrated Wiffle ball pitching guide.',
   },
   {
-    id: 'work-history',
-    board: 'About me',
-    project: 'Work history',
-    title: 'Pinterest and Xero',
-    caption: 'Previously at Pinterest. Now Director of Data Science at Xero.',
-    story: 'I’m currently Director of Data Science at Xero. Earlier in my career I worked at Pinterest. This collection sits alongside that professional history and gives me space to show the things I build on my own time.',
-    decision: 'If you’re hiring for AI and data science leadership, the pins give us a few projects to talk about. My LinkedIn profile has my professional background and a way to get in touch.',
-    href: 'https://www.linkedin.com/in/ohandrew/',
-    action: 'View my professional background',
-    art: 'career',
-    alt: 'Andrew’s work history featuring Pinterest and Xero',
+    id: 'spark',
+    number: '04',
+    board: 'AI systems',
+    project: 'SPARK',
+    title: 'Save an AI demo with its source',
+    caption: 'An iPhone app for saving AI demos alongside the people who made them.',
+    story: 'SPARK is my iPhone app for browsing AI demos and practical ideas. I wanted to be able to find the original creator again and tell when a demo was published.',
+    decision: 'The feed keeps the source and publication date with each idea. Saves stay on the phone, where recommendations can adapt to the things I choose to keep.',
+    href: '/projects/spark',
+    action: 'Read about SPARK',
+    art: 'spark',
+    alt: 'SPARK’s collection of attributed AI demos and ideas',
   },
   {
     id: 'family-os',
+    number: '05',
     board: 'AI systems',
     project: 'Family OS',
     title: 'A school note, a Friday deadline',
@@ -134,6 +102,7 @@ export const feedPins: FeedPin[] = [
   },
   {
     id: 'vectorfield',
+    number: '06',
     board: 'Products',
     project: 'Vectorfield',
     title: '48 AI cases for data science directors',
@@ -147,15 +116,48 @@ export const feedPins: FeedPin[] = [
   },
   {
     id: 'dropalpha',
+    number: '07',
     board: 'Data science',
     project: 'DropAlpha',
     title: 'Is this sealed box worth buying?',
     caption: 'The arithmetic behind a sealed-card buying decision.',
-    story: 'STACK. holds the cards I’d like to come back to. DropAlpha asks a different question about sealed collectibles. Once I account for costs, money tied up in inventory and where I could sell, does a buy still make sense?',
+    story: 'When I consider buying a sealed box of trading cards, I want to know what the purchase really costs. DropAlpha lets me account for inventory, compare places to sell and check whether the numbers still work.',
     decision: 'I kept those calculations explicit in this internal tool. A buy, hold or sell recommendation sits alongside the unit economics and the proposed place to sell, so I can check the reasoning.',
     href: '/projects/dropalpha',
     action: 'Read about DropAlpha',
     art: 'economics',
     alt: 'DropAlpha’s example unit economics for a sealed trading-card box.',
   },
+  {
+    id: 'about-andrew',
+    number: '08',
+    board: 'About me',
+    project: 'Andrew Oh',
+    title: 'A little about me',
+    caption: 'The family routines and football questions behind my side projects.',
+    story: 'I’m Andrew Oh, Director of Data Science at Xero. The things I build after work often start at home. I made PokéRead for reading practice and Forty at the Plate for the friends playing in my birthday tournament.',
+    decision: 'I also spend time with questions that fit better in a chart. The 49ers injury study started with a familiar football argument and ended up with nine seasons of data. Both kinds of work live here.',
+    href: '/resume',
+    action: 'Read my one-page profile',
+    art: 'bio',
+    alt: 'A reserved portrait space for Andrew Oh.',
+  },
+  {
+    id: 'work-history',
+    number: '09',
+    board: 'About me',
+    project: 'Work history',
+    title: 'My work in data science',
+    caption: 'Product analytics, experimentation and data science leadership.',
+    story: 'I’m currently Director of Data Science at Xero. Earlier in my career I worked at Pinterest. This collection sits alongside that professional history and gives me space to show the things I build on my own time.',
+    decision: 'The résumé covers my roles in data science and analytics, from Yahoo and PicsArt to Pinterest, Coinbase, Walmart and Xero.',
+    href: '/resume',
+    action: 'Read my résumé',
+    art: 'career',
+    alt: 'Andrew’s work history featuring Pinterest and Xero',
+  },
 ];
+
+export function channelNumber(id: string) {
+  return feedPins.find(program => program.id === id)!.number;
+}

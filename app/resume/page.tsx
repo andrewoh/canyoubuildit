@@ -1,6 +1,99 @@
 import type { Metadata } from 'next';
-import { portfolioProjects } from '../portfolio/projects';
+import { ArrowLeft, Download } from 'lucide-react';
 import PrintButton from './print-button';
 import './resume.css';
-export const metadata: Metadata = {title:'Andrew Oh — One-page profile',description:'AI and data science leadership, with selected personal projects and evidence.'};
-export default function Resume(){return <main className="resume-page"><nav><a href="/">← Interactive portfolio</a><div className="resume-actions"><a href="/profile/andrew-oh.pdf" download>Download PDF ↗</a><PrintButton/></div></nav><header><p>AI · DATA SCIENCE · PRODUCT</p><h1>Andrew Oh</h1><h2>Director of Data Science at Xero</h2><div><a href="https://www.linkedin.com/in/ohandrew/">linkedin.com/in/ohandrew</a><a href="https://www.canyoubuildit.com">canyoubuildit.com</a></div></header><section><h3>Profile</h3><p>A data science leader and hands-on builder working at the intersection of analytical thinking, AI systems, and product judgment. This portfolio demonstrates that approach through personal products, reproducible analysis, and experiments with explicit tradeoffs.</p></section><section><h3>Selected personal work</h3><div className="resume-projects">{portfolioProjects.filter(p=>['49ers','family-os','tend','dropalpha'].includes(p.id)).map(p=><article key={p.id}><h4><a href={'https://www.canyoubuildit.com'+p.href}>{p.title} ↗</a><small>{p.status}</small></h4><p>{p.summary}</p><span>{p.capabilities.join(' · ')}</span></article>)}</div></section><section><h3>How I approach the work</h3><ul><li><strong>Frame the decision.</strong> Start with the question and what would change the answer.</li><li><strong>Show the evidence.</strong> Make sources, assumptions, evaluation and uncertainty inspectable.</li><li><strong>Design the handoff.</strong> Put human review and clear boundaries into AI workflows.</li><li><strong>Build to learn.</strong> Use working prototypes to test usefulness and refine the next step.</li></ul></section><footer>Selected personal projects are separate from my work at Xero.<br/>For professional history and contact, visit <a href="https://www.linkedin.com/in/ohandrew/">LinkedIn</a>.</footer></main>}
+
+export const metadata: Metadata = {
+  title: 'Andrew Oh | Data science résumé',
+  description: 'Professional experience in data science leadership, AI strategy, subscriptions and experimentation.',
+};
+
+const experience = [
+  {
+    employer: 'Xero', role: 'Director of Data Science', dates: 'Sep 2024 – Present',
+    work: [
+      'Lead data science for Payments, Payroll and Ecosystem. Coach scientists and partner with product and engineering on decisions across all three areas.',
+      'Develop AI agents for analytics and decision support, with shared metrics, evaluation and human review.',
+    ],
+  },
+  {
+    employer: 'Walmart', role: 'Senior Data Science Manager', dates: 'Mar 2023 – Aug 2024',
+    work: [
+      'Managed teams covering member engagement and retention, member care and account management, and data engineering.',
+      'Expanded experimentation and built data foundations for Fraud, Trust & Safety, and Payments.',
+    ],
+  },
+  {
+    employer: 'Coinbase', role: 'Senior Data Scientist', dates: 'Apr 2022 – Jan 2023',
+    work: [
+      'Led data science for NFT Growth and Coinbase One. Used synthetic controls to measure the impact of the subscription.',
+      'Received a 2022 High Impact award for the NFT launch and for helping Coinbase One grow from beta to over 200,000 users.',
+    ],
+  },
+  {
+    employer: 'Pinterest', role: 'Product Data Scientist', dates: 'Dec 2017 – Apr 2022',
+    work: ['Managed analytics for teams building creator tools, monetization products and measurement.'],
+  },
+  {
+    employer: 'PicsArt', role: 'Senior Business Analyst', dates: 'Jul 2016 – Nov 2017',
+    work: ['Led analytics at the San Francisco headquarters, managed BI analysts, and used Python and Spark for clustering and funnel studies.'],
+  },
+  {
+    employer: 'Yahoo!', role: 'Data Analyst → Data Insights Analyst III', dates: 'Jan 2013 – Jul 2016',
+    work: ['Standardized Search instrumentation, ran Shopping experiments, and cut reporting latency from 30 minutes to real time.'],
+  },
+];
+
+const earlier = [
+  { employer: 'Blackhawk Network', role: 'Customer Service Analyst', dates: 'Aug 2010 – Dec 2012' },
+  { employer: 'Property Sciences', role: 'Accounting Specialist', dates: 'May 2009 – Feb 2010' },
+  { employer: 'Chevron', role: 'Payroll Representative', dates: 'Oct 2008 – Jan 2009' },
+];
+
+export default function Resume() {
+  return (
+    <main className="resume-page">
+      <nav aria-label="Résumé tools" className="resume-nav">
+        <a href="/"><ArrowLeft size={16} aria-hidden="true" /> After Hours</a>
+        <div className="resume-actions">
+          <a href="/profile/andrew-oh.pdf" download><Download size={15} aria-hidden="true" /> Download PDF</a>
+          <PrintButton />
+        </div>
+      </nav>
+      <article className="resume-sheet" aria-labelledby="resume-name">
+        <header className="resume-header">
+          <h1 id="resume-name">Andrew <em>Oh</em><span className="resume-period" aria-hidden="true">.</span></h1>
+          <div className="resume-heading-meta">
+            <p>Director of Data Science</p>
+            <span>San Francisco Bay Area <span aria-hidden="true">·</span> LinkedIn @ohandrew</span>
+          </div>
+          <p className="resume-summary">I lead data science teams in payments, subscriptions and customer retention. My work brings experimentation and AI-assisted analysis into product decisions.</p>
+        </header>
+        <section className="resume-experience" aria-labelledby="experience-title">
+          <h2 id="experience-title">Experience</h2>
+          {experience.map(position => <div className="resume-position" key={position.employer}>
+            <div className="resume-position-heading">
+              <h3>{position.employer} <span>{position.role}</span></h3>
+              <span className="resume-dates">{position.dates}</span>
+            </div>
+            <ul>{position.work.map(line => <li key={line}>{line}</li>)}</ul>
+          </div>)}
+        </section>
+        <section className="resume-short" aria-labelledby="earlier-title">
+          <h2 id="earlier-title">Earlier experience</h2>
+          {earlier.map(position => <div className="resume-position-heading" key={position.employer}>
+            <p><strong>{position.employer}</strong> <span>{position.role}</span></p>
+            <span className="resume-dates">{position.dates}</span>
+          </div>)}
+        </section>
+        <section className="resume-short" aria-labelledby="education-title">
+          <h2 id="education-title">Education</h2>
+          <div className="resume-position-heading">
+            <p><strong>University of California, Davis</strong> <span>B.A., Economics and Religious Studies</span></p>
+            <span className="resume-dates">2004 – 2008</span>
+          </div>
+        </section>
+      </article>
+    </main>
+  );
+}

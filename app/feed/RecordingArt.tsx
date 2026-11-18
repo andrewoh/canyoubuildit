@@ -31,10 +31,6 @@ export function SilentPreview({ recording, id, onFailure, onEnded }: Props) {
   return <video ref={ref} src={movieUrl(recording)} muted loop={!onEnded} onEnded={onEnded} playsInline preload="none"
     className="recording-motion" data-ready={ready || undefined} aria-hidden="true"
     onPlaying={() => setReady(true)}
-    onTimeUpdate={event => {
-      const video = event.currentTarget;
-      if (video.duration > 0) video.closest<HTMLElement>('.feed-media-stage')?.style.setProperty('--clip-progress', (video.currentTime / video.duration * 100) + '%');
-    }}
     onError={() => onFailure?.(id)} />;
 }
 
