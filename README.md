@@ -14,7 +14,7 @@ Open `http://localhost:3000`.
 ## Routes
 
 - `/` — interactive portfolio with project explorer, source-backed data lab, and illustrative AI walkthrough
-- `/resume` — printable one-page profile
+- `/resume` — printable career profile
 - `/archive` — preserved September 2026 build archive snapshot
 - `/interest-boards` — living visual workspace for recurring interests
 - `/wardrobe` — browsable wardrobe catalog with modeled item views
