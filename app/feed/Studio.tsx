@@ -56,7 +56,7 @@ export default function Studio({ channelId, onTune, playing, onPlay, watching, o
       <div className="studio-copy">
         <p className="studio-byline">A project channel by Andrew Oh</p>
         <h1 id="show-title" tabIndex={-1}>After <em>Hours<span>.</span></em></h1>
-        <p className="studio-introduction">I’m Director of Data Science at Xero. I built Injury Report to settle a football argument, Tend to catch family follow-ups, and SPARK to find AI demos worth trying.</p>
+        <p className="studio-introduction">Currently: Director of Data Science at Xero. I built Injury Report to settle a football argument, Tend to catch family follow-ups, and SPARK to find AI demos worth trying.</p>
         <div className="studio-actions">
           <a href="#work" className="studio-browse">Channel guide <ArrowDown size={16} aria-hidden="true"/></a>
           <button type="button" onClick={onStory}>My story <ArrowRight size={16} aria-hidden="true"/></button>
