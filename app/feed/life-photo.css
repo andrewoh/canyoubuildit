@@ -6,6 +6,8 @@
 .life-photo--career { --card-base: #334951; --card-ink: #f2e8c7; }
 .life-well, .life-well > img, .life-test-card { position: absolute; inset: 0; width: 100%; height: 100%; }
 .life-well > img { object-fit: cover; object-position: 50% 36%; }
+.life-photo--career .life-well > img { object-position: 72% 42%; }
+.guide-media .life-photo[data-photo] .life-lower-third { display: none; }
 .life-test-card {
   display: grid; place-items: center; padding-bottom: 16%;
   background-image: linear-gradient(90deg,#fff2 1px,transparent 1px),linear-gradient(#fff2 1px,transparent 1px);
@@ -19,3 +21,9 @@
 .life-lower-third { position: absolute; bottom: 0; left: 0; right: 0; display: grid; gap: 1cqw; padding: 3cqw 7cqw; background: #151f20ed; color: #fcf2c9; }
 .life-lower-third strong { font: italic 400 8cqw/1 'Studio Serif',Georgia,serif; }
 .life-lower-third small { font: 500 3.25cqw/1.2 'Feed Sans',Arial,sans-serif; }
+.life-photo[data-photo] .life-lower-third {
+  padding: 8cqw 6cqw 3.5cqw;
+  background: linear-gradient(transparent, #101617db);
+  color: #fff;
+}
+.life-photo[data-photo] .life-lower-third strong { font-size: 7cqw; }

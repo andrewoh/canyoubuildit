@@ -12,17 +12,17 @@ export function LifePhotoProvider({ photos, children }: { photos: LifePhotos; ch
 
 const labels = {
   portrait: { name: 'Portrait', caption: 'Andrew Oh', detail: 'Director of Data Science at Xero' },
-  career: { name: 'Work photo', caption: 'Pinterest → Xero', detail: 'My work history' },
+  career: { name: 'Work photo', caption: 'Pinterest', detail: 'New York Stock Exchange' },
 } as const;
 
-export default function LifePhoto({ slot }: { slot: LifePhotoSlot }) {
+export default function LifePhoto({ slot, alt }: { slot: LifePhotoSlot; alt: string }) {
   const source = useContext(photoContext)[slot];
   const [failedSource, setFailedSource] = useState<string | null>(null);
   const photo = source && source !== failedSource ? source : null;
   const { name, caption, detail } = labels[slot];
-  const alt = photo ? name + ' · ' + caption : 'Reserved ' + name.toLowerCase() + ' space for Andrew Oh';
+  const description = photo ? alt : 'Reserved ' + name.toLowerCase() + ' space for Andrew Oh';
   return (
-    <figure className={'life-photo life-photo--' + slot} role="img" aria-label={alt + '. ' + detail}>
+    <figure className={'life-photo life-photo--' + slot} data-photo={photo ? true : undefined} role="img" aria-label={description}>
       <div className="life-well" aria-hidden="true">
         {photo ? <img src={photo} alt="" decoding="async" loading="lazy" onError={() => setFailedSource(photo)} /> :
           <div className="life-test-card"><span>{name}</span></div>}

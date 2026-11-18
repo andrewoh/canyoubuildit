@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { ArrowLeft, Download } from 'lucide-react';
 import PrintButton from './print-button';
-import { experience } from './experience';
+import { earlierExperience, experience } from './experience';
 import './resume.css';
 
 export const metadata: Metadata = {
@@ -31,17 +31,36 @@ export default function Resume() {
         <section className="resume-experience" aria-labelledby="experience-title">
           <h2 id="experience-title">Experience</h2>
           {experience.map(position => (
-            <article className="resume-position" key={position.employer + position.role}>
+            <article className="resume-position" key={position.employer}>
               <div className="resume-position-heading">
-                <h3>{position.employer} <span>{position.role}</span></h3>
+                <h3>{position.employer}{position.role && <> <span>{position.role}</span></>}</h3>
                 <span className="resume-dates">{position.dates}</span>
               </div>
-              {position.location && <p className="resume-location">{position.location}</p>}
+              {position.progression && (
+                <dl className="resume-progression">
+                  {position.progression.map(step => (
+                    <div key={step.role}><dt>{step.role}</dt><dd>{step.dates}</dd></div>
+                  ))}
+                </dl>
+              )}
               {position.summary && <p className="resume-role-summary">{position.summary}</p>}
               {position.work && <ul>{position.work.map(line => <li key={line}>{line}</li>)}</ul>}
-              {position.closing && <p className="resume-role-summary">{position.closing}</p>}
             </article>
           ))}
+        </section>
+        <section className="resume-earlier" aria-labelledby="earlier-title">
+          <h2 id="earlier-title">Earlier experience</h2>
+          <ul>
+            {earlierExperience.map(position => (
+              <li key={position.employer}>
+                <div className="resume-position-heading">
+                  <h3>{position.employer} <span>{position.role}</span></h3>
+                  <span className="resume-dates">{position.dates}</span>
+                </div>
+                <p>{position.summary}</p>
+              </li>
+            ))}
+          </ul>
         </section>
         <section className="resume-short" aria-labelledby="education-title">
           <h2 id="education-title">Education</h2>

@@ -140,7 +140,7 @@ export const feedPins: FeedPin[] = [
     href: '/resume',
     action: 'Read my résumé',
     art: 'bio',
-    alt: 'A reserved portrait space for Andrew Oh.',
+    alt: 'Andrew Oh in a plaid shirt against a gray studio backdrop.',
   },
   {
     id: 'work-history',
@@ -149,12 +149,12 @@ export const feedPins: FeedPin[] = [
     project: 'Work history',
     title: 'My work in data science',
     caption: 'Product analytics, experimentation and data science leadership.',
-    story: 'I lead data science across Payments, Payroll and Ecosystem at Xero. Before that, I managed data science teams at Walmart across member engagement and retention, member care and account management, and data engineering.',
-    decision: 'At Coinbase I led data science for NFT Growth and Coinbase One subscriptions. My résumé also covers product data science at Pinterest, business analytics at PicsArt and three analyst roles at Yahoo.',
+    story: 'I lead data science for Payments, Payroll and Ecosystem at Xero. At Walmart+, my teams ran experiments that contributed to 44% year-over-year membership growth. I also set up data engineering for fraud, trust and safety, and payments.',
+    decision: 'That’s me outside the New York Stock Exchange during my time at Pinterest. There, I built a Python tool to find promising creators as the program grew from hundreds to millions.',
     href: '/resume',
     action: 'Read my résumé',
     art: 'career',
-    alt: 'Andrew’s work history featuring Pinterest and Xero',
+    alt: 'Andrew pointing to a pink Pinterest banner outside the New York Stock Exchange.',
   },
 ];
 
