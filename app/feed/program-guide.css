@@ -107,7 +107,6 @@
   width: 100%; height: var(--frame-height); min-width: 0;
   background: var(--mat); border-radius: 8px; overflow: hidden;
 }
-.program-guide .guide-listing[data-channel='forty-at-the-plate'] .guide-media { --mat: #293d46; }
 .program-guide .guide-listing[data-channel='pokeread'] .guide-media { --mat: #567971; }
 .program-guide .guide-listing[data-channel='49ers'] .guide-media { --mat: #813b37; }
 .program-guide .guide-listing[data-channel='tend'] .guide-media { --mat: #a6b299; }

@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-export const alt = 'After Hours with Andrew Oh, Director of Data Science at Xero. An orange television shows a phonics lesson from his PokéRead reading app.';
+export const alt = 'After Hours with Andrew Oh, Director of Data Science at Xero. An orange television shows Injury Report and a chart from his 49ers injury study.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/jpeg';
 export const dynamic = 'force-static';

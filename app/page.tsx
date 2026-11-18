@@ -4,7 +4,7 @@ import { LifePhotoProvider } from './feed/LifePhoto';
 import { getLifePhotos } from './feed/photo-slots';
 
 const title = 'After Hours with Andrew Oh | AI and data science';
-const description = 'Andrew Oh, Director of Data Science at Xero and previously at Pinterest. Watch his AI projects in action and explore his data science work.';
+const description = 'Explore Injury Report, Tend, and SPARK with Andrew Oh, Director of Data Science at Xero and previously at Pinterest.';
 
 export const metadata: Metadata = {
   title,

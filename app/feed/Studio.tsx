@@ -7,11 +7,10 @@ import { SilentPreview } from './RecordingArt';
 import { posterUrl, recordings } from './recordings';
 import './studio.css';
 
-export const featureIds = ['pokeread', '49ers', 'tend', 'forty-at-the-plate'];
+export const featureIds = ['49ers', 'tend', 'spark'];
 
 const tvTitles: Record<string, string[]> = {
   '49ers': ['Injury', 'report'],
-  'forty-at-the-plate': ['Forty at', 'the Plate'],
   'family-os': ['Family', 'OS'],
 };
 
@@ -57,7 +56,7 @@ export default function Studio({ channelId, onTune, playing, onPlay, watching, o
       <div className="studio-copy">
         <p className="studio-byline">A project channel by Andrew Oh</p>
         <h1 id="show-title" tabIndex={-1}>After <em>Hours<span>.</span></em></h1>
-        <p className="studio-introduction">I’m Director of Data Science at Xero. After work, I make reading games, build AI tools for family life, and put football hunches to the test.</p>
+        <p className="studio-introduction">I’m Director of Data Science at Xero. I built Injury Report to settle a football argument, Tend to catch family follow-ups, and SPARK to find AI demos worth trying.</p>
         <div className="studio-actions">
           <a href="#work" className="studio-browse">Channel guide <ArrowDown size={16} aria-hidden="true"/></a>
           <button type="button" onClick={onStory}>My story <ArrowRight size={16} aria-hidden="true"/></button>
@@ -79,7 +78,7 @@ export default function Studio({ channelId, onTune, playing, onPlay, watching, o
               {!fullScreen && <div className="tube-caption" aria-hidden="true">
                 <span className="tube-channel">CH {channel.number}</span>
                 <strong>{title.map(word => <span key={word}>{word}</span>)}</strong>
-                <span className="tube-category">{channel.id === 'forty-at-the-plate' ? 'Birthday special' : channel.board}</span>
+                <span className="tube-category">{channel.board}</span>
               </div>}
               {recording ? <div className="tube-footage" aria-hidden="true">
                 <img src={posterUrl(recording)} alt="" width={recording.width} height={recording.height} draggable={false} />
@@ -114,7 +113,7 @@ export default function Studio({ channelId, onTune, playing, onPlay, watching, o
         <div className="lineup-label"><Radio size={19} strokeWidth={1.6} aria-hidden="true"/><span>Featured</span></div>
         <div className="lineup-buttons" role="group" aria-label="Choose a featured channel">
           {featured.map(entry => <button key={entry.id} type="button" aria-pressed={entry.id === channel.id} onClick={() => onTune(entry.id)}>
-            <span className="lineup-number">{entry.number}</span><span>{entry.id === '49ers' ? 'Injury report' : entry.project}</span>
+            <span className="lineup-number">{entry.number}</span><span>{entry.project}</span>
           </button>)}
         </div>
         <button className="lineup-watch" type="button" aria-pressed={watching} onClick={onWatch}>

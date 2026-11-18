@@ -10,31 +10,17 @@ export type FeedPin = {
   decision: string;
   href: string;
   action: string;
-  art: 'injury' | 'family' | 'birthday' | 'tend' | 'economics' | 'cases' | 'bio' | 'career' | 'spark' | 'reading';
+  art: 'injury' | 'family' | 'tend' | 'economics' | 'cases' | 'bio' | 'career' | 'spark' | 'reading';
   alt: string;
   project: string;
 };
 
 export const feedPins: FeedPin[] = [
   {
-    id: 'pokeread',
-    number: '01',
-    board: 'Products',
-    project: 'PokéRead',
-    title: 'Reading with Eevee',
-    caption: 'Build a word one sound at a time in a Pokémon phonics lesson.',
-    story: 'I built PokéRead for two young readers. In this lesson, Squirtle introduces the sh sound. The reader joins sh, i and p beside Eevee to spell “ship,” then checks the result.',
-    decision: 'The lesson is one stop on a 74-lesson reading path. Children can practice sounds, read illustrated stories and revisit words at their own pace. Each reader’s progress stays on the device.',
-    href: '/projects/pokeread',
-    action: 'Read about PokéRead',
-    art: 'reading',
-    alt: 'Eevee’s phonics lesson asks a reader to build the word ship.',
-  },
-  {
     id: '49ers',
-    number: '02',
+    number: '01',
     board: 'Data science',
-    project: 'The injury question',
+    project: 'Injury Report',
     title: 'Do the 49ers really lose more time to injury?',
     caption: 'I compared nine seasons of injuries across all 32 NFL teams.',
     story: 'It’s easy to remember the seasons when everyone seemed hurt. I wanted a fair comparison, so I took each team’s adjusted games lost and compared it with the NFL average that same season.',
@@ -46,7 +32,7 @@ export const feedPins: FeedPin[] = [
   },
   {
     id: 'tend',
-    number: '03',
+    number: '02',
     board: 'AI systems',
     project: 'Tend',
     title: 'Turn a message into a task to review',
@@ -59,32 +45,32 @@ export const feedPins: FeedPin[] = [
     alt: 'Tend opens the evidence behind a suggested school-form task.',
   },
   {
-    id: 'forty-at-the-plate',
-    number: '40',
-    board: 'Products',
-    project: 'Forty at the Plate',
-    title: 'My 40th, from the dugout',
-    caption: 'A game-day site for my four-team Wiffle ball birthday tournament.',
-    story: 'I built Forty at the Plate for my 40th birthday. Four teams play Wiffle ball, a home-run derby and a target toss. The scoreboard brings the points from all three events into the team standings.',
-    decision: 'Between innings, a player can check a house rule or open the illustrated pitching guide to see how to grip a riser. The same site keeps the schedule and scores handy on a phone at the field.',
-    href: '/40',
-    action: 'Open the birthday tournament',
-    art: 'birthday',
-    alt: 'The tournament scoreboard and illustrated Wiffle ball pitching guide.',
-  },
-  {
     id: 'spark',
-    number: '04',
+    number: '03',
     board: 'AI systems',
     project: 'SPARK',
     title: 'Save an AI demo with its source',
     caption: 'An iPhone app for saving AI demos alongside the people who made them.',
     story: 'SPARK is my iPhone app for browsing AI demos and practical ideas. I wanted to be able to find the original creator again and tell when a demo was published.',
-    decision: 'The feed keeps the source and publication date with each idea. Saves stay on the phone, where recommendations can adapt to the things I choose to keep.',
+    decision: 'Each demo keeps its creator and publication date. A recommendation model on my iPhone learns from what I save or hide and leaves room for ideas I haven’t seen.',
     href: '/projects/spark',
     action: 'Read about SPARK',
     art: 'spark',
     alt: 'SPARK’s collection of attributed AI demos and ideas',
+  },
+  {
+    id: 'pokeread',
+    number: '04',
+    board: 'Products',
+    project: 'PokéRead',
+    title: 'Reading with Eevee',
+    caption: 'Build a word one sound at a time in a Pokémon phonics lesson.',
+    story: 'I built PokéRead for two young readers. In this lesson, Squirtle introduces the sh sound. The reader joins sh, i and p beside Eevee to spell “ship,” then checks the result.',
+    decision: 'The lesson is one stop on a 74-lesson reading path. Children can practice sounds, read illustrated stories and revisit words at their own pace. Each reader’s progress stays on the device.',
+    href: '/projects/pokeread',
+    action: 'Read about PokéRead',
+    art: 'reading',
+    alt: 'Eevee’s phonics lesson asks a reader to build the word ship.',
   },
   {
     id: 'family-os',
@@ -135,7 +121,7 @@ export const feedPins: FeedPin[] = [
     project: 'Andrew Oh',
     title: 'A little about me',
     caption: 'The family routines and football questions behind my side projects.',
-    story: 'I’m Andrew Oh, Director of Data Science at Xero. The things I build after work often start at home. I made PokéRead for reading practice and Forty at the Plate for the friends playing in my birthday tournament.',
+    story: 'I’m Andrew Oh, Director of Data Science at Xero. A lot of my projects start at home. I built Tend because a useful family follow-up can get buried in a message thread, and PokéRead to give two young readers a place to practice.',
     decision: 'I also spend time with questions that fit better in a chart. The 49ers injury study started with a familiar football argument and ended up with nine seasons of data. Both kinds of work live here.',
     href: '/resume',
     action: 'Read my résumé',

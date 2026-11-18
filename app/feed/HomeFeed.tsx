@@ -13,7 +13,8 @@ const tourStops = [
   { id: 'about-andrew', note: 'A few of the things that find their way into my projects.' },
   { id: 'work-history', note: 'Where I’ve worked, and where to find my professional background.' },
   { id: '49ers', note: 'One question I wanted to answer with data.' },
-  { id: 'family-os', note: 'One decision I wanted a person to keep.' },
+  { id: 'tend', note: 'How I help my family keep track of a follow-up.' },
+  { id: 'spark', note: 'A discovery app that learns what I find worth saving.' },
 ];
 
 type OpenPin = { id: string; touring: boolean };

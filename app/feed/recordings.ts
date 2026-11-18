@@ -11,7 +11,6 @@ export type Recording = {
 
 export const recordings: Record<string, Recording | undefined> = {
   pokeread: { file: 'pokeread-reading', label: 'iPad reading lesson', description: 'Squirtle introduces the sh sound. The reader joins sh, i and p beside Eevee to spell ship.', width: 720, height: 540, seconds: 8 },
-  'forty-at-the-plate': { file: 'birthday-tournament', label: 'Tournament demo', description: 'The birthday tournament scoreboard and field guide show the standings and how to grip a Wiffle ball.', width: 480, height: 640, seconds: 9 },
   spark: { file: 'spark-native', label: 'iPhone demo', description: 'Browse the SPARK discovery feed, open an attributed idea, and save it.', width: 540, height: 720, seconds: 6 },
   vectorfield: { file: 'vectorfield-native', label: 'iPhone demo', description: 'Move from an AI curriculum module to a worked lesson and director case in Vectorfield.', width: 540, height: 720, seconds: 8 },
   tend: { file: 'tend-capture', label: 'iPhone demo · sample data', description: 'Tend opens the evidence behind a proposed school-form follow-up using sample messages.', width: 560, height: 756, seconds: 7 },

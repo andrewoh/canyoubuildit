@@ -24,9 +24,13 @@ export default function Resume() {
           <h1 id="resume-name">Andrew <em>Oh</em><span className="resume-period" aria-hidden="true">.</span></h1>
           <div className="resume-heading-meta">
             <p>Director of Data Science at Xero</p>
-            <span>San Francisco Bay Area <span aria-hidden="true">·</span> LinkedIn @ohandrew</span>
+            <span>San Francisco Bay Area</span>
           </div>
           <p className="resume-summary">Data Products &amp; AI Strategy | Subscriptions, Experimentation &amp; Customer Lifecycle</p>
+          <div className="resume-profile-links">
+            <a href="https://www.linkedin.com/in/ohandrew/">linkedin.com/in/ohandrew</a>
+            <a href="https://www.canyoubuildit.com/">canyoubuildit.com</a>
+          </div>
         </header>
         <section className="resume-experience" aria-labelledby="experience-title">
           <h2 id="experience-title">Experience</h2>

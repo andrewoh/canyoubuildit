@@ -66,6 +66,8 @@
 .tube-footage > img, .tube-footage > video {
   position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; object-position: center;
 }
+.screen-49ers .tube-footage { background: #fcfbf9; }
+.screen-49ers .tube-footage > :is(img, video) { object-fit: contain; }
 .studio-screen::after {
   content: ''; pointer-events: none; position: absolute; inset: 0; z-index: 2;
   background: repeating-linear-gradient(0deg,transparent 0 2px,#271f1b0b 2px 3px);
@@ -161,8 +163,6 @@
   .lineup-buttons { grid-area: channels; border-top: 1px solid #241f1a30; }
 }
 
-.screen-forty-at-the-plate { --phosphor: #142939; --tube-ink: #f7d992; }
-.screen-forty-at-the-plate .tube-caption strong { font-size: 10.5cqw; }
 .screen-spark { --phosphor: #883c29; --tube-ink: #f9efcc; }
 .screen-vectorfield { --phosphor: #2b4151; --tube-ink: #e5edc9; }
 .screen-vectorfield .tube-caption strong { font-size: 9cqw; }
@@ -186,7 +186,7 @@
   .lineup-watch { font-size: 12px; }
 }
 @media(max-width:680px) {
-  .lineup-buttons { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); }
+  .lineup-buttons { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0,1fr); }
   .lineup-buttons button { flex-direction: column; align-items: center; gap: 5px; min-height: 58px; line-height: 1.15; }
   .studio-readout { gap: 6px; }
 }
