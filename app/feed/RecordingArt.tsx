@@ -9,10 +9,11 @@ type Props = {
   id: string;
   playing?: boolean;
   detail?: boolean;
+  onEnded?: () => void;
   onFailure?: (id: string) => void;
 };
 
-function SilentPreview({ recording, id, onFailure }: Props) {
+export function SilentPreview({ recording, id, onFailure, onEnded }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
   const [ready, setReady] = useState(false);
   useEffect(() => {
@@ -27,7 +28,7 @@ function SilentPreview({ recording, id, onFailure }: Props) {
     };
   }, [id, onFailure]);
 
-  return <video ref={ref} src={movieUrl(recording)} muted loop playsInline preload="none"
+  return <video ref={ref} src={movieUrl(recording)} muted loop={!onEnded} onEnded={onEnded} playsInline preload="none"
     className="recording-motion" data-ready={ready || undefined} aria-hidden="true"
     onPlaying={() => setReady(true)}
     onTimeUpdate={event => {

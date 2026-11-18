@@ -3,16 +3,21 @@ import HomeFeed from './feed/HomeFeed';
 import { LifePhotoProvider } from './feed/LifePhoto';
 import { getLifePhotos } from './feed/photo-slots';
 
+const title = 'After Hours with Andrew Oh | AI and data science';
+const description = 'Andrew Oh, Director of Data Science at Xero and previously at Pinterest. Watch his AI projects in action and explore his data science work.';
+
 export const metadata: Metadata = {
-  title: 'Andrew Oh’s home feed | Can You Build It?',
-  description: 'Explore Andrew Oh’s life and work in pins. Director of Data Science at Xero, previously at Pinterest, and builder of personal AI projects.',
+  title,
+  description,
   alternates: { canonical: 'https://www.canyoubuildit.com' },
+  icons: { icon: { url: '/feed/studio/after-hours-icon.svg', type: 'image/svg+xml', sizes: 'any' } },
   openGraph: {
-    title: 'Andrew Oh’s home feed',
-    description: 'Biography, personal AI builds and data science projects, one pin at a time.',
+    title,
+    description,
     url: 'https://www.canyoubuildit.com',
     type: 'website',
   },
+  twitter: { card: 'summary_large_image' },
 };
 
 export default function Home() {

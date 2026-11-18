@@ -5,11 +5,11 @@ import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
 const preferenceKey = 'andrew-oh.feed-autoplay.v1';
 const settleMs = 175;
 const minimumVisible = 0.4;
-const tileSelector = '.feed-tile[data-demo-id]';
+const tileSelector = '[data-demo-id]';
 
 type Connection = EventTarget & { saveData?: boolean };
 type Selection = { id: string; scope: string; manual: boolean };
-type Controls = { toggle: (id: string) => void; failed: (id: string) => void; stop: () => void };
+type Controls = { play: (id: string) => void; pause: (id: string) => void; toggle: (id: string) => void; failed: (id: string) => void; stop: () => void };
 
 export default function useFeedPreviews(
   grid: RefObject<HTMLDivElement | null>,
@@ -52,7 +52,7 @@ export default function useFeedPreviews(
 
     const tiles = new Map<string, HTMLElement>();
     element.querySelectorAll<HTMLElement>(tileSelector).forEach(tile => {
-      const cover = tile.querySelector<HTMLElement>('.feed-cover') ?? tile;
+      const cover = tile.querySelector<HTMLElement>('.studio-screen, .feed-cover') ?? tile;
       tiles.set(tile.dataset.demoId!, cover);
     });
     if (tiles.size === 0) return;
@@ -141,15 +141,24 @@ export default function useFeedPreviews(
     }, { threshold: [0, minimumVisible] }) : null;
     tiles.forEach(cover => observer?.observe(cover));
 
+    function play(id: string) {
+      if (!tiles.has(id) || document.hidden) return;
+      rejected.current.delete(id);
+      paused = null;
+      manual = id;
+      choose();
+    }
+
+    function pause(id: string) {
+      if (active !== id) return;
+      paused = id;
+      stop();
+    }
+
     controls.current = {
-      toggle(id) {
-        if (!tiles.has(id) || document.hidden) return;
-        if (active === id) { paused = id; stop(); return; }
-        rejected.current.delete(id);
-        paused = null;
-        manual = id;
-        choose();
-      },
+      play,
+      pause,
+      toggle(id) { if (active === id) pause(id); else play(id); },
       failed(id) {
         if (active !== id) return;
         rejected.current.add(id);
@@ -187,8 +196,10 @@ export default function useFeedPreviews(
     setEnabled(!enabled);
     try { localStorage.setItem(preferenceKey, enabled ? 'off' : 'on'); } catch { /* Available for this visit. */ }
   }, [automaticAllowed, autoOn, enabled]);
+  const playPin = useCallback((id: string) => controls.current?.play(id), []);
+  const pausePin = useCallback((id: string) => controls.current?.pause(id), []);
   const togglePin = useCallback((id: string) => controls.current?.toggle(id), []);
   const playbackFailed = useCallback((id: string) => controls.current?.failed(id), []);
   const activeId = !suspended && selection?.scope === visibleKey && (selection.manual || autoOn) ? selection.id : null;
-  return { activeId, autoOn, automaticAllowed, toggleAuto, togglePin, playbackFailed };
+  return { activeId, autoOn, automaticAllowed, toggleAuto, playPin, pausePin, togglePin, playbackFailed };
 }

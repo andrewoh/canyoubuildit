@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from 'react';
-import { ArrowRight, ArrowUpRight, Bookmark, Check, Search, X } from 'lucide-react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type MouseEvent } from 'react';
+import { ArrowRight, Bookmark, Check, Search, X } from 'lucide-react';
 import { feedPins, type Board, type FeedPin } from './pins';
 import PinArt from './PinArt';
 import ProjectTilt from '../portfolio/bencho/ProjectTilt';
@@ -9,9 +9,11 @@ import TransportMark from '../portfolio/bencho/TransportMark';
 import { recordings } from './recordings';
 import useFeedPreviews from './useFeedPreviews';
 import PinDetail from './PinDetail';
+import Studio, { channels, StudioHeader } from './Studio';
+import ProgramGuide, { StudioFooter } from './ProgramGuide';
 import './home-feed.css';
 
-const boards: Board[] = ['About me', 'AI systems', 'Data science', 'Products'];
+
 const savedKey = 'andrew-oh.saved-pins.v1';
 const tourStops = [
   { id: 'about-andrew', note: 'A few of the things that find their way into my projects.' },
@@ -79,7 +81,10 @@ export default function HomeFeed() {
   const [saved, setSaved] = useState<string[]>([]);
   const [opened, setOpened] = useState<OpenPin | null>(null);
   const [announcement, setAnnouncement] = useState('');
-  const searchRef = useRef<HTMLInputElement>(null);
+  const [channel, setChannel] = useState(0);
+  const [watching, setWatching] = useState(false);
+  const pageRef = useRef<HTMLDivElement>(null);
+  const studioId = 'studio-' + channels[channel].id;
   const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);
   const visible = feedPins.filter(pin =>
     (view === 'home' || saved.includes(pin.id)) && (!board || board === pin.board)
@@ -87,7 +92,51 @@ export default function HomeFeed() {
   );
   const visibleKey = visible.map(item => item.id).join('.');
   const gridRef = useMasonry(visibleKey);
-  const previews = useFeedPreviews(gridRef, visibleKey, Boolean(opened));
+  const previews = useFeedPreviews(pageRef, studioId + '/' + visibleKey, Boolean(opened));
+  const { playPin, playbackFailed } = previews;
+
+  // The lineup is an explicit, finite play request, even when automatic previews are disabled.
+  // Scrolling to the index or backgrounding the tab hands playback back to the feed.
+  useEffect(() => {
+    const screen = pageRef.current?.querySelector('.studio-screen');
+    if (!watching || !screen || opened) return;
+    playPin(studioId);
+    const cancel = () => setWatching(false);
+    const hidden = () => { if (document.hidden) cancel(); };
+    const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) cancel();
+    }) : null;
+    observer?.observe(screen);
+    document.addEventListener('visibilitychange', hidden);
+    return () => { observer?.disconnect(); document.removeEventListener('visibilitychange', hidden); };
+  }, [watching, studioId, playPin, opened]);
+
+  const studioFailed = useCallback((id: string) => {
+    setWatching(false);
+    playbackFailed(id);
+  }, [playbackFailed]);
+
+  function stopLineup() {
+    previews.pausePin(studioId);
+    setWatching(false);
+  }
+
+  function watchLineup() {
+    if (watching) { stopLineup(); return; }
+    const screen = pageRef.current?.querySelector('.studio-screen');
+    const bounds = screen?.getBoundingClientRect();
+    if (bounds && (bounds.top < 58 || bounds.bottom > window.innerHeight)) {
+      screen?.scrollIntoView({ block: 'center', behavior: 'instant' });
+    }
+    setChannel(0);
+    setWatching(true);
+  }
+
+  function advanceLineup() {
+    if (channel === channels.length - 1) stopLineup();
+    else setChannel(channel + 1);
+  }
+
   const pin = opened ? byId.get(opened.id) : null;
   const tourIndex = opened?.touring ? tourStops.findIndex(stop => stop.id === opened.id) : -1;
   const nextStop = tourIndex >= 0 ? tourStops[tourIndex + 1] : null;
@@ -97,7 +146,7 @@ export default function HomeFeed() {
     : (pinIndex >= 0 ? visible[pinIndex + 1] ?? null : null);
 
   useEffect(() => {
-    const syncLocation = () => setOpened(pinFromLocation());
+    const syncLocation = () => { setWatching(false); setOpened(pinFromLocation()); };
     const syncSaved = (event: StorageEvent) => {
       if (event.key === savedKey || event.key === null) setSaved(readSaved());
     };
@@ -114,6 +163,7 @@ export default function HomeFeed() {
   }, []);
 
   function openPin(id: string, touring = false) {
+    setWatching(false);
     const hash = '#' + (touring ? 'story/' : 'pin/') + id;
     const state = { ...history.state, feedDetail: true };
     if (opened) history.replaceState(history.state, '', hash);
@@ -145,70 +195,21 @@ export default function HomeFeed() {
     setView(next);
     setBoard(null);
     setQuery('');
-    window.scrollTo({ top: 0, behavior: 'instant' });
   }
 
   return (
-    <div className="home-feed" id="top">
-      <a href="#work" className="feed-skip">Skip to pins</a>
-      <header className="feed-header">
-        <div className="feed-header-inner">
-          <button className="feed-brand" type="button" aria-label="Andrew Oh, return to home feed" onClick={() => switchView('home')}>
-            <span className="feed-monogram" aria-hidden="true">ao</span>
-            <strong>Andrew Oh</strong>
-          </button>
-          <nav className="feed-nav" aria-label="Feed views">
-            <button type="button" aria-pressed={view === 'home'} onClick={() => switchView('home')}>Home</button>
-            <button type="button" aria-pressed={view === 'saved'} onClick={() => switchView('saved')}>
-              Saved{saved.length > 0 && <span className="saved-count">{saved.length}</span>}
-            </button>
-          </nav>
-          <form className="feed-search" role="search" onSubmit={event => event.preventDefault()}>
-            <Search size={18} aria-hidden="true" />
-            <input ref={searchRef} aria-label="Search pins" type="search" placeholder="Search my pins" value={query}
-              onChange={event => {
-                setQuery(event.target.value);
-                if (window.scrollY > 160) window.scrollTo({ top: 0, behavior: 'instant' });
-              }} onKeyDown={event => {
-                if (event.key === 'Escape') { setQuery(''); searchRef.current?.blur(); }
-              }} />
-            {query && <button type="button" aria-label="Clear search" onClick={() => { setQuery(''); searchRef.current?.focus(); }}><X size={16} /></button>}
-          </form>
-          <a className="feed-resume" href="/resume">Résumé <ArrowUpRight size={16} /></a>
-        </div>
-      </header>
-
-      <main className="feed-main">
-        <div className="feed-intro" id="intro">
-          <div>
-            <h1 tabIndex={-1}>{view === 'home' ? <>My home <em>feed.</em></> : <>Saved <em>pins.</em></>}</h1>
-            <p>{view === 'home' ? 'I’m Andrew, Director of Data Science at Xero. These are the things I build outside work.' : 'The pins you’ve kept on this device.'}</p>
-          </div>
-          {view === 'home' && <button type="button" className="feed-tour" onClick={() => openPin(tourStops[0].id, true)}>
-            <span className="feed-stack" aria-hidden="true"><i/><i/><i>ao</i></span>
-            My story in 4 pins <ArrowRight size={16} />
-          </button>}
-        </div>
-
-        <section id="work" aria-label={view === 'home' ? 'Andrew’s pins' : 'Your saved pins'}>
-          <span id="in-flight" className="feed-anchor" /><span id="projects" className="feed-anchor" />
-          <div className="feed-tools">
-            <div className="feed-boards" role="group" aria-label="Filter by board">
-              <button type="button" aria-pressed={!board} onClick={() => setBoard(null)}>All pins</button>
-              {boards.map(name => <button type="button" key={name} aria-pressed={board === name} onClick={() => setBoard(name)}>{name}</button>)}
-            </div>
-            <div className="feed-visibility-tools">
-              {visible.some(item => recordings[item.id]) && <button type="button" className="feed-play-toggle"
-                disabled={!previews.automaticAllowed} aria-pressed={previews.autoOn}
-                aria-label={!previews.automaticAllowed ? 'Automatic previews off. Use a pin’s play button.' : previews.autoOn ? 'Pause automatic previews' : 'Enable automatic previews'}
-                title={previews.automaticAllowed ? 'Turn automatic video previews on or off' : 'Select a play button on a pin to preview it'}
-                onClick={previews.toggleAuto}>
-                <TransportMark playing={previews.autoOn} size={14} />
-                <span className="feed-play-label">{previews.autoOn ? 'Pause previews' : previews.automaticAllowed ? 'Autoplay previews' : 'Manual previews'}</span>
-              </button>}
-              <span className="feed-result-count" role="status">{visible.length} {visible.length === 1 ? 'pin' : 'pins'}</span>
-            </div>
-          </div>
+    <div className="home-feed" id="top" ref={pageRef}>
+      <a href="#work" className="feed-skip">Skip to project guide</a>
+      <StudioHeader onHome={() => switchView('home')} />
+      <main>
+        <Studio selected={channel} onTune={index => { setWatching(false); setChannel(index); }}
+          playing={previews.activeId === studioId} watching={watching} onWatch={watchLineup} onEnded={advanceLineup}
+          onPlay={() => { setWatching(false); previews.togglePin(studioId); }} onFailure={studioFailed}
+          onDetail={openPin} onStory={() => openPin(tourStops[0].id, true)} />
+        <ProgramGuide view={view} onView={switchView} board={board} onBoard={setBoard}
+          query={query} onQuery={setQuery} count={visible.length} savedCount={saved.length}
+          hasVideo={visible.some(item => recordings[item.id])} automaticAllowed={previews.automaticAllowed}
+          autoOn={previews.autoOn} onToggleAuto={previews.toggleAuto}>
           <div ref={gridRef} className="feed-grid">
             {visible.map(item => {
               const kept = saved.includes(item.id);
@@ -235,7 +236,7 @@ export default function HomeFeed() {
                   </div>
                   <div className="feed-caption">
                     <span className="feed-project">{item.project}{recording ? ' · ' + recording.label : ''}</span>
-                    <h2><a href={href} tabIndex={-1} onClick={event => followPin(event, item.id)}>{item.title}</a></h2>
+                    <h3><a href={href} tabIndex={-1} onClick={event => followPin(event, item.id)}>{item.title}</a></h3>
                   </div>
                 </article>
               </div>;
@@ -245,18 +246,15 @@ export default function HomeFeed() {
             {view === 'saved' && !saved.length ? <>
               <Bookmark size={28} /><h2>Your saved pins will appear here.</h2>
               <p>Tap the bookmark on any pin to keep it on this device.</p>
-              <button onClick={() => switchView('home')}>Explore the feed <ArrowRight size={16}/></button>
+              <button onClick={() => switchView('home')}>Explore all pins <ArrowRight size={16}/></button>
             </> : <>
               <Search size={28} /><h2>No matching pins</h2><p>Try a project name, a topic, or a different board.</p>
               <button onClick={() => { setBoard(null); setQuery(''); }}>Clear filters <X size={15}/></button>
             </>}
           </div>}
-        </section>
+        </ProgramGuide>
       </main>
-      <footer className="feed-footer" id="contact">
-        <div><strong>Andrew Oh</strong><span>Director of Data Science at Xero · Previously at Pinterest</span></div>
-        <nav aria-label="More about Andrew"><a href="/archive">Build archive</a><a href="/resume">Résumé</a><a href="https://www.linkedin.com/in/ohandrew/">LinkedIn <ArrowUpRight size={14}/></a></nav>
-      </footer>
+      <StudioFooter />
       <span className="feed-sr" role="status">{announcement}</span>
       {pin && <PinDetail pin={pin} next={nextPin} saved={saved.includes(pin.id)} onSave={() => toggleSave(pin)}
         onClose={closePin} onNext={() => { if (nextPin) openPin(nextPin.id, opened?.touring); }}
